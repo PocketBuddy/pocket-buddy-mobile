@@ -41,7 +41,7 @@ const Example = () => {
     dispatch(changeTheme({ theme, darkMode }));
   };
 
-  const onChangeLanguage = (lang: 'fr' | 'en') => {
+  const onChangeLanguage = (lang: 'pl' | 'en') => {
     i18next.changeLanguage(lang);
   };
 
@@ -223,7 +223,7 @@ const Example = () => {
           <TouchableOpacity
             style={[Common.button.circle, Gutters.regularBMargin]}
             onPress={() =>
-              onChangeLanguage(i18next.language === 'fr' ? 'en' : 'fr')
+              onChangeLanguage(i18next.language === 'en' ? 'pl' : 'en')
             }
           >
             <Image
