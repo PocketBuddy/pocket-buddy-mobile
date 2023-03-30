@@ -1,11 +1,11 @@
+import { Brand, Spinner } from '@/components';
 import React, { useEffect } from 'react';
-import { ActivityIndicator, View } from 'react-native';
-import { useTheme } from '../../hooks';
-import { Brand } from '../../components';
-import { setDefaultTheme } from '../../store/theme';
-import { ApplicationScreenProps } from '../../../@types/navigation';
+import { ApplicationScreenProps } from 'types/navigation';
+import { setDefaultTheme } from '@/store/theme';
+import { useTheme } from '@/hooks';
+import { View } from 'react-native';
 
-const Startup = ({ navigation }: ApplicationScreenProps) => {
+export default function Startup({ navigation }: ApplicationScreenProps) {
   const { Layout, Gutters } = useTheme();
 
   const init = async () => {
@@ -26,11 +26,9 @@ const Startup = ({ navigation }: ApplicationScreenProps) => {
   }, []);
 
   return (
-    <View style={[Layout.fill, Layout.colCenter]}>
+    <View style={[Layout.fill, Layout.colCenter, Gutters.largeRowGap]}>
       <Brand />
-      <ActivityIndicator size={'large'} style={[Gutters.largeVMargin]} />
+      <Spinner />
     </View>
   );
-};
-
-export default Startup;
+}

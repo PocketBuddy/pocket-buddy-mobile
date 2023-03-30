@@ -1,8 +1,8 @@
+import { Gutters, ThemeVariables } from 'types/theme';
 import { StyleSheet } from 'react-native';
-import { Gutters, ThemeVariables } from '../../@types/theme';
 
 /**
- * Generate Styles depending on MetricsSizes vars availabled at ./theme/Variables
+ * Generate Styles depending on MetricsSizes vars available at ./theme/Variables
  * Styles are like :
  * <size><direction><op>: {
  *    <op><direction>: <value>
@@ -61,6 +61,16 @@ export default function ({ MetricsSizes }: ThemeVariables): Gutters {
         },
         [`${key}HPadding`]: {
           paddingHorizontal: value,
+        },
+        /* Gaps */
+        [`${key}Gap`]: {
+          gap: value,
+        },
+        [`${key}RowGap`]: {
+          rowGap: value,
+        },
+        [`${key}ColumnGap`]: {
+          columnGap: value,
         },
       }),
       {},

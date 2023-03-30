@@ -1,17 +1,17 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
-  persistReducer,
-  persistStore,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
+  persistReducer,
+  persistStore,
   PURGE,
   REGISTER,
+  REHYDRATE,
   Storage,
 } from 'redux-persist';
 import { MMKV } from 'react-native-mmkv';
+import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { api } from '../services/api';
 import theme from './theme';

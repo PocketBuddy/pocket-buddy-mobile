@@ -1,3 +1,9 @@
 {
-  "helloUser": "Hi, my name is {{name}}"
+  "helloUser": "Hi, my name is {{name}}",
+  "buttons": {
+    "send": "Send",
+    "toggleTheme": "Toggle theme",
+    "toggleLanguage": "Toggle language",
+    "disabledButton": "Disabled button"
+  }
 }

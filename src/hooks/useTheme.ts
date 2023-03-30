@@ -1,22 +1,22 @@
-import { useColorScheme } from 'react-native';
-import { useSelector } from 'react-redux';
-import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 import {
   Common,
+  DefaultVariables,
   Fonts,
   Gutters,
   Images,
   Layout,
   themes,
-  DefaultVariables,
-} from '../theme';
-import { ThemeState } from '../store/theme';
+} from '@/theme';
+import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 import {
-  ThemeVariables,
   Theme,
-  ThemeNavigationTheme,
   ThemeNavigationColors,
-} from '../../@types/theme';
+  ThemeNavigationTheme,
+  ThemeVariables,
+} from 'types/theme';
+import { ThemeState } from '@/store/theme';
+import { useColorScheme } from 'react-native';
+import { useSelector } from 'react-redux';
 
 export default function () {
   // Get the scheme device

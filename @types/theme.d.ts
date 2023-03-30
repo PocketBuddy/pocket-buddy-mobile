@@ -1,6 +1,6 @@
-import Variables from '../src/theme/Variables';
 import { DefaultVariables, Fonts, Gutters, Images, Layout } from '../src/theme';
 import { Theme as ReactNavigationTheme } from '@react-navigation/native/src/types';
+import Variables from '../src/theme/Variables';
 
 export type ThemeVariables = {
   Colors: typeof Variables.Colors;
@@ -53,12 +53,14 @@ type Paddings =
   | 'LPadding'
   | 'VPadding'
   | 'HPadding';
+type Gaps = 'Gap' | 'RowGap' | 'ColumnGap';
 
 type MarginKeys = `${keyof ThemeVariables['MetricsSizes']}${Margins}`;
 type PaddingKeys = `${keyof ThemeVariables['MetricsSizes']}${Paddings}`;
+type GapKeys = `${keyof ThemeVariables['MetricsSizes']}${Gaps}`;
 
 type Gutters = {
-  [key in MarginKeys | PaddingKeys]: {
+  [key in MarginKeys | PaddingKeys | GapKeys]: {
     [k in string]: number;
   };
 };

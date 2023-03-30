@@ -2,25 +2,35 @@
  * This file contains all application's style relative to fonts
  */
 import { StyleSheet } from 'react-native';
-import { ThemeVariables } from '../../@types/theme';
+import { ThemeVariables } from 'types/theme';
 
 export default function ({ FontSize, Colors }: ThemeVariables) {
+  const baseText = {
+    fontFamily: 'Gilroy',
+    color: Colors.primary,
+  };
+
+  const baseTitle = {
+    fontFamily: 'Gilroy',
+    color: Colors.primary,
+  };
+
   return StyleSheet.create({
     textTiny: {
+      ...baseText,
       fontSize: FontSize.tiny,
-      color: Colors.textGray400,
     },
     textSmall: {
+      ...baseText,
       fontSize: FontSize.small,
-      color: Colors.textGray400,
     },
     textRegular: {
+      ...baseText,
       fontSize: FontSize.regular,
-      color: Colors.textGray400,
     },
     textLarge: {
+      ...baseText,
       fontSize: FontSize.large,
-      color: Colors.textGray400,
     },
     textBold: {
       fontWeight: 'bold',
@@ -29,19 +39,19 @@ export default function ({ FontSize, Colors }: ThemeVariables) {
       textTransform: 'uppercase',
     },
     titleSmall: {
-      fontSize: FontSize.small * 1.5,
+      ...baseTitle,
       fontWeight: 'bold',
-      color: Colors.textGray800,
+      fontSize: FontSize.small * 1.5,
     },
     titleRegular: {
-      fontSize: FontSize.regular * 2,
+      ...baseTitle,
       fontWeight: 'bold',
-      color: Colors.textGray800,
+      fontSize: FontSize.regular * 2,
     },
     titleLarge: {
-      fontSize: FontSize.large * 2,
+      ...baseTitle,
       fontWeight: 'bold',
-      color: Colors.textGray800,
+      fontSize: FontSize.large * 2,
     },
     textCenter: {
       textAlign: 'center',
@@ -64,12 +74,14 @@ export default function ({ FontSize, Colors }: ThemeVariables) {
     textPrimary: {
       color: Colors.primary,
     },
-    textLight: {
-      color: Colors.textGray200,
+    textPrimaryPlaceholder: {
+      color: Colors.primaryPlaceholder,
     },
-    textLobster: {
-      fontFamily: 'lobster',
-      fontWeight: 'normal',
+    textSecondary: {
+      color: Colors.secondary,
+    },
+    textSecondaryPlaceholder: {
+      color: Colors.secondaryPlaceholder,
     },
   });
 }

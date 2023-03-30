@@ -5,31 +5,27 @@
  * That allows to change them more easily later on.
  */
 
-import { ThemeNavigationColors } from '../../@types/theme';
+import { ThemeNavigationColors } from 'types/theme';
 
 /**
  * Colors
  */
 export const Colors = {
   transparent: 'rgba(0,0,0,0)',
-  inputBackground: '#FFFFFF',
-  white: '#ffffff',
-  //Typography
-  textGray800: '#000000',
-  textGray400: '#4D4D4D',
-  textGray200: '#A1A1A1',
-  primary: '#E14032',
-  success: '#28a745',
-  error: '#dc3545',
-  //ComponentColors
-  circleButtonBackground: '#E1E1EF',
-  circleButtonColor: '#44427D',
+  background: '#EEF0F0',
+  white: '#F6F7F7',
+  primary: '#1F2425',
+  primaryPlaceholder: '#12212633',
+  secondary: '#F6F7F7',
+  secondaryPlaceholder: '#F6F7F766',
+  success: '#0AB96E',
+  error: '#AA2220',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {
   primary: Colors.primary,
-  background: '#EFEFEF',
-  card: '#EFEFEF',
+  background: Colors.white,
+  card: Colors.white,
 };
 
 /**
@@ -45,15 +41,11 @@ export const FontSize = {
 /**
  * Metrics Sizes
  */
-const tiny = 10;
-const small = tiny * 2; // 20
-const regular = tiny * 3; // 30
-const large = regular * 2; // 60
 export const MetricsSizes = {
-  tiny,
-  small,
-  regular,
-  large,
+  tiny: 10,
+  small: 20,
+  regular: 30,
+  large: 60,
 };
 
 export default {

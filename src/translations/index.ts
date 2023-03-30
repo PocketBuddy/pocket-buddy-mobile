@@ -1,6 +1,6 @@
+import * as resources from './resources';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import * as resources from './resources';
 
 const ns = Object.keys(Object.values(resources)[0]);
 export const defaultNS = ns[0];

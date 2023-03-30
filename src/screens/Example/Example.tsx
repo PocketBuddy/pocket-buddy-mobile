@@ -1,31 +1,17 @@
+import { Alert, ScrollView, View } from 'react-native';
+import { Brand, Button } from '@/components';
+import { changeTheme, ThemeState } from '@/store/theme';
 import React, { useEffect } from 'react';
-import {
-  View,
-  ActivityIndicator,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-  Alert,
-} from 'react-native';
-import { useDispatch } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import { Brand } from '../../components';
-import { useTheme } from '../../hooks';
-import { useLazyFetchOneQuery } from '../../services/modules/users';
-import { changeTheme, ThemeState } from '../../store/theme';
+import { ButtonType } from 'types/components';
 import i18next from 'i18next';
+import { useDispatch } from 'react-redux';
+import { useLazyFetchOneQuery } from '@/services/modules/users';
+import { useTheme } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
-const Example = () => {
-  const { t } = useTranslation(['example', 'welcome']);
-  const {
-    Common,
-    Fonts,
-    Gutters,
-    Layout,
-    Images,
-    darkMode: isDark,
-  } = useTheme();
+export default function Example() {
+  const { t } = useTranslation(['example']);
+  const { Gutters, Layout, darkMode: isDark } = useTheme();
   const dispatch = useDispatch();
 
   const [fetchOne, { data, isSuccess, isLoading, isFetching }] =
@@ -47,194 +33,41 @@ const Example = () => {
 
   return (
     <ScrollView
-      style={Layout.fill}
       contentContainerStyle={[
-        Layout.fullSize,
-        Layout.fill,
-        Layout.colCenter,
-        Layout.scrollSpaceBetween,
+        Layout.colVCenter,
+        Layout.scrollSpaceAround,
+        Gutters.tinyPadding,
       ]}
     >
-      <View
-        style={[
-          Layout.fill,
-          Layout.relative,
-          Layout.fullWidth,
-          Layout.justifyContentCenter,
-          Layout.alignItemsCenter,
-        ]}
-      >
-        <View
-          style={[
-            Layout.absolute,
-            {
-              height: 250,
-              width: 250,
-              backgroundColor: isDark ? '#000000' : '#DFDFDF',
-              borderRadius: 140,
-            },
-          ]}
-        />
-        <Image
-          style={[
-            Layout.absolute,
-            {
-              bottom: '-30%',
-              left: 0,
-            },
-          ]}
-          source={Images.sparkles.bottomLeft}
-          resizeMode={'contain'}
-        />
-        <View
-          style={[
-            Layout.absolute,
-            {
-              height: 300,
-              width: 300,
-              transform: [{ translateY: 40 }],
-            },
-          ]}
-        >
-          <Brand height={300} width={300} />
-        </View>
-        <Image
-          style={[
-            Layout.absolute,
-            Layout.fill,
-            {
-              top: 0,
-              left: 0,
-            },
-          ]}
-          source={Images.sparkles.topLeft}
-          resizeMode={'contain'}
-        />
-        <Image
-          style={[
-            Layout.absolute,
-            {
-              top: '-5%',
-              right: 0,
-            },
-          ]}
-          source={Images.sparkles.top}
-          resizeMode={'contain'}
-        />
-        <Image
-          style={[
-            Layout.absolute,
-            {
-              top: '15%',
-              right: 20,
-            },
-          ]}
-          source={Images.sparkles.topRight}
-          resizeMode={'contain'}
-        />
-        <Image
-          style={[
-            Layout.absolute,
-            {
-              bottom: '-10%',
-              right: 0,
-            },
-          ]}
-          source={Images.sparkles.right}
-          resizeMode={'contain'}
-        />
-
-        <Image
-          style={[
-            Layout.absolute,
-            {
-              top: '75%',
-              right: 0,
-            },
-          ]}
-          source={Images.sparkles.bottom}
-          resizeMode={'contain'}
-        />
-        <Image
-          style={[
-            Layout.absolute,
-            {
-              top: '60%',
-              right: 0,
-            },
-          ]}
-          source={Images.sparkles.bottomRight}
-          resizeMode={'contain'}
-        />
-      </View>
-      <View
-        style={[
-          Layout.fill,
-          Layout.justifyContentBetween,
-          Layout.alignItemsStart,
-          Layout.fullWidth,
-          Gutters.regularHPadding,
-        ]}
-      >
-        <View>
-          <Text style={[Fonts.titleRegular]}>{t('welcome:title')}</Text>
-          <Text
-            style={[Fonts.textBold, Fonts.textRegular, Gutters.regularBMargin]}
-          >
-            {t('welcome:subtitle')}
-          </Text>
-          <Text style={[Fonts.textSmall, Fonts.textLight]}>
-            {t('welcome:description')}
-          </Text>
-        </View>
-
-        <View
-          style={[
-            Layout.row,
-            Layout.justifyContentBetween,
-            Layout.fullWidth,
-            Gutters.smallTMargin,
-          ]}
-        >
-          <TouchableOpacity
-            style={[Common.button.circle, Gutters.regularBMargin]}
+      <Brand height={300} width={300} />
+      <View style={[Layout.fullWidth, Layout.fill, Layout.justifyContentEnd]}>
+        <View style={[Layout.col, Gutters.tinyRowGap]}>
+          <Button
             onPress={() => fetchOne(`${Math.ceil(Math.random() * 10 + 1)}`)}
-          >
-            {isFetching || isLoading ? (
-              <ActivityIndicator />
-            ) : (
-              <Image
-                source={Images.icons.send}
-                style={{ tintColor: isDark ? '#A6A4F0' : '#44427D' }}
-              />
-            )}
-          </TouchableOpacity>
+            label={t('example:buttons.send')}
+            isLoading={isFetching || isLoading}
+          />
 
-          <TouchableOpacity
-            style={[Common.button.circle, Gutters.regularBMargin]}
+          <Button
             onPress={() => onChangeTheme({ darkMode: !isDark })}
-          >
-            <Image
-              source={Images.icons.colors}
-              style={{ tintColor: isDark ? '#A6A4F0' : '#44427D' }}
-            />
-          </TouchableOpacity>
+            label={t('example:buttons.toggleTheme')}
+            type={ButtonType.Secondary}
+          />
 
-          <TouchableOpacity
-            style={[Common.button.circle, Gutters.regularBMargin]}
+          <Button
             onPress={() =>
               onChangeLanguage(i18next.language === 'en' ? 'pl' : 'en')
             }
-          >
-            <Image
-              source={Images.icons.translate}
-              style={{ tintColor: isDark ? '#A6A4F0' : '#44427D' }}
-            />
-          </TouchableOpacity>
+            label={t('example:buttons.toggleLanguage')}
+          />
+
+          <Button
+            onPress={() => Alert.alert('This is a disabled button.')}
+            label={t('example:buttons.disabledButton')}
+            disabled
+          />
         </View>
       </View>
     </ScrollView>
   );
-};
-
-export default Example;
+}

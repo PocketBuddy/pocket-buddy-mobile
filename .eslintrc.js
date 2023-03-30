@@ -9,9 +9,16 @@ module.exports = {
     quotes: ['error', 'single'],
     'object-curly-spacing': ['error', 'always'],
     'array-bracket-spacing': ['error', 'never'],
-    'react/require-default-props': ['error'],
-    'react/default-props-match-prop-types': ['error'],
-    'react/sort-prop-types': ['error'],
+    'sort-imports': [
+      'error',
+      {
+        ignoreCase: true,
+        ignoreDeclarationSort: false,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['all', 'multiple', 'single', 'none'],
+        allowSeparatedGroups: true,
+      },
+    ],
   },
   settings: {
     'import/resolver': {

@@ -1,14 +1,19 @@
+import { Image, View } from 'react-native';
+import { BrandMode } from 'types/components';
 import React from 'react';
-import { View, Image } from 'react-native';
-import { useTheme } from '../../hooks';
+import { useTheme } from '@/hooks';
 
 type Props = {
-  height?: number | string;
-  width?: number | string;
-  mode?: 'contain' | 'cover' | 'stretch' | 'repeat' | 'center';
+  height?: number;
+  width?: number;
+  mode?: BrandMode;
 };
 
-const Brand = ({ height, width, mode }: Props) => {
+export default function Brand({
+  height = 200,
+  width = 200,
+  mode = BrandMode.Contain,
+}: Props) {
   const { Layout, Images } = useTheme();
 
   return (
@@ -21,12 +26,4 @@ const Brand = ({ height, width, mode }: Props) => {
       />
     </View>
   );
-};
-
-Brand.defaultProps = {
-  height: 200,
-  width: 200,
-  mode: 'contain',
-};
-
-export default Brand;
+}
