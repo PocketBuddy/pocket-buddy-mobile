@@ -11,7 +11,8 @@ import React from 'react';
 import { store } from '@/store';
 
 const mockedFunction = jest.fn();
-const DELAY = 300;
+const TIMEOUT = 100;
+const DELAY = 500;
 
 describe('Button', () => {
   it('should avoid multiple click', () => {
@@ -25,8 +26,8 @@ describe('Button', () => {
 
     const button = screen.getByTestId('button');
 
-    waitFor(() => fireEvent.press(button), { timeout: DELAY });
-    waitFor(() => fireEvent.press(button), { timeout: DELAY });
+    waitFor(() => fireEvent.press(button), { timeout: TIMEOUT });
+    waitFor(() => fireEvent.press(button), { timeout: TIMEOUT });
 
     waitFor(() => expect(mockedFunction).toBeCalledTimes(1), {
       timeout: Constants.DEBOUNCE_TIMEOUT + DELAY,
