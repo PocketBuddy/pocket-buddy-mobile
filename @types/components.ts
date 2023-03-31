@@ -10,3 +10,14 @@ export enum BrandMode {
   Repeat = 'repeat',
   Center = 'center',
 }
+
+export enum IconType {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Inactive = 'inactive',
+}
+
+export enum SpinnerSize {
+  Small = 'small',
+  Large = 'large',
+}

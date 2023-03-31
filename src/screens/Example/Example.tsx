@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function Example() {
   const { t } = useTranslation(['example']);
-  const { Gutters, Layout, darkMode: isDark } = useTheme();
+  const { Gutters, Layout, Images, darkMode: isDark } = useTheme();
   const dispatch = useDispatch();
 
   const [fetchOne, { data, isSuccess, isLoading, isFetching }] =
@@ -52,6 +52,7 @@ export default function Example() {
             onPress={() => onChangeTheme({ darkMode: !isDark })}
             label={t('example:buttons.toggleTheme')}
             type={ButtonType.Secondary}
+            icon={Images.icons.trophy}
           />
 
           <Button
@@ -62,9 +63,16 @@ export default function Example() {
           />
 
           <Button
-            onPress={() => Alert.alert('This is a disabled button.')}
+            onPress={() => Alert.alert(t('example:buttons.disabledButton'))}
             label={t('example:buttons.disabledButton')}
             disabled
+            icon={Images.icons.moneyTransfer}
+          />
+
+          <Button
+            onPress={() => Alert.alert(t('example:buttons.apple'))}
+            label={t('example:buttons.apple')}
+            icon={Images.icons.apple}
           />
         </View>
       </View>

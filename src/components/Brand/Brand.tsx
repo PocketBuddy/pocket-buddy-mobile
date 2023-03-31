@@ -17,7 +17,7 @@ export default function Brand({
   const { Layout, Images } = useTheme();
 
   return (
-    <View testID={'brand-img-wrapper'} style={{ height, width }}>
+    <View testID={'brand-wrapper'} style={{ height, width }}>
       <Image
         testID={'brand-img'}
         style={Layout.fullSize}

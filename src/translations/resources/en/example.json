@@ -4,6 +4,7 @@
     "send": "Send",
     "toggleTheme": "Toggle theme",
     "toggleLanguage": "Toggle language",
-    "disabledButton": "Disabled button"
+    "disabledButton": "Disabled button",
+    "apple": "Sign in with Apple"
   }
 }

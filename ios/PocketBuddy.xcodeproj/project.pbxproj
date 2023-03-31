@@ -13,9 +13,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-PocketBuddy-PocketBuddyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-PocketBuddy-PocketBuddyTests.a */; };
+		80A7AE4CF1E24B2292130397 /* Gilroy-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D677C7784EAC45B680656077 /* Gilroy-Light.otf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		D6D0111F07934CE094F7AE9D /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76737F04F88749D4AAD7E890 /* Gilroy-ExtraBold.otf */; };
-		80A7AE4CF1E24B2292130397 /* Gilroy-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D677C7784EAC45B680656077 /* Gilroy-Light.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,11 +43,11 @@
 		5709B34CF0A7D63546082F79 /* Pods-PocketBuddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PocketBuddy.release.xcconfig"; path = "Target Support Files/Pods-PocketBuddy/Pods-PocketBuddy.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-PocketBuddy-PocketBuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PocketBuddy-PocketBuddyTests.debug.xcconfig"; path = "Target Support Files/Pods-PocketBuddy-PocketBuddyTests/Pods-PocketBuddy-PocketBuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-PocketBuddy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PocketBuddy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		76737F04F88749D4AAD7E890 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Gilroy-ExtraBold.otf"; path = "../src/theme/assets/fonts/Gilroy-ExtraBold.otf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PocketBuddy/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-PocketBuddy-PocketBuddyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PocketBuddy-PocketBuddyTests.release.xcconfig"; path = "Target Support Files/Pods-PocketBuddy-PocketBuddyTests/Pods-PocketBuddy-PocketBuddyTests.release.xcconfig"; sourceTree = "<group>"; };
+		D677C7784EAC45B680656077 /* Gilroy-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Gilroy-Light.otf"; path = "../src/theme/assets/fonts/Gilroy-Light.otf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		76737F04F88749D4AAD7E890 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; name = "Gilroy-ExtraBold.otf"; path = "../src/theme/assets/fonts/Gilroy-ExtraBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D677C7784EAC45B680656077 /* Gilroy-Light.otf */ = {isa = PBXFileReference; name = "Gilroy-Light.otf"; path = "../src/theme/assets/fonts/Gilroy-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +142,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		97B56BA996B1427B91BAE8FA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				76737F04F88749D4AAD7E890 /* Gilroy-ExtraBold.otf */,
+				D677C7784EAC45B680656077 /* Gilroy-Light.otf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,16 +162,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		97B56BA996B1427B91BAE8FA /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				76737F04F88749D4AAD7E890 /* Gilroy-ExtraBold.otf */,
-				D677C7784EAC45B680656077 /* Gilroy-Light.otf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 

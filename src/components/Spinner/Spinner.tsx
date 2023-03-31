@@ -1,12 +1,11 @@
 import { ActivityIndicator } from 'react-native';
 import React from 'react';
+import { SpinnerSize } from 'types/components';
 
-/**
- * 30 is the default size for ActivityIndicator
- * this value is matched to titleSmall font size
- * */
-const SIZE = 30;
+type Props = {
+  size?: number | SpinnerSize;
+};
 
-export default function Spinner() {
-  return <ActivityIndicator size={SIZE} testID="spinner" />;
+export default function Spinner({ size = SpinnerSize.Small }: Props) {
+  return <ActivityIndicator size={size} testID="spinner" />;
 }

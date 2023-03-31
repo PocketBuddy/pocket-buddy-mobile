@@ -7,13 +7,19 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "test": "jest",
+    "test:watch": "jest --watch",
     "lint": "eslint src --ext .ts,.tsx --fix",
     "prettier": "prettier src --write",
     "type-check": "tsc",
     "sanity": "yarn type-check && yarn lint && yarn prettier",
-    "pod-install": "cd ios && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install && cd .."
+    "pod-install": "cd ios && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install && cd ..",
+    "link-fonts": "npx react-native-asset"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-native-fontawesome": "^0.3.0",
     "@react-native-masked-view/masked-view": "^0.2.8",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
@@ -29,6 +35,7 @@
     "react-native-reanimated": "^3.0.2",
     "react-native-safe-area-context": "^4.5.0",
     "react-native-screens": "^3.20.0",
+    "react-native-svg": "^13.9.0",
     "react-redux": "^8.0.5",
     "redux-persist": "^6.0.0"
   },

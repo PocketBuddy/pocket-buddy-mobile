@@ -15,7 +15,7 @@ describe('Brand', () => {
 
     render(component);
 
-    const wrapper = screen.getByTestId('brand-img-wrapper');
+    const wrapper = screen.getByTestId('brand-wrapper');
     const img = screen.getByTestId('brand-img');
 
     expect(wrapper.props.style.height).toBe(200);
@@ -32,7 +32,7 @@ describe('Brand', () => {
 
     render(component);
 
-    const wrapper = screen.getByTestId('brand-img-wrapper');
+    const wrapper = screen.getByTestId('brand-wrapper');
     const img = screen.getByTestId('brand-img');
 
     expect(wrapper.props.style.height).toBe(100);

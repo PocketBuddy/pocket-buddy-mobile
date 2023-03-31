@@ -1,8 +1,10 @@
+import { ButtonType, IconType } from 'types/components';
+import { Icon, Spinner } from '@/components';
 import React, { useCallback } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import { ButtonType } from 'types/components';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { Constants } from '@/utils';
 import debounce from 'lodash.debounce';
-import { Spinner } from '@/components';
+import { IconDefinition } from '@fortawesome/free-brands-svg-icons';
 import { useTheme } from '@/hooks';
 
 type Props = {
@@ -11,7 +13,11 @@ type Props = {
   type?: ButtonType;
   isLoading?: boolean;
   disabled?: boolean;
+  icon?: IconDefinition;
 };
+
+const FONT_BOLD_SIZE = 4.4;
+const ICON_MARGIN_BOTTOM = 3;
 
 export default function Button({
   label,
@@ -19,33 +25,51 @@ export default function Button({
   type = ButtonType.Primary,
   isLoading = false,
   disabled = false,
+  icon,
 }: Props) {
   const { Common } = useTheme();
-  const handlePress = useCallback(debounce(onPress, 250), [onPress]);
+  const handlePress = useCallback(
+    debounce(onPress, Constants.DEBOUNCE_TIMEOUT),
+    [onPress],
+  );
+  const isDisabled = isLoading || disabled;
+  const isPrimary = type === ButtonType.Primary;
+  const spinnerSize = Common.button.primaryLabel.fontSize + FONT_BOLD_SIZE;
 
   return (
     <TouchableOpacity
       style={[
-        type === ButtonType.Primary
+        isPrimary
           ? Common.button.primaryContainer
           : Common.button.secondaryContainer,
-        disabled && Common.button.disabled,
+        isDisabled && Common.button.disabled,
       ]}
       onPress={handlePress}
-      disabled={disabled}
+      disabled={isDisabled}
+      testID="button"
     >
       {isLoading ? (
-        <Spinner />
+        <Spinner size={spinnerSize} />
       ) : (
-        <Text
-          style={[
-            type === ButtonType.Primary
-              ? Common.button.primaryLabel
-              : Common.button.secondaryLabel,
-          ]}
-        >
-          {label}
-        </Text>
+        <View style={Common.button.labelWrapper}>
+          {icon && (
+            <Icon
+              icon={icon}
+              type={isPrimary ? IconType.Secondary : IconType.Primary}
+              // Hack to set vertically optical zero
+              style={{ marginBottom: ICON_MARGIN_BOTTOM }}
+            />
+          )}
+          <Text
+            style={[
+              isPrimary
+                ? Common.button.secondaryLabel
+                : Common.button.primaryLabel,
+            ]}
+          >
+            {label}
+          </Text>
+        </View>
       )}
     </TouchableOpacity>
   );

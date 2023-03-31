@@ -13,14 +13,18 @@ export default function <C>({
     ...Gutters.tinyPadding,
     color: Colors.secondary,
     backgroundColor: Colors.primary,
-    borderRadius: 10,
+    borderRadius: 5,
     shadowColor: Colors.primary,
     shadowOffset: { width: 4, height: 4 },
     shadowOpacity: 0.25,
     shadowRadius: 10,
   };
 
-  const primaryLabel = { ...Fonts.titleSmall, ...Fonts.textSecondary };
+  const primaryLabel = {
+    ...Fonts.titleSmall,
+    ...Fonts.textCenter,
+    ...Fonts.textPrimary,
+  };
 
   const secondaryContainer = {
     ...primaryContainer,
@@ -28,7 +32,13 @@ export default function <C>({
     color: Colors.primary,
   };
 
-  const secondaryLabel = { ...primaryLabel, ...Fonts.textPrimary };
+  const secondaryLabel = { ...primaryLabel, ...Fonts.textSecondary };
+
+  const labelWrapper = {
+    ...Layout.rowCenter,
+    ...Gutters.tinyColumnGap,
+    ...Layout.fullWidth,
+  };
 
   const disabled = {
     opacity: 0.75,
@@ -39,6 +49,7 @@ export default function <C>({
     primaryLabel,
     secondaryContainer,
     secondaryLabel,
+    labelWrapper,
     disabled,
   });
 }

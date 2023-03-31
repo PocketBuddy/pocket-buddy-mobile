@@ -4,6 +4,7 @@
     "send": "Wyślij",
     "toggleTheme": "Zmień motyw",
     "toggleLanguage": "Zmień język",
-    "disabledButton": "Wyłączony przycisk"
+    "disabledButton": "Wyłączony przycisk",
+    "apple": "Zaloguj się, używając konta Apple"
   }
 }
