@@ -19,6 +19,7 @@ export default function <C>({ Fonts, Layout, Gutters }: CommonParams<C>) {
 
   const primaryInput = {
     ...Fonts.textRegular,
+    paddingVertical: 0,
   };
 
   const primaryPlaceholder = {
