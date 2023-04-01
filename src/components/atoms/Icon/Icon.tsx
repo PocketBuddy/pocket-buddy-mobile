@@ -2,14 +2,12 @@ import {
   FontAwesomeIcon,
   FontAwesomeIconStyle,
 } from '@fortawesome/react-native-fontawesome';
-import { IconDefinition as BrandsIconType } from '@fortawesome/free-brands-svg-icons';
-import { IconType } from 'types/components';
+import { IconType, IconTypes } from 'types/components';
 import React from 'react';
-import { IconDefinition as SolidIconType } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '@/hooks';
 
 type Props = {
-  icon: BrandsIconType | SolidIconType;
+  icon: IconTypes;
   type?: IconType;
   size?: number;
   style?: FontAwesomeIconStyle;

@@ -6,8 +6,8 @@ import { SafeAreaView, StatusBar } from 'react-native';
 import { ApplicationStackParamList } from 'types/navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainNavigator from './Main';
+import { MainScreens } from './routes';
 import React from 'react';
-import { Startup } from '@/screens';
 import { useFlipper } from '@react-navigation/devtools';
 import { useTheme } from '@/hooks';
 
@@ -27,7 +27,10 @@ const ApplicationNavigator = () => {
       <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
         <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Startup" component={Startup} />
+          <Stack.Screen
+            name={MainScreens.startup.name as keyof ApplicationStackParamList}
+            component={MainScreens.startup.component}
+          />
           <Stack.Screen name="Main" component={MainNavigator} />
         </Stack.Navigator>
       </NavigationContainer>

@@ -1,5 +1,5 @@
-import example from './example.json';
+import auth from './auth.json';
 
 export default {
-  example,
+  auth,
 };

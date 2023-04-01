@@ -1,7 +1,12 @@
-import { ButtonType, IconType } from 'types/components';
+import { ButtonRounded, ButtonType, IconType } from 'types/components';
 import { Icon, Spinner } from '@/components';
 import React, { useCallback } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import {
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  View,
+} from 'react-native';
 import { Constants } from '@/utils';
 import debounce from 'lodash.debounce';
 import { IconDefinition } from '@fortawesome/free-brands-svg-icons';
@@ -11,10 +16,12 @@ type Props = {
   label: string;
   onPress: () => void;
   type?: ButtonType;
+  rounded?: ButtonRounded;
   isLoading?: boolean;
   disabled?: boolean;
+  grayed?: boolean;
   icon?: IconDefinition;
-};
+} & TouchableOpacityProps;
 
 const FONT_BOLD_SIZE = 4.4;
 const ICON_MARGIN_BOTTOM = 3;
@@ -23,18 +30,23 @@ export default function Button({
   label,
   onPress,
   type = ButtonType.Primary,
+  rounded,
   isLoading = false,
   disabled = false,
+  grayed = false,
   icon,
 }: Props) {
   const { Common } = useTheme();
+  const isDisabled = isLoading || disabled;
+  const isPrimary = type === ButtonType.Primary;
+  const isRightRounded = rounded === ButtonRounded.Right;
+  const isLeftRounded = rounded === ButtonRounded.Left;
+  const spinnerSize = Common.button.primaryLabel.fontSize + FONT_BOLD_SIZE;
+
   const handlePress = useCallback(
     debounce(onPress, Constants.DEBOUNCE_TIMEOUT),
     [onPress],
   );
-  const isDisabled = isLoading || disabled;
-  const isPrimary = type === ButtonType.Primary;
-  const spinnerSize = Common.button.primaryLabel.fontSize + FONT_BOLD_SIZE;
 
   return (
     <TouchableOpacity
@@ -42,7 +54,9 @@ export default function Button({
         isPrimary
           ? Common.button.primaryContainer
           : Common.button.secondaryContainer,
-        isDisabled && Common.button.disabled,
+        (isDisabled || grayed) && Common.button.disabled,
+        isRightRounded && Common.button.rightRounded,
+        isLeftRounded && Common.button.leftRounded,
       ]}
       onPress={handlePress}
       disabled={isDisabled}

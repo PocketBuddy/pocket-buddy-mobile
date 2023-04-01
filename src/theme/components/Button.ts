@@ -9,15 +9,11 @@ export default function <C>({
 }: CommonParams<C>) {
   const primaryContainer = {
     ...Layout.center,
-    ...Layout.fullWidth,
+    ...Layout.fill,
     ...Gutters.tinyPadding,
     color: Colors.secondary,
     backgroundColor: Colors.primary,
     borderRadius: 5,
-    shadowColor: Colors.primary,
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
   };
 
   const primaryLabel = {
@@ -30,6 +26,8 @@ export default function <C>({
     ...primaryContainer,
     backgroundColor: Colors.secondary,
     color: Colors.primary,
+    borderColor: Colors.primary,
+    borderWidth: 1,
   };
 
   const secondaryLabel = { ...primaryLabel, ...Fonts.textSecondary };
@@ -44,6 +42,16 @@ export default function <C>({
     opacity: 0.75,
   };
 
+  const rightRounded = {
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+  };
+
+  const leftRounded = {
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+  };
+
   return StyleSheet.create({
     primaryContainer,
     primaryLabel,
@@ -51,5 +59,7 @@ export default function <C>({
     secondaryLabel,
     labelWrapper,
     disabled,
+    rightRounded,
+    leftRounded,
   });
 }

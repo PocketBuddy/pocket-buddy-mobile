@@ -1,6 +1,14 @@
+import { IconDefinition as BrandsIconType } from '@fortawesome/free-brands-svg-icons';
+import { IconDefinition as SolidIconType } from '@fortawesome/free-solid-svg-icons';
+
 export enum ButtonType {
   Primary = 'primary',
   Secondary = 'secondary',
+}
+
+export enum ButtonRounded {
+  Right = 'right',
+  Left = 'left',
 }
 
 export enum BrandMode {
@@ -21,3 +29,10 @@ export enum SpinnerSize {
   Small = 'small',
   Large = 'large',
 }
+
+export type IconTypes = BrandsIconType | SolidIconType;
+
+export type TabScreens = {
+  name: string;
+  component: React.FC;
+}[];
