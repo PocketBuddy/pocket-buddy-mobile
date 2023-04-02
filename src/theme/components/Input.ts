@@ -33,13 +33,8 @@ export default function <C>({ Fonts, Layout, Gutters }: CommonParams<C>) {
     ...Layout.bottom0,
   };
 
-  const error = {
-    ...primaryInput,
-    ...Fonts.textError,
-    ...Fonts.textBold,
+  const messageWrapper = {
     ...Gutters.tinyTPadding,
-    ...Gutters.tinyLPadding,
-    ...Fonts.textRight,
   };
 
   return StyleSheet.create({
@@ -48,6 +43,6 @@ export default function <C>({ Fonts, Layout, Gutters }: CommonParams<C>) {
     primaryInput,
     primaryPlaceholder,
     primaryIcon,
-    error,
+    messageWrapper,
   });
 }

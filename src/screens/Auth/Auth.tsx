@@ -1,9 +1,29 @@
-import React from 'react';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import React, { useCallback } from 'react';
 import { ScreenWithTabs } from '@/components';
 import { SubScreens } from '@/navigators/routes';
 
-export default function Auth() {
+type Props = {
+  navigation: NavigationProp<ParamListBase>;
+};
+
+export default function Auth({ navigation }: Props) {
   const { login, register } = SubScreens.auth;
 
-  return <ScreenWithTabs screens={[{ ...login }, { ...register }]} />;
+  const LoginWithProps = useCallback(
+    () => login.component({ navigation }),
+    [navigation],
+  );
+
+  return (
+    <ScreenWithTabs
+      screens={[
+        {
+          ...login,
+          component: LoginWithProps,
+        },
+        { ...register },
+      ]}
+    />
+  );
 }

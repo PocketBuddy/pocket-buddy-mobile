@@ -3,7 +3,7 @@
  *
  * Use it to define generic component styles (e.g. the default text styles, default button styles...).
  */
-import { Button, Icon, Input } from './components/';
+import { Button, Icon, Input, Paragraph } from './components/';
 import { CommonParams } from 'types/theme';
 
 export default function <C>({ ...args }: CommonParams<C>) {
@@ -11,5 +11,6 @@ export default function <C>({ ...args }: CommonParams<C>) {
     button: Button({ ...args }),
     icon: Icon({ ...args }),
     input: Input({ ...args }),
+    paragraph: Paragraph({ ...args }),
   };
 }

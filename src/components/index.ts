@@ -3,6 +3,7 @@ export { default as Brand } from './atoms/Brand/Brand';
 export { default as Icon } from './atoms/Icon/Icon';
 export { default as Spinner } from './atoms/Spinner/Spinner';
 export { default as HideKeyboard } from './atoms/HideKeyboard/HideKeyboard';
+export { default as Paragraph } from './atoms/Paragraph/Paragraph';
 
 // Molecules
 export { default as Button } from './molecules/Button/Button';

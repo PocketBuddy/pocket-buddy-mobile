@@ -32,6 +32,12 @@ export enum SpinnerSize {
 
 export type IconTypes = BrandsIconType | SolidIconType;
 
+export enum ParagraphAlign {
+  Left = 'left',
+  Center = 'center',
+  Right = 'right',
+}
+
 export type TabScreens = {
   name: string;
   component: React.FC;

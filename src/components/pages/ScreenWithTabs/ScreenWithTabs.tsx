@@ -19,17 +19,15 @@ export default function ScreenWithTabs({ withBrand = true, screens }: Props) {
           Layout.fill,
           Layout.col,
           Gutters.smallPadding,
-          Gutters.smallRowGap,
+          Gutters.regularRowGap,
         ]}
       >
-        <>
-          {withBrand && (
-            <View style={[Layout.alignItemsCenter]}>
-              <Brand />
-            </View>
-          )}
-          <Tabs screens={screens} />
-        </>
+        {withBrand && (
+          <View style={[Layout.alignItemsCenter]}>
+            <Brand />
+          </View>
+        )}
+        <Tabs screens={screens} />
       </View>
     </HideKeyboard>
   );

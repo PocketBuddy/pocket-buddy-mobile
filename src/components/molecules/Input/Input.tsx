@@ -16,7 +16,7 @@ type Props = {
   label: string;
   value?: string;
   secured?: boolean;
-  errorMessage?: string;
+  renderMessage?: () => React.ReactNode;
   onChangeText: () => void;
 } & TextInputProps;
 
@@ -26,7 +26,7 @@ const Input = ({
   label,
   value = '',
   secured = false,
-  errorMessage,
+  renderMessage,
   onChangeText,
   ...props
 }: Props) => {
@@ -71,7 +71,9 @@ const Input = ({
           )}
         </View>
       </View>
-      {errorMessage && <Text style={[Common.input.error]}>{errorMessage}</Text>}
+      {renderMessage && (
+        <View style={[Common.input.messageWrapper]}>{renderMessage()}</View>
+      )}
     </View>
   );
 };
