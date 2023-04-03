@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import { Constants } from '@/utils';
 import debounce from 'lodash.debounce';
 import { Icon } from '@/components';
@@ -16,6 +17,7 @@ type Props = {
   label: string;
   value?: string;
   secured?: boolean;
+  bottomSheet?: boolean;
   renderMessage?: () => React.ReactNode;
   onChangeText: () => void;
 } & TextInputProps;
@@ -26,6 +28,7 @@ const Input = ({
   label,
   value = '',
   secured = false,
+  bottomSheet = false,
   renderMessage,
   onChangeText,
   ...props
@@ -44,14 +47,25 @@ const Input = ({
       <View style={[Common.input.primaryContainer]}>
         <Text style={[Common.input.primaryLabel]}>{label}</Text>
         <View>
-          <TextInput
-            style={[Common.input.primaryInput]}
-            onChangeText={handleChange}
-            defaultValue={value}
-            placeholderTextColor={Common.input.primaryPlaceholder.color}
-            secureTextEntry={passwordHidden}
-            {...props}
-          />
+          {bottomSheet ? (
+            <BottomSheetTextInput
+              style={[Common.input.primaryInput]}
+              onChangeText={handleChange}
+              defaultValue={value}
+              placeholderTextColor={Common.input.primaryPlaceholder.color}
+              secureTextEntry={passwordHidden}
+              {...props}
+            />
+          ) : (
+            <TextInput
+              style={[Common.input.primaryInput]}
+              onChangeText={handleChange}
+              defaultValue={value}
+              placeholderTextColor={Common.input.primaryPlaceholder.color}
+              secureTextEntry={passwordHidden}
+              {...props}
+            />
+          )}
           {secured && (
             <TouchableWithoutFeedback
               onPress={togglePasswordHidden}

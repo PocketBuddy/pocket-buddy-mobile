@@ -17,6 +17,7 @@ export default function Auth({ navigation }: Props) {
 
   return (
     <ScreenWithTabs
+      withBrand
       screens={[
         {
           ...login,

@@ -12,6 +12,7 @@ import { ThemeNavigationColors } from 'types/theme';
  */
 export const Colors = {
   transparent: 'rgba(0,0,0,0)',
+  backgroundOpacity: '#EEF0F0CC',
   background: '#EEF0F0',
   white: '#F6F7F7',
   primary: '#1F2425',
@@ -24,8 +25,8 @@ export const Colors = {
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {
   primary: Colors.primary,
-  background: Colors.white,
-  card: Colors.white,
+  background: Colors.background,
+  card: Colors.background,
 };
 
 /**

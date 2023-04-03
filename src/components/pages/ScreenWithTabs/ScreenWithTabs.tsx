@@ -9,13 +9,14 @@ type Props = {
   screens: TabScreens;
 };
 
-export default function ScreenWithTabs({ withBrand = true, screens }: Props) {
-  const { Gutters, Layout } = useTheme();
+export default function ScreenWithTabs({ withBrand = false, screens }: Props) {
+  const { Gutters, Layout, Colors } = useTheme();
 
   return (
     <HideKeyboard>
       <View
         style={[
+          { backgroundColor: Colors.background },
           Layout.fill,
           Layout.col,
           Gutters.smallPadding,

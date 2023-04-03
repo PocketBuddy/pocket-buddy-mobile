@@ -14,7 +14,7 @@ type Props = {
 const Tab = createMaterialTopTabNavigator();
 
 export default function Tabs({ screens }: Props) {
-  const { Gutters } = useTheme();
+  const { Gutters, Colors } = useTheme();
   const renderTabBar = useCallback(
     (props: MaterialTopTabBarProps) => <TabBar {...props} />,
     [],
@@ -23,7 +23,10 @@ export default function Tabs({ screens }: Props) {
   return (
     <Tab.Navigator
       tabBar={renderTabBar}
-      sceneContainerStyle={{ ...Gutters.smallTPadding }}
+      sceneContainerStyle={{
+        ...Gutters.smallTPadding,
+        backgroundColor: Colors.background,
+      }}
     >
       {screens.map(({ name, component }) => (
         <Tab.Screen key={name} name={name} component={component} />

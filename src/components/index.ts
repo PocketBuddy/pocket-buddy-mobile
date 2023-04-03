@@ -12,6 +12,7 @@ export { default as Input } from './molecules/Input/Input';
 // Organisms
 export { default as Form } from './organisms/Form/Form';
 export { default as TabBar } from './organisms/TabBar/TabBar';
+export { default as BottomSheet } from './organisms/BottomSheet/BottomSheet';
 
 // Templates
 export { default as Tabs } from './templates/Tabs/Tabs';

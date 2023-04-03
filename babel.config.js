@@ -14,6 +14,9 @@ module.exports = {
       },
     ],
     'inline-dotenv',
-    'react-native-reanimated/plugin', // needs to be last
+    [
+      'react-native-reanimated/plugin', // needs to be last
+      { relativeSourceLocation: true },
+    ],
   ],
 };
