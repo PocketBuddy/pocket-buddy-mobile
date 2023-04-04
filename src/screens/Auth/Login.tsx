@@ -42,17 +42,15 @@ export default function Login({ navigation }: Props) {
               placeholder={t('auth:inputs.password.placeholder')}
               onChangeText={() => null}
               secured
-              renderMessage={() => (
-                <TouchableWithoutFeedback onPress={openPasswordRecoverySheet}>
-                  <View>
-                    <Paragraph
-                      text={t('auth:inputs.password.message')}
-                      align={ParagraphAlign.Right}
-                    />
-                  </View>
-                </TouchableWithoutFeedback>
-              )}
             />
+            <TouchableWithoutFeedback onPress={openPasswordRecoverySheet}>
+              <View>
+                <Paragraph
+                  text={t('auth:inputs.password.message')}
+                  align={ParagraphAlign.Right}
+                />
+              </View>
+            </TouchableWithoutFeedback>
           </>
         )}
         renderButtons={() => (
