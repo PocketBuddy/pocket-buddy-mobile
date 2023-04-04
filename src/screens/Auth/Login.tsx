@@ -1,8 +1,8 @@
 import { Button, Form, Input, Paragraph } from '@/components';
 import { ButtonType, ParagraphAlign } from 'types/components';
+import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
-import { TouchableWithoutFeedback, View } from 'react-native';
 import { usePlatform, useTheme } from '@/hooks';
 import PasswordRecoverySheet from './PasswordRecoverySheet';
 import { useTranslation } from 'react-i18next';
@@ -22,10 +22,10 @@ export default function Login({ navigation }: Props) {
     () => setOpenPasswordRecovery(false),
     [],
   );
-  const openPasswordRecoverySheet = useCallback(
-    () => setOpenPasswordRecovery(true),
-    [],
-  );
+  const openPasswordRecoverySheet = useCallback(() => {
+    Keyboard.dismiss();
+    setOpenPasswordRecovery(true);
+  }, []);
 
   return (
     <>
@@ -43,14 +43,16 @@ export default function Login({ navigation }: Props) {
               onChangeText={() => null}
               secured
             />
-            <TouchableWithoutFeedback onPress={openPasswordRecoverySheet}>
-              <View>
-                <Paragraph
-                  text={t('auth:inputs.password.message')}
-                  align={ParagraphAlign.Right}
-                />
-              </View>
-            </TouchableWithoutFeedback>
+            <View style={Layout.rowReverse}>
+              <TouchableWithoutFeedback onPress={openPasswordRecoverySheet}>
+                <View style={Layout.halfWidth}>
+                  <Paragraph
+                    text={t('auth:inputs.password.message')}
+                    align={ParagraphAlign.Right}
+                  />
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
           </>
         )}
         renderButtons={() => (

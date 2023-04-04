@@ -36,7 +36,6 @@ const Input = ({
   const { Common, Images } = useTheme();
   const [passwordHidden, setPasswordHidden] = useState(secured);
   const togglePasswordHidden = () => setPasswordHidden(!passwordHidden);
-
   const handleChange = useCallback(
     debounce(onChangeText, Constants.DEBOUNCE_TIMEOUT),
     [onChangeText],

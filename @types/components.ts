@@ -43,3 +43,14 @@ export type TabScreens = {
   name: string;
   component: React.FC;
 }[];
+
+export enum KeyboardPersisted {
+  Never = 'never',
+  Always = 'always',
+  Handled = 'handled',
+}
+
+export enum KeyboardDismissMode {
+  None = 'none',
+  OnDrag = 'on-drag',
+}

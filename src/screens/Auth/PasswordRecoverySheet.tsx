@@ -1,5 +1,9 @@
 import { BottomSheet, Button, Form, Input, Paragraph } from '@/components/';
-import { ButtonType } from 'types/components';
+import {
+  ButtonType,
+  KeyboardDismissMode,
+  KeyboardPersisted,
+} from 'types/components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -16,9 +20,12 @@ export default function PasswordRecoverySheet({ isOpen, handleClose }: Props) {
       isOpen={isOpen}
       handleClose={handleClose}
       title={t('auth:passwordRecovery.title')}
+      points={['41%']}
       renderContent={() => (
         <Form
           enableAutomaticScroll={false}
+          keyboardShouldPersistTaps={KeyboardPersisted.Never}
+          keyboardDismissMode={KeyboardDismissMode.None}
           renderInputs={() => (
             <>
               <Input
