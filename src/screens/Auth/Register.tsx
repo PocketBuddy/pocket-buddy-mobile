@@ -1,12 +1,13 @@
 import { Button, Form, Input } from '@/components';
+import { usePlatform, useTheme } from '@/hooks';
 import { ButtonType } from 'types/components';
 import React from 'react';
-import { useTheme } from '@/hooks';
 import { useTranslation } from 'react-i18next';
 
 export default function Register() {
   const { t } = useTranslation(['auth']);
   const { Images } = useTheme();
+  const { isIOS } = usePlatform();
 
   return (
     <Form
@@ -42,12 +43,21 @@ export default function Register() {
             label={t('auth:buttons.register.label')}
             onPress={() => null}
           />
-          <Button
-            label={t('auth:buttons.signUpWithApple.label')}
-            onPress={() => null}
-            icon={Images.icons.apple}
-            type={ButtonType.Secondary}
-          />
+          {isIOS ? (
+            <Button
+              label={t('auth:buttons.signUpWith.label', { provider: 'Apple' })}
+              onPress={() => null}
+              icon={Images.icons.apple}
+              type={ButtonType.Secondary}
+            />
+          ) : (
+            <Button
+              label={t('auth:buttons.signUpWith.label', { provider: 'Google' })}
+              onPress={() => null}
+              icon={Images.icons.google}
+              type={ButtonType.Secondary}
+            />
+          )}
         </>
       )}
     />

@@ -1,3 +1,4 @@
+import { faApple, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import {
   faBell,
   faChevronDown,
@@ -12,7 +13,6 @@ import {
   faPlus,
   faTrophy,
 } from '@fortawesome/free-solid-svg-icons';
-import { faApple } from '@fortawesome/free-brands-svg-icons';
 import { ThemeVariables } from 'types/theme';
 
 export default function ({}: ThemeVariables) {
@@ -20,6 +20,7 @@ export default function ({}: ThemeVariables) {
     logo: require('./assets/images/pocket-buddy-logo.png'),
     icons: {
       apple: faApple,
+      google: faGoogle,
       arrowDown: faChevronDown,
       settings: faGear,
       eyeOpen: faEye,

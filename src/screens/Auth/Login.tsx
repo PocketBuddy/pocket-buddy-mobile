@@ -3,8 +3,8 @@ import { ButtonType, ParagraphAlign } from 'types/components';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
+import { usePlatform, useTheme } from '@/hooks';
 import PasswordRecoverySheet from './PasswordRecoverySheet';
-import { useTheme } from '@/hooks';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -14,6 +14,7 @@ type Props = {
 export default function Login({ navigation }: Props) {
   const { t } = useTranslation(['auth']);
   const { Images, Gutters, Layout } = useTheme();
+  const { isIOS } = usePlatform();
   const [openPasswordRecovery, setOpenPasswordRecovery] = useState(false);
 
   const goToRegister = () => navigation.navigate('Register');
@@ -79,12 +80,25 @@ export default function Login({ navigation }: Props) {
                 align={ParagraphAlign.Center}
               />
             </View>
-            <Button
-              label={t('auth:buttons.signInWithApple.label')}
-              onPress={() => null}
-              icon={Images.icons.apple}
-              type={ButtonType.Secondary}
-            />
+            {isIOS ? (
+              <Button
+                label={t('auth:buttons.signInWith.label', {
+                  provider: 'Apple',
+                })}
+                onPress={() => null}
+                icon={Images.icons.apple}
+                type={ButtonType.Secondary}
+              />
+            ) : (
+              <Button
+                label={t('auth:buttons.signInWith.label', {
+                  provider: 'Google',
+                })}
+                onPress={() => null}
+                icon={Images.icons.google}
+                type={ButtonType.Secondary}
+              />
+            )}
           </>
         )}
       />
