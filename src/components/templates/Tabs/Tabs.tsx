@@ -6,6 +6,7 @@ import React, { useCallback } from 'react';
 import { TabBar } from '@/components';
 import { TabScreens } from 'types/components';
 import { useTheme } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   screens: TabScreens;
@@ -14,6 +15,7 @@ type Props = {
 const Tab = createMaterialTopTabNavigator();
 
 export default function Tabs({ screens }: Props) {
+  const { t } = useTranslation(['screens']);
   const { Gutters, Colors } = useTheme();
   const renderTabBar = useCallback(
     (props: MaterialTopTabBarProps) => <TabBar {...props} />,
@@ -28,8 +30,15 @@ export default function Tabs({ screens }: Props) {
         backgroundColor: Colors.background,
       }}
     >
-      {screens.map(({ name, component }) => (
-        <Tab.Screen key={name} name={name} component={component} />
+      {screens.map(({ parentScreenName, name, component }) => (
+        <Tab.Screen
+          key={name}
+          name={name}
+          component={component}
+          initialParams={{
+            title: t(parentScreenName, { context: name, defaultValue: name }),
+          }}
+        />
       ))}
     </Tab.Navigator>
   );

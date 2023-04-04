@@ -39,6 +39,7 @@ export enum ParagraphAlign {
 }
 
 export type TabScreens = {
+  parentScreenName: string;
   name: string;
   component: React.FC;
 }[];

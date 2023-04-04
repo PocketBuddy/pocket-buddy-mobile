@@ -26,9 +26,9 @@ export default function TabBar({
 
   return (
     <View style={[Layout.row]}>
-      {state.routes.map((route, index) => {
+      {state.routes.map((route: any, index) => {
         const { options } = descriptors[route.key];
-        const label = options.title ?? route.name;
+        const label = route.params.title ?? options.title ?? route.name;
         const isFocused = state.index === index;
         const isFirstItem = index === 0;
         const isLastItem = index === state.routes.length - 1;

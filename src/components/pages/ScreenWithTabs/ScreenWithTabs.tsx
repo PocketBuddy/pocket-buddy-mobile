@@ -19,7 +19,7 @@ export default function ScreenWithTabs({ withBrand = false, screens }: Props) {
           { backgroundColor: Colors.background },
           Layout.fill,
           Layout.col,
-          Gutters.smallPadding,
+          Gutters.tinyPadding,
           Gutters.regularRowGap,
         ]}
       >

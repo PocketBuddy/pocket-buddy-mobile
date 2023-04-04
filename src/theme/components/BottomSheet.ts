@@ -13,7 +13,7 @@ export default function <C>({
 
   const insideContainer = {
     ...Layout.fill,
-    ...Gutters.smallPadding,
+    ...Gutters.tinyPadding,
     backgroundColor: Colors.background,
     borderColor: Colors.primary,
     borderTopLeftRadius: 10,
