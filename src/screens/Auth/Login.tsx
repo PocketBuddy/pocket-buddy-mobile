@@ -1,9 +1,11 @@
 import { Button, Form, Input, Paragraph } from '@/components';
 import { ButtonType, ParagraphAlign } from 'types/components';
-import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
+import { Keyboard, TouchableOpacity, View } from 'react-native';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import { usePlatform, useTheme } from '@/hooks';
+import { Constants } from '@/utils';
+import debounce from 'lodash.debounce';
 import PasswordRecoverySheet from './PasswordRecoverySheet';
 import { useTranslation } from 'react-i18next';
 
@@ -19,13 +21,16 @@ export default function Login({ navigation }: Props) {
 
   const goToRegister = () => navigation.navigate('Register');
   const closePasswordRecovery = useCallback(
-    () => setOpenPasswordRecovery(false),
+    debounce(() => setOpenPasswordRecovery(false), Constants.DEBOUNCE_TIMEOUT),
     [],
   );
-  const openPasswordRecoverySheet = useCallback(() => {
-    Keyboard.dismiss();
-    setOpenPasswordRecovery(true);
-  }, []);
+  const openPasswordRecoverySheet = useCallback(
+    debounce(() => {
+      Keyboard.dismiss();
+      setOpenPasswordRecovery(true);
+    }, Constants.DEBOUNCE_TIMEOUT),
+    [],
+  );
 
   return (
     <>
@@ -43,16 +48,17 @@ export default function Login({ navigation }: Props) {
               onChangeText={() => null}
               secured
             />
-            <View style={Layout.rowReverse}>
-              <TouchableWithoutFeedback onPress={openPasswordRecoverySheet}>
-                <View style={Layout.halfWidth}>
-                  <Paragraph
-                    text={t('auth:inputs.password.message')}
-                    align={ParagraphAlign.Right}
-                  />
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
+            <TouchableOpacity
+              onPress={openPasswordRecoverySheet}
+              style={(Layout.fullWidth, Layout.rowReverse)}
+            >
+              <View style={Layout.halfWidth}>
+                <Paragraph
+                  text={t('auth:inputs.password.message')}
+                  align={ParagraphAlign.Right}
+                />
+              </View>
+            </TouchableOpacity>
           </>
         )}
         renderButtons={() => (
@@ -62,7 +68,7 @@ export default function Login({ navigation }: Props) {
               onPress={() => null}
             />
             <View style={[Gutters.tinyPadding, Gutters.smallRowGap]}>
-              <TouchableWithoutFeedback onPress={goToRegister}>
+              <TouchableOpacity onPress={goToRegister}>
                 <View style={[Layout.rowVCenter, Gutters.tinyColumnGap]}>
                   <Paragraph
                     text={t('auth:loginMessages.signUp.question')}
@@ -74,7 +80,7 @@ export default function Login({ navigation }: Props) {
                     bolded
                   />
                 </View>
-              </TouchableWithoutFeedback>
+              </TouchableOpacity>
               <Paragraph
                 text={t('auth:loginMessages.otherLogin')}
                 align={ParagraphAlign.Center}
