@@ -1,12 +1,16 @@
+import {
+  BottomSheetBackdrop,
+  BottomSheetBackdropProps,
+  BottomSheetModal,
+} from '@gorhom/bottom-sheet';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Text, View } from 'react-native';
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useTheme } from '@/hooks';
 
 type Props = {
   title?: string;
   renderContent: () => React.ReactNode;
-  breakpoints?: string[];
+  points?: string[];
   isOpen: boolean;
   handleClose: () => void;
 };
@@ -16,16 +20,18 @@ enum BottomSheetIndex {
   Opened = 0,
 }
 
+const DEFAULT_POINTS = ['50%'];
+
 export default function BottomSheet({
   title,
   renderContent,
-  breakpoints = ['50%'],
+  points = DEFAULT_POINTS,
   isOpen,
   handleClose,
 }: Props) {
   const { Common } = useTheme();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const snapPoints = useMemo(() => breakpoints, [breakpoints]);
+  const snapPoints = useMemo(() => points, [points]);
 
   const handleOpen = () => {
     bottomSheetModalRef.current && isOpen
@@ -38,6 +44,18 @@ export default function BottomSheet({
     index === BottomSheetIndex.Closed && handleClose();
   }, []);
 
+  const renderBackdrop = useCallback(
+    (props: BottomSheetBackdropProps) => (
+      <BottomSheetBackdrop
+        {...props}
+        appearsOnIndex={0}
+        disappearsOnIndex={-1}
+        animatedIndex={{ value: 1 }}
+      />
+    ),
+    [],
+  );
+
   useEffect(() => {
     handleOpen();
   }, [isOpen]);
@@ -49,6 +67,7 @@ export default function BottomSheet({
       keyboardBehavior="interactive"
       keyboardBlurBehavior="restore"
       onChange={handleSheetChanges}
+      backdropComponent={renderBackdrop}
       containerStyle={Common.bottomSheet.outsideContainer}
       backgroundStyle={{
         backgroundColor: Common.bottomSheet.insideContainer.backgroundColor,

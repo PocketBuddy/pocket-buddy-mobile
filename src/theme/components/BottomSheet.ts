@@ -15,7 +15,6 @@ export default function <C>({
     ...Layout.fill,
     ...Gutters.smallPadding,
     backgroundColor: Colors.background,
-    borderWidth: 1,
     borderColor: Colors.primary,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
