@@ -1,5 +1,5 @@
+import React, { useCallback } from 'react';
 import { KeyboardAwareScrollView } from '@mtourj/react-native-keyboard-aware-scroll-view';
-import React from 'react';
 import { useTheme } from '@/hooks';
 import { View } from 'react-native';
 
@@ -15,18 +15,30 @@ export default function Form({
   enableAutomaticScroll = true,
 }: Props) {
   const { Gutters, Layout, Colors } = useTheme();
+  const onStartShouldSetResponder = useCallback(() => true, []);
 
   return (
     <KeyboardAwareScrollView
       enableAutomaticScroll={enableAutomaticScroll}
+      showsVerticalScrollIndicator={false}
       contentContainerStyle={[
         Layout.scrollSpaceBetween,
         Gutters.smallRowGap,
         { backgroundColor: Colors.background },
       ]}
     >
-      <View style={[Gutters.tinyRowGap]}>{renderInputs()}</View>
-      <View style={[Gutters.tinyRowGap]}>{renderButtons()}</View>
+      <View
+        style={[Gutters.tinyRowGap]}
+        onStartShouldSetResponder={onStartShouldSetResponder}
+      >
+        {renderInputs()}
+      </View>
+      <View
+        style={[Gutters.tinyRowGap]}
+        onStartShouldSetResponder={onStartShouldSetResponder}
+      >
+        {renderButtons()}
+      </View>
     </KeyboardAwareScrollView>
   );
 }
