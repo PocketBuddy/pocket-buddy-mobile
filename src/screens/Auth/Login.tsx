@@ -48,17 +48,17 @@ export default function Login({ navigation }: Props) {
               onChangeText={() => null}
               secured
             />
-            <TouchableOpacity
-              onPress={openPasswordRecoverySheet}
-              style={(Layout.fullWidth, Layout.rowReverse)}
-            >
-              <View style={Layout.halfWidth}>
-                <Paragraph
-                  text={t('auth:inputs.password.message')}
-                  align={ParagraphAlign.Right}
-                />
-              </View>
-            </TouchableOpacity>
+            <View style={[Layout.rowReverse, Layout.fullWidth]}>
+              <View />
+              <TouchableOpacity onPress={openPasswordRecoverySheet}>
+                <View>
+                  <Paragraph
+                    text={t('auth:inputs.password.message')}
+                    align={ParagraphAlign.Right}
+                  />
+                </View>
+              </TouchableOpacity>
+            </View>
           </>
         )}
         renderButtons={() => (
