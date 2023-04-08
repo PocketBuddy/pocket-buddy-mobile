@@ -10,8 +10,8 @@ type Props = {
 };
 
 export default function Brand({
-  height = 200,
-  width = 200,
+  height = 150,
+  width = 150,
   mode = BrandMode.Contain,
 }: Props) {
   const { Layout, Images } = useTheme();

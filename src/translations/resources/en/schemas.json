@@ -1,0 +1,19 @@
+{
+  "auth": {
+    "name": {
+      "required": "Name cannot be empty"
+    },
+    "email": {
+      "required": "Email cannot be empty",
+      "valid": "Email is not valid"
+    },
+    "password": {
+      "required": "Password cannot be empty",
+      "minLength": "Password must be at least {{minLength}} characters long"
+    },
+    "confirmPassword": {
+      "required": "Passwords do not match",
+      "match": "Passwords do not match"
+    }
+  }
+}

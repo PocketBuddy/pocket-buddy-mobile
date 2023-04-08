@@ -1,0 +1,19 @@
+{
+  "auth": {
+    "name": {
+      "required": "Imię nie może być puste"
+    },
+    "email": {
+      "required": "Email nie może być pusty",
+      "valid": "Email jest niepoprawny"
+    },
+    "password": {
+      "required": "Hasło nie może być puste",
+      "minLength": "Hasło musi mieć co najmniej {{minLength}} znaków"
+    },
+    "confirmPassword": {
+      "required": "Hasła muszą być takie same",
+      "match": "Hasła muszą być takie same"
+    }
+  }
+}

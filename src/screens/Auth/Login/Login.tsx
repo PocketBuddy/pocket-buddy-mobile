@@ -59,10 +59,7 @@ export default function Login({ navigation }: Props) {
         )}
         renderButtons={() => (
           <>
-            <Button
-              label={t('auth:buttons.login.label')}
-              onPress={form.onSubmit}
-            />
+            <Button label={t('auth:buttons.login')} onPress={form.onSubmit} />
             <View style={[Gutters.tinyPadding, Gutters.smallRowGap]}>
               <TouchableOpacity onPress={goToRegister}>
                 <View style={[Layout.rowVCenter, Gutters.tinyColumnGap]}>
@@ -84,7 +81,7 @@ export default function Login({ navigation }: Props) {
             </View>
             {isIOS ? (
               <Button
-                label={t('auth:buttons.signInWith.label', {
+                label={t('auth:buttons.signInWith', {
                   provider: 'Apple',
                 })}
                 onPress={loginProvider.apple}
@@ -93,7 +90,7 @@ export default function Login({ navigation }: Props) {
               />
             ) : (
               <Button
-                label={t('auth:buttons.signInWith.label', {
+                label={t('auth:buttons.signInWith', {
                   provider: 'Google',
                 })}
                 onPress={loginProvider.google}

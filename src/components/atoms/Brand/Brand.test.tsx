@@ -18,8 +18,8 @@ describe('Brand', () => {
     const wrapper = screen.getByTestId('brand-wrapper');
     const img = screen.getByTestId('brand-img');
 
-    expect(wrapper.props.style.height).toBe(200);
-    expect(wrapper.props.style.width).toBe(200);
+    expect(wrapper.props.style.height).toBe(150);
+    expect(wrapper.props.style.width).toBe(150);
     expect(img.props.resizeMode).toBe('contain');
   });
 

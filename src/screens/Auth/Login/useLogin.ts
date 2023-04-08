@@ -1,17 +1,12 @@
-import * as yup from 'yup';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { useBottomSheet, useForm } from '@/hooks';
+import { AuthSchema } from '@/schemas';
 import { Keyboard } from 'react-native';
 import { useCallback } from 'react';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;
 };
-
-const validationSchema = yup.object({
-  name: yup.string().required('Name cannot be empty'),
-  password: yup.string().required('Password cannot be empty'),
-});
 
 const defaultValues = {
   name: '',
@@ -21,7 +16,7 @@ const defaultValues = {
 export default function useLogin({ navigation }: Props) {
   const { handleSubmit, ...formProps } = useForm({
     defaultValues,
-    validationSchema,
+    validationSchema: AuthSchema.login,
   });
   const passwordRecoverySheet = useBottomSheet({
     openSideEffects: () => Keyboard.dismiss(),
