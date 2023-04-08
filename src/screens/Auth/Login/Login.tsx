@@ -1,12 +1,11 @@
-import { Button, Form, Input, Paragraph } from '@/components';
+import { Button, ControlledInput, Form, Paragraph } from '@/components';
 import { ButtonType, ParagraphAlign } from 'types/components';
-import { Keyboard, TouchableOpacity, View } from 'react-native';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
-import React, { useCallback, useState } from 'react';
+import { TouchableOpacity, View } from 'react-native';
 import { usePlatform, useTheme } from '@/hooks';
-import { Constants } from '@/utils';
-import debounce from 'lodash.debounce';
-import PasswordRecoverySheet from './PasswordRecoverySheet';
+import PasswordRecoverySheet from '../PasswordRecoverySheet/PasswordRecoverySheet';
+import React from 'react';
+import useLogin from './useLogin';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -17,19 +16,10 @@ export default function Login({ navigation }: Props) {
   const { t } = useTranslation(['auth']);
   const { Images, Gutters, Layout } = useTheme();
   const { isIOS } = usePlatform();
-  const [openPasswordRecovery, setOpenPasswordRecovery] = useState(false);
-
-  const goToRegister = () => navigation.navigate('Register');
-  const closePasswordRecovery = useCallback(
-    debounce(() => setOpenPasswordRecovery(false), Constants.DEBOUNCE_TIMEOUT),
-    [],
-  );
-  const openPasswordRecoverySheet = useCallback(
-    debounce(() => {
-      Keyboard.dismiss();
-      setOpenPasswordRecovery(true);
-    }, Constants.DEBOUNCE_TIMEOUT),
-    [],
+  const { goToRegister, passwordRecoverySheet, form, loginProvider } = useLogin(
+    {
+      navigation,
+    },
   );
 
   return (
@@ -37,20 +27,26 @@ export default function Login({ navigation }: Props) {
       <Form
         renderInputs={() => (
           <>
-            <Input
+            <ControlledInput
+              name="name"
+              control={form.control}
               label={t('auth:inputs.name.label')}
               placeholder={t('auth:inputs.name.placeholder')}
-              onChangeText={() => null}
+              errorMessage={form.errors.name?.message}
+              textContentType="name"
             />
-            <Input
+            <ControlledInput
+              name="password"
+              control={form.control}
               label={t('auth:inputs.password.label')}
               placeholder={t('auth:inputs.password.placeholder')}
-              onChangeText={() => null}
+              errorMessage={form.errors.password?.message}
+              textContentType="password"
               secured
             />
             <View style={[Layout.rowReverse, Layout.fullWidth]}>
               <View />
-              <TouchableOpacity onPress={openPasswordRecoverySheet}>
+              <TouchableOpacity onPress={passwordRecoverySheet.open}>
                 <View>
                   <Paragraph
                     text={t('auth:inputs.password.message')}
@@ -65,7 +61,7 @@ export default function Login({ navigation }: Props) {
           <>
             <Button
               label={t('auth:buttons.login.label')}
-              onPress={() => null}
+              onPress={form.handleLogin}
             />
             <View style={[Gutters.tinyPadding, Gutters.smallRowGap]}>
               <TouchableOpacity onPress={goToRegister}>
@@ -91,7 +87,7 @@ export default function Login({ navigation }: Props) {
                 label={t('auth:buttons.signInWith.label', {
                   provider: 'Apple',
                 })}
-                onPress={() => null}
+                onPress={loginProvider.apple}
                 icon={Images.icons.apple}
                 type={ButtonType.Secondary}
               />
@@ -100,7 +96,7 @@ export default function Login({ navigation }: Props) {
                 label={t('auth:buttons.signInWith.label', {
                   provider: 'Google',
                 })}
-                onPress={() => null}
+                onPress={loginProvider.google}
                 icon={Images.icons.google}
                 type={ButtonType.Secondary}
               />
@@ -109,8 +105,8 @@ export default function Login({ navigation }: Props) {
         )}
       />
       <PasswordRecoverySheet
-        isOpen={openPasswordRecovery}
-        handleClose={closePasswordRecovery}
+        isOpen={passwordRecoverySheet.isOpen}
+        handleClose={passwordRecoverySheet.close}
       />
     </>
   );

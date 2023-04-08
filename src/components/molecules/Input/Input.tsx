@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   TextInput,
@@ -7,13 +7,11 @@ import {
   View,
 } from 'react-native';
 import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
-import { Constants } from '@/utils';
-import debounce from 'lodash.debounce';
 import { Icon } from '@/components';
 import { IconType } from 'types/components';
 import { useTheme } from '@/hooks';
 
-type Props = {
+export type InputProps = {
   label: string;
   value?: string;
   secured?: boolean;
@@ -24,7 +22,7 @@ type Props = {
 
 const CLICKABLE_ICON_AREA = 10;
 
-const Input = ({
+export default function Input({
   label,
   value = '',
   secured = false,
@@ -32,14 +30,10 @@ const Input = ({
   renderMessage,
   onChangeText,
   ...props
-}: Props) => {
+}: InputProps) {
   const { Common, Images } = useTheme();
   const [passwordHidden, setPasswordHidden] = useState(secured);
   const togglePasswordHidden = () => setPasswordHidden(!passwordHidden);
-  const handleChange = useCallback(
-    debounce(onChangeText, Constants.DEBOUNCE_TIMEOUT),
-    [onChangeText],
-  );
 
   return (
     <View>
@@ -49,8 +43,8 @@ const Input = ({
           {bottomSheet ? (
             <BottomSheetTextInput
               style={[Common.input.primaryInput]}
-              onChangeText={handleChange}
-              defaultValue={value}
+              onChangeText={onChangeText}
+              value={value}
               placeholderTextColor={Common.input.primaryPlaceholder.color}
               secureTextEntry={passwordHidden}
               {...props}
@@ -58,8 +52,8 @@ const Input = ({
           ) : (
             <TextInput
               style={[Common.input.primaryInput]}
-              onChangeText={handleChange}
-              defaultValue={value}
+              onChangeText={onChangeText}
+              value={value}
               placeholderTextColor={Common.input.primaryPlaceholder.color}
               secureTextEntry={passwordHidden}
               {...props}
@@ -89,6 +83,4 @@ const Input = ({
       )}
     </View>
   );
-};
-
-export default Input;
+}

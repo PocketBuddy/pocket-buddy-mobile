@@ -1,12 +1,12 @@
 import { Platform } from 'react-native';
 import { useMemo } from 'react';
 
-interface IPlatformHook {
+type Props = {
   isIOS: boolean;
   isAndroid: boolean;
-}
+};
 
-export default function usePlatform(): IPlatformHook {
+export default function usePlatform(): Props {
   const platform = useMemo(() => {
     switch (Platform.OS) {
       case 'ios':

@@ -1,3 +1,3 @@
 export default {
-  DEBOUNCE_TIMEOUT: 100,
+  DEBOUNCE_TIMEOUT: 200,
 };
