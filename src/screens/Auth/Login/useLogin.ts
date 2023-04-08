@@ -1,4 +1,5 @@
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import { ScreenNames, StackNames } from '@/navigators/routes';
 import { useBottomSheet, useForm } from '@/hooks';
 import { AuthSchema } from '@/schemas';
 import { Keyboard } from 'react-native';
@@ -22,7 +23,7 @@ export default function useLogin({ navigation }: Props) {
     openSideEffects: () => Keyboard.dismiss(),
   });
 
-  const goToRegister = () => navigation.navigate('Register');
+  const goToRegister = () => navigation.navigate(ScreenNames.register);
 
   // TODO: Add logic for login
   const onSubmit = useCallback(
@@ -30,6 +31,7 @@ export default function useLogin({ navigation }: Props) {
       handleSubmit(values => {
         try {
           console.log('Login:', values);
+          values && navigation.navigate(StackNames.main);
         } catch (e) {
           console.log('Login:', e);
         }

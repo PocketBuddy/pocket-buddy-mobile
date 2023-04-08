@@ -2,6 +2,7 @@ import { Brand, Spinner } from '@/components';
 import React, { useEffect } from 'react';
 import { ApplicationScreenProps } from 'types/navigation';
 import { setDefaultTheme } from '@/store/theme';
+import { StackNames } from '@/navigators/routes';
 import { useTheme } from '@/hooks';
 import { View } from 'react-native';
 
@@ -17,7 +18,7 @@ export default function Startup({ navigation }: ApplicationScreenProps) {
     await setDefaultTheme({ theme: 'default', darkMode: null });
     navigation.reset({
       index: 0,
-      routes: [{ name: 'Main' }],
+      routes: [{ name: StackNames.start }],
     });
   };
 

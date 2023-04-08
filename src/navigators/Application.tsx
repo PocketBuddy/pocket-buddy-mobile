@@ -1,3 +1,4 @@
+import { MainScreens, StackNames } from './routes';
 import {
   NavigationContainer,
   useNavigationContainerRef,
@@ -7,9 +8,10 @@ import { ApplicationStackParamList } from 'types/navigation';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { createStackNavigator } from '@react-navigation/stack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import MainNavigator from './Main';
-import { MainScreens } from './routes';
+import IndependentNavigator from './IndependentNavigator';
+import MainNavigator from './MainNavigator';
 import React from 'react';
+import StartNavigator from './StartNavigator';
 import { useFlipper } from '@react-navigation/devtools';
 import { useTheme } from '@/hooks';
 
@@ -23,6 +25,7 @@ const ApplicationNavigator = () => {
   const navigationRef = useNavigationContainerRef();
 
   useFlipper(navigationRef);
+
   return (
     <GestureHandlerRootView style={[Layout.fill]}>
       <BottomSheetModalProvider>
@@ -36,7 +39,15 @@ const ApplicationNavigator = () => {
                 }
                 component={MainScreens.startup.component}
               />
-              <Stack.Screen name="Main" component={MainNavigator} />
+              <Stack.Screen
+                name={StackNames.start}
+                component={StartNavigator}
+              />
+              <Stack.Screen name={StackNames.main} component={MainNavigator} />
+              <Stack.Screen
+                name={StackNames.independent}
+                component={IndependentNavigator}
+              />
             </Stack.Navigator>
           </NavigationContainer>
         </SafeAreaView>

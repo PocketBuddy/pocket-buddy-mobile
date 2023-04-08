@@ -9,6 +9,7 @@ export { default as Paragraph } from './atoms/Paragraph/Paragraph';
 export { default as Button } from './molecules/Button/Button';
 export { default as Input } from './molecules/Input/Input';
 export { default as ControlledInput } from './molecules/ControlledInput/ControlledInput';
+export { default as TabBarIcon } from './molecules/TabBarIcon/TabBarIcon';
 
 // Organisms
 export { default as Form } from './organisms/Form/Form';
