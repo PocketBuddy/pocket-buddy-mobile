@@ -65,3 +65,6 @@ yarn-error.log
 # Environment variables
 .env
 .env.*
+
+# Visual Studio Code
+.vscode/
