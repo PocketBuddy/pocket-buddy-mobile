@@ -1,10 +1,17 @@
-import { BottomSheet, Button, Form, Input, Paragraph } from '@/components/';
+import {
+  BottomSheet,
+  Button,
+  ControlledInput,
+  Form,
+  Paragraph,
+} from '@/components/';
 import {
   ButtonType,
   KeyboardDismissMode,
   KeyboardPersisted,
 } from 'types/components';
 import React from 'react';
+import usePasswordRecoverySheet from './usePasswordRecoverySheet';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -14,13 +21,14 @@ type Props = {
 
 export default function PasswordRecoverySheet({ isOpen, handleClose }: Props) {
   const { t } = useTranslation(['auth']);
+  const { form } = usePasswordRecoverySheet({ isSheetOpen: isOpen });
 
   return (
     <BottomSheet
       isOpen={isOpen}
       handleClose={handleClose}
       title={t('auth:passwordRecovery.title')}
-      points={['41%']}
+      points={['45%']}
       renderContent={() => (
         <Form
           enableAutomaticScroll={false}
@@ -28,10 +36,13 @@ export default function PasswordRecoverySheet({ isOpen, handleClose }: Props) {
           keyboardDismissMode={KeyboardDismissMode.None}
           renderInputs={() => (
             <>
-              <Input
+              <ControlledInput
+                name="email"
+                control={form.control}
                 label={t('auth:inputs.email.label')}
                 placeholder={t('auth:inputs.email.placeholder')}
-                onChangeText={() => null}
+                errorMessage={form.errors.email?.message}
+                textContentType="emailAddress"
                 bottomSheet
               />
               <Paragraph text={t('auth:passwordRecovery.message')} />
@@ -41,7 +52,7 @@ export default function PasswordRecoverySheet({ isOpen, handleClose }: Props) {
             <>
               <Button
                 label={t('auth:passwordRecovery.submit')}
-                onPress={() => null}
+                onPress={form.onSubmit}
               />
               <Button
                 label={t('auth:passwordRecovery.cancel')}

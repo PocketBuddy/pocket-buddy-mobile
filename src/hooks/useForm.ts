@@ -11,6 +11,7 @@ export default function useForm({ validationSchema, defaultValues }: Props) {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useReactHookForm({
     mode: 'onBlur',
@@ -22,5 +23,6 @@ export default function useForm({ validationSchema, defaultValues }: Props) {
     control,
     errors,
     handleSubmit,
+    reset,
   };
 }

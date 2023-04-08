@@ -61,7 +61,7 @@ export default function Login({ navigation }: Props) {
           <>
             <Button
               label={t('auth:buttons.login.label')}
-              onPress={form.handleLogin}
+              onPress={form.onSubmit}
             />
             <View style={[Gutters.tinyPadding, Gutters.smallRowGap]}>
               <TouchableOpacity onPress={goToRegister}>

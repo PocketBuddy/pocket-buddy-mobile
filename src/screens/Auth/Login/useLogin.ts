@@ -30,7 +30,7 @@ export default function useLogin({ navigation }: Props) {
   const goToRegister = () => navigation.navigate('Register');
 
   // TODO: Add logic for login
-  const handleLogin = useCallback(
+  const onSubmit = useCallback(
     () =>
       handleSubmit(values => {
         try {
@@ -51,7 +51,7 @@ export default function useLogin({ navigation }: Props) {
     goToRegister,
     passwordRecoverySheet,
     form: {
-      handleLogin,
+      onSubmit,
       ...formProps,
     },
     loginProvider: {
