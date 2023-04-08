@@ -15,6 +15,7 @@
     "type-check": "tsc",
     "sanity": "yarn type-check && yarn lint && yarn format",
     "pod-install": "cd ios && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install && cd ..",
+    "pod-install-prod": "cd ios && RCT_NEW_ARCH_ENABLED=1 NO_FLIPPER=1 bundle exec pod install && cd ..",
     "link-fonts": "npx react-native-asset"
   },
   "dependencies": {
