@@ -10,11 +10,6 @@ export default function Startup({ navigation }: ApplicationScreenProps) {
   const { Layout, Gutters } = useTheme();
 
   const init = async () => {
-    await new Promise(resolve =>
-      setTimeout(() => {
-        resolve(true);
-      }, 2000),
-    );
     await setDefaultTheme({ theme: 'default', darkMode: null });
     navigation.reset({
       index: 0,

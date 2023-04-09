@@ -38,6 +38,8 @@ export const reduxStorage: Storage = {
   },
 };
 
+export type RootState = ReturnType<typeof reducers>;
+
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
