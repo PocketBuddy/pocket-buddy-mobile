@@ -31,8 +31,8 @@ export default function ToastError() {
   const infoMessage = useMemo(() => info || '', [info]);
 
   const toastType = useMemo(
-    () => (error ? 'error' : success ? 'success' : 'info'),
-    [error, success],
+    () => (info ? 'info' : success ? 'success' : 'error'),
+    [info, success],
   );
 
   const toastHeader = useMemo(() => {
@@ -45,7 +45,7 @@ export default function ToastError() {
   }, [toastType, header]);
 
   const toastMessage = useMemo(
-    () => (error ? errorMessage : success ? successMessage : infoMessage),
+    () => (info ? infoMessage : success ? successMessage : errorMessage),
     [errorMessage, successMessage, infoMessage],
   );
 

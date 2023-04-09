@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type ErrorState = {
+type ToastState = {
   header: string | null;
   success: string | null;
   info: string | null;
@@ -8,11 +8,11 @@ type ErrorState = {
   isOpen: boolean;
 };
 
-type ErrorPayload = {
-  payload: Partial<ErrorState>;
+type ToastPayload = {
+  payload: Partial<ToastState>;
 };
 
-const initialState: ErrorState = {
+const initialState: ToastState = {
   header: null,
   success: null,
   info: null,
@@ -24,21 +24,21 @@ const slice = createSlice({
   name: 'toast',
   initialState,
   reducers: {
-    showSuccess: (state, { payload: { success, header } }: ErrorPayload) => {
+    showSuccess: (state, { payload: { success, header } }: ToastPayload) => {
       if (typeof success !== 'undefined' && typeof header !== 'undefined') {
         state.header = header;
         state.success = success;
         state.isOpen = true;
       }
     },
-    showInfo: (state, { payload: { info, header } }: ErrorPayload) => {
+    showInfo: (state, { payload: { info, header } }: ToastPayload) => {
       if (typeof info !== 'undefined' && typeof header !== 'undefined') {
         state.header = header;
         state.info = info;
         state.isOpen = true;
       }
     },
-    showError: (state, { payload: { error, header } }: ErrorPayload) => {
+    showError: (state, { payload: { error, header } }: ToastPayload) => {
       if (typeof error !== 'undefined') {
         state.error = error;
       }

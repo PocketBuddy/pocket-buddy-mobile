@@ -20,7 +20,7 @@ const Stack = createStackNavigator<ApplicationStackParamList>();
 
 // @refresh reset
 const ApplicationNavigator = () => {
-  const { Layout, darkMode, NavigationTheme } = useTheme();
+  const { Layout, NavigationTheme } = useTheme();
   const { colors } = NavigationTheme;
 
   const navigationRef = useNavigationContainerRef();
@@ -32,7 +32,7 @@ const ApplicationNavigator = () => {
       <BottomSheetModalProvider>
         <SafeAreaView style={[Layout.fill, { backgroundColor: colors.card }]}>
           <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
-            <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
+            <StatusBar barStyle={'dark-content'} />
             <Stack.Navigator
               initialRouteName={StackNames.start}
               screenOptions={{ headerShown: false }}

@@ -10,6 +10,7 @@ import {
   REHYDRATE,
   Storage,
 } from 'redux-persist';
+import { errorLogger } from './errorLogger';
 import { MMKV } from 'react-native-mmkv';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
@@ -57,7 +58,9 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(api.middleware);
+    })
+      .concat(api.middleware)
+      .concat(errorLogger);
 
     if (__DEV__ && !process.env.JEST_WORKER_ID) {
       const createDebugger = require('redux-flipper').default;
