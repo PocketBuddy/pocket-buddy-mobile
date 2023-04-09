@@ -15,9 +15,11 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { api } from '../services/api';
 import theme from './theme';
+import toast from './toast';
 
 const reducers = combineReducers({
   theme,
+  toast,
   [api.reducerPath]: api.reducer,
 });
 

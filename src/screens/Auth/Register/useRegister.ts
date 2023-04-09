@@ -30,7 +30,7 @@ export default function useRegister({}: Props) {
     [],
   );
 
-  // TODO: Add logic for login with Apple and Google
+  // TODO: Add logic for register with Apple and Google
   const registerWithApple = useCallback(
     () => console.log('Register: Apple'),
     [],

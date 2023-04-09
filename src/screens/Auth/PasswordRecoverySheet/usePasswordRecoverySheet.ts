@@ -20,7 +20,7 @@ export default function usePasswordRecoverySheet({ isSheetOpen }: Props) {
     !isSheetOpen && reset();
   }, [isSheetOpen]);
 
-  // TODO: Add logic for login
+  // TODO: Add logic for password recovery
   const onSubmit = useCallback(
     () =>
       handleSubmit(values => {

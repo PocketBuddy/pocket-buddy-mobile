@@ -4,6 +4,7 @@ export { default as Icon } from './atoms/Icon/Icon';
 export { default as Spinner } from './atoms/Spinner/Spinner';
 export { default as HideKeyboard } from './atoms/HideKeyboard/HideKeyboard';
 export { default as Paragraph } from './atoms/Paragraph/Paragraph';
+export { default as ToastMessage } from './atoms/ToastMessage/ToastMessage';
 
 // Molecules
 export { default as Button } from './molecules/Button/Button';
@@ -18,6 +19,7 @@ export { default as BottomSheet } from './organisms/BottomSheet/BottomSheet';
 
 // Templates
 export { default as Tabs } from './templates/Tabs/Tabs';
+export { default as ToastHandler } from './templates/ToastHandler/ToastHandler';
 
 // Pages
 export { default as ScreenWithTabs } from './pages/ScreenWithTabs/ScreenWithTabs';

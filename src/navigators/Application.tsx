@@ -12,6 +12,7 @@ import IndependentNavigator from './IndependentNavigator';
 import MainNavigator from './MainNavigator';
 import React from 'react';
 import StartNavigator from './StartNavigator';
+import { ToastHandler } from '@/components';
 import { useFlipper } from '@react-navigation/devtools';
 import { useTheme } from '@/hooks';
 
@@ -32,7 +33,10 @@ const ApplicationNavigator = () => {
         <SafeAreaView style={[Layout.fill, { backgroundColor: colors.card }]}>
           <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
             <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Navigator
+              initialRouteName={StackNames.start}
+              screenOptions={{ headerShown: false }}
+            >
               <Stack.Screen
                 name={
                   MainScreens.startup.name as keyof ApplicationStackParamList
@@ -50,6 +54,7 @@ const ApplicationNavigator = () => {
               />
             </Stack.Navigator>
           </NavigationContainer>
+          <ToastHandler />
         </SafeAreaView>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>
