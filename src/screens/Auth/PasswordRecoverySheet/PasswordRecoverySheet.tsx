@@ -21,7 +21,10 @@ type Props = {
 
 export default function PasswordRecoverySheet({ isOpen, handleClose }: Props) {
   const { t } = useTranslation(['auth']);
-  const { form } = usePasswordRecoverySheet({ isSheetOpen: isOpen });
+  const { form } = usePasswordRecoverySheet({
+    isSheetOpen: isOpen,
+    handleClose,
+  });
 
   return (
     <BottomSheet

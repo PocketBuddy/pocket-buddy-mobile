@@ -15,6 +15,11 @@ export default function Auth({ navigation }: Props) {
     [navigation],
   );
 
+  const RegisterWithProps = useCallback(
+    () => register.component({ navigation }),
+    [navigation],
+  );
+
   return (
     <ScreenWithTabs
       withBrand
@@ -23,7 +28,10 @@ export default function Auth({ navigation }: Props) {
           ...login,
           component: LoginWithProps,
         },
-        { ...register },
+        {
+          ...register,
+          component: RegisterWithProps,
+        },
       ]}
     />
   );

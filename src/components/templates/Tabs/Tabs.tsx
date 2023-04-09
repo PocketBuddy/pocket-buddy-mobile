@@ -25,6 +25,7 @@ export default function Tabs({ screens }: Props) {
   return (
     <Tab.Navigator
       tabBar={renderTabBar}
+      initialRouteName={screens[0].name}
       sceneContainerStyle={{
         ...Gutters.smallTPadding,
         backgroundColor: Colors.background,
@@ -38,6 +39,12 @@ export default function Tabs({ screens }: Props) {
           initialParams={{
             title: t(parentScreenName, { context: name, defaultValue: name }),
           }}
+          listeners={({ navigation, route }) => ({
+            tabPress: e => {
+              e.preventDefault();
+              navigation.navigate({ name: route.name, merge: true });
+            },
+          })}
         />
       ))}
     </Tab.Navigator>

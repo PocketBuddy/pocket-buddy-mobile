@@ -36,6 +36,7 @@ export default function IndependentNavigator() {
         headerLeft: renderHeaderIcon,
         headerTitle: '',
       }}
+      initialRouteName={MainScreens.settings.name}
     >
       <Stack.Screen {...MainScreens.settings} />
     </Stack.Navigator>

@@ -46,6 +46,7 @@ export default function MainNavigator() {
 
   return (
     <Tab.Navigator
+      initialRouteName={MainScreens.home.name}
       screenOptions={{
         headerLeft: renderHeaderIcon,
         tabBarShowLabel: false,

@@ -1,15 +1,20 @@
 import { Button, ControlledInput, Form } from '@/components';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { usePlatform, useTheme } from '@/hooks';
 import { ButtonType } from 'types/components';
 import React from 'react';
 import useRegister from './useRegister';
 import { useTranslation } from 'react-i18next';
 
-export default function Register() {
+type Props = {
+  navigation: NavigationProp<ParamListBase>;
+};
+
+export default function Register({ navigation }: Props) {
   const { t } = useTranslation(['auth']);
   const { Images } = useTheme();
   const { isIOS } = usePlatform();
-  const { form, registerProvider } = useRegister({});
+  const { form, registerProvider } = useRegister({ navigation });
 
   return (
     <Form

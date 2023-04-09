@@ -1,6 +1,11 @@
 import { Button, ControlledInput, Form, Paragraph } from '@/components';
 import { ButtonType, ParagraphAlign } from 'types/components';
-import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import {
+  NavigationProp,
+  ParamListBase,
+  RouteProp,
+  useRoute,
+} from '@react-navigation/native';
 import { TouchableOpacity, View } from 'react-native';
 import { usePlatform, useTheme } from '@/hooks';
 import PasswordRecoverySheet from '../PasswordRecoverySheet/PasswordRecoverySheet';
@@ -16,9 +21,11 @@ export default function Login({ navigation }: Props) {
   const { t } = useTranslation(['auth']);
   const { Images, Gutters, Layout } = useTheme();
   const { isIOS } = usePlatform();
+  const route = useRoute<RouteProp<Record<string, any>>>();
   const { goToRegister, passwordRecoverySheet, form, loginProvider } = useLogin(
     {
       navigation,
+      name: route.params?.name,
     },
   );
 

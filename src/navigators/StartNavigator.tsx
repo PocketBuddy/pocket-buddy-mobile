@@ -7,7 +7,10 @@ const Stack = createStackNavigator();
 // @refresh reset
 export default function StartNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName={MainScreens.auth.name}
+    >
       <Stack.Screen {...MainScreens.auth} />
     </Stack.Navigator>
   );

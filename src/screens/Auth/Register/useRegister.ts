@@ -1,8 +1,14 @@
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import { showError, showSuccess } from '@/store/toast';
 import { AuthSchema } from '@/schemas';
+import { ScreenNames } from '@/navigators/routes';
 import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { useForm } from '@/hooks';
 
-type Props = {};
+type Props = {
+  navigation: NavigationProp<ParamListBase>;
+};
 
 const defaultValues = {
   name: '',
@@ -11,22 +17,45 @@ const defaultValues = {
   confirmPassword: '',
 };
 
-export default function useRegister({}: Props) {
-  const { handleSubmit, ...formProps } = useForm({
+export default function useRegister({ navigation }: Props) {
+  const dispatch = useDispatch();
+  const { handleSubmit, reset, ...formProps } = useForm({
     defaultValues,
     validationSchema: AuthSchema.register,
   });
 
+  const onSuccessSubmit = (values: Record<string, string>) => {
+    try {
+      if (values) {
+        reset();
+        navigation.navigate(ScreenNames.auth, {
+          screen: ScreenNames.login,
+          params: { name: values.name },
+        });
+        dispatch(
+          showSuccess({
+            header: 'Register success',
+            success: 'You can login now',
+          }),
+        );
+      }
+    } catch {
+      dispatch(showError({}));
+    }
+  };
+
+  // TODO: do we need this?
+  const onErrorSubmit = () =>
+    dispatch(
+      showError({
+        error: 'Fields is not filled properly',
+        header: 'Register Error',
+      }),
+    );
+
   // TODO: Add logic for register
   const onSubmit = useCallback(
-    () =>
-      handleSubmit(values => {
-        try {
-          console.log('Register:', values);
-        } catch (e) {
-          console.log('Register:', e);
-        }
-      })(),
+    () => handleSubmit(onSuccessSubmit, onErrorSubmit)(),
     [],
   );
 

@@ -1,16 +1,25 @@
+import { showError, showSuccess } from '@/store/toast';
 import { useCallback, useEffect } from 'react';
 import { AuthSchema } from '@/schemas';
+import { useDispatch } from 'react-redux';
 import { useForm } from '@/hooks';
 
 type Props = {
   isSheetOpen: boolean;
+  handleClose: () => void;
 };
 
 const defaultValues = {
   email: '',
 };
 
-export default function usePasswordRecoverySheet({ isSheetOpen }: Props) {
+const TIME_TO_CLOSE = 1000;
+
+export default function usePasswordRecoverySheet({
+  isSheetOpen,
+  handleClose,
+}: Props) {
+  const dispatch = useDispatch();
   const { handleSubmit, reset, ...formProps } = useForm({
     defaultValues,
     validationSchema: AuthSchema.passwordRecovery,
@@ -25,9 +34,20 @@ export default function usePasswordRecoverySheet({ isSheetOpen }: Props) {
     () =>
       handleSubmit(values => {
         try {
-          console.log('Password Recovery Sheet:', values);
-        } catch (e) {
-          console.log('Password Recovery Sheet:', e);
+          if (values) {
+            handleClose();
+            setTimeout(() => {
+              reset();
+              dispatch(
+                showSuccess({
+                  header: 'Password recovery email sent',
+                  success: 'Check your email and follow the instructions',
+                }),
+              );
+            }, TIME_TO_CLOSE);
+          }
+        } catch {
+          dispatch(showError({}));
         }
       })(),
     [],

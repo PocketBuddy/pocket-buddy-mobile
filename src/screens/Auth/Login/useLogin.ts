@@ -1,14 +1,15 @@
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { ScreenNames, StackNames } from '@/navigators/routes';
 import { useBottomSheet, useForm } from '@/hooks';
+import { useCallback, useEffect } from 'react';
 import { AuthSchema } from '@/schemas';
 import { Keyboard } from 'react-native';
 import { showError } from '@/store/toast';
-import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;
+  name?: string;
 };
 
 const defaultValues = {
@@ -16,9 +17,9 @@ const defaultValues = {
   password: '',
 };
 
-export default function useLogin({ navigation }: Props) {
+export default function useLogin({ navigation, name }: Props) {
   const dispatch = useDispatch();
-  const { handleSubmit, ...formProps } = useForm({
+  const { handleSubmit, reset, setValue, ...formProps } = useForm({
     defaultValues,
     validationSchema: AuthSchema.login,
   });
@@ -26,11 +27,20 @@ export default function useLogin({ navigation }: Props) {
     openSideEffects: () => Keyboard.dismiss(),
   });
 
+  useEffect(() => {
+    if (name) {
+      setValue('name', name);
+    }
+  }, [name]);
+
   const goToRegister = () => navigation.navigate(ScreenNames.register);
 
   const onSuccessSubmit = (values: Record<string, string>) => {
     try {
-      values && navigation.navigate(StackNames.main);
+      if (values) {
+        reset();
+        navigation.navigate(StackNames.main);
+      }
     } catch {
       dispatch(showError({}));
     }

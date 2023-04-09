@@ -3,7 +3,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 export type StartParamsList = {
   Auth: undefined;
-  Login: undefined;
+  Login: { name?: string };
   Register: undefined;
 };
 
