@@ -1,10 +1,9 @@
-import { Text, View } from 'react-native';
 import React from 'react';
+import { ScreenWithTabs } from '@/components';
+import { SubScreens } from '@/navigators/routes';
 
 export default function Achievements() {
-  return (
-    <View>
-      <Text>Achievements</Text>
-    </View>
-  );
+  const { challenges, goals } = SubScreens.achievements;
+
+  return <ScreenWithTabs screens={[{ ...challenges }, { ...goals }]} />;
 }

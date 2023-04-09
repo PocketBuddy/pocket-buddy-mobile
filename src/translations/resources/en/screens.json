@@ -1,4 +1,8 @@
 {
   "Auth_Login": "Login",
-  "Auth_Register": "Register"
+  "Auth_Register": "Register",
+  "Transactions_History": "History",
+  "Transactions_Stats": "Stats",
+  "Achievements_Challenges": "Challenges",
+  "Achievements_Goals": "Goals"
 }

@@ -10,7 +10,11 @@ export type StartParamsList = {
 export type MainParamsList = {
   Home: undefined;
   Transactions: undefined;
+  History: undefined;
+  Stats: undefined;
   Achievements: undefined;
+  Challenges: undefined;
+  Goals: undefined;
   Notifications: undefined;
 };
 

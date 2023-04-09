@@ -1,12 +1,16 @@
 import {
   Achievements,
   Auth,
+  Challenges,
+  Goals,
+  History,
   Home,
   Login,
   Notifications,
   Register,
   Settings,
   Startup,
+  Stats,
   Transactions,
 } from '@/screens';
 
@@ -23,7 +27,11 @@ export enum ScreenNames {
   register = 'Register',
   home = 'Home',
   transactions = 'Transactions',
+  history = 'History',
+  stats = 'Stats',
   achievements = 'Achievements',
+  challenges = 'Challenges',
+  goals = 'Goals',
   notifications = 'Notifications',
   settings = 'Settings',
 }
@@ -70,6 +78,30 @@ export const SubScreens = Object.freeze({
       parentScreenName: MainScreens.auth.name,
       name: ScreenNames.register,
       component: Register,
+    },
+  },
+  transactions: {
+    history: {
+      parentScreenName: MainScreens.transactions.name,
+      name: ScreenNames.history,
+      component: History,
+    },
+    stats: {
+      parentScreenName: MainScreens.transactions.name,
+      name: ScreenNames.stats,
+      component: Stats,
+    },
+  },
+  achievements: {
+    challenges: {
+      parentScreenName: MainScreens.achievements.name,
+      name: ScreenNames.challenges,
+      component: Challenges,
+    },
+    goals: {
+      parentScreenName: MainScreens.achievements.name,
+      name: ScreenNames.goals,
+      component: Goals,
     },
   },
 });

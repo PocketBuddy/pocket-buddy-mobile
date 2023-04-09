@@ -1,10 +1,9 @@
-import { Text, View } from 'react-native';
 import React from 'react';
+import { ScreenWithTabs } from '@/components';
+import { SubScreens } from '@/navigators/routes';
 
 export default function Transactions() {
-  return (
-    <View>
-      <Text>Transactions</Text>
-    </View>
-  );
+  const { history, stats } = SubScreens.transactions;
+
+  return <ScreenWithTabs screens={[{ ...history }, { ...stats }]} />;
 }
