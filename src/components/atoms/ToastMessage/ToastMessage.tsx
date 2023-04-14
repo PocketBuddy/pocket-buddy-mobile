@@ -5,17 +5,18 @@ import {
   SuccessToast,
 } from 'react-native-toast-message';
 import React from 'react';
+import { ToastType } from 'types/components';
 import { useTheme } from '@/hooks';
 
 type Props = BaseToastProps & {
-  type: 'success' | 'info' | 'error';
+  type: ToastType;
 };
 
 export default function ToastErrorMessage({ type, ...props }: Props) {
   const { Colors, Gutters, Fonts } = useTheme();
 
   switch (type) {
-    case 'success':
+    case ToastType.Success:
       return (
         <SuccessToast
           {...props}
@@ -24,7 +25,7 @@ export default function ToastErrorMessage({ type, ...props }: Props) {
           text2Style={[Fonts.textSmall]}
         />
       );
-    case 'info':
+    case ToastType.Info:
       return (
         <InfoToast
           {...props}
@@ -33,7 +34,7 @@ export default function ToastErrorMessage({ type, ...props }: Props) {
           text2Style={[Fonts.textSmall]}
         />
       );
-    case 'error':
+    case ToastType.Error:
       return (
         <ErrorToast
           {...props}

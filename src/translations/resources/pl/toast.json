@@ -1,6 +1,32 @@
 {
-  "error": {
+  "genericError": {
     "header": "Coś poszło nie tak",
     "message": "Przepraszamy, spróbuj ponownie później."
+  },
+  "login": {
+    "error": {
+      "header": "Błąd logowania",
+      "message": "Sprawdź swoje dane"
+    }
+  },
+  "passwordRecovery": {
+    "success": {
+      "header": "Hasło zostało zresetowane",
+      "message": "Sprawdź swoją skrzynkę pocztową i podążaj za instrukcjami"
+    },
+    "error": {
+      "header": "Błąd resetowania hasła",
+      "message": "Sprawdź swoje dane"
+    }
+  },
+  "register": {
+    "success": {
+      "header": "Rejestracja zakończona pomyślnie",
+      "message": "Twoje konto zostało utworzone"
+    },
+    "error": {
+      "header": "Błąd rejestracji",
+      "message": "Sprawdź swoje dane"
+    }
   }
 }

@@ -56,7 +56,7 @@ export default function Login({ navigation }: Props) {
               <TouchableOpacity onPress={passwordRecoverySheet.open}>
                 <View>
                   <Paragraph
-                    text={t('auth:inputs.password.message')}
+                    text={t('auth:loginMessages.forgotPassword')}
                     align={ParagraphAlign.Right}
                   />
                 </View>

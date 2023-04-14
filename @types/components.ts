@@ -54,3 +54,9 @@ export enum KeyboardDismissMode {
   None = 'none',
   OnDrag = 'on-drag',
 }
+
+export enum ToastType {
+  Success = 'success',
+  Info = 'info',
+  Error = 'error',
+}

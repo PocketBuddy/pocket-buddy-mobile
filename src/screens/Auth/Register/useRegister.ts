@@ -1,10 +1,12 @@
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
-import { showError, showSuccess } from '@/store/toast';
 import { AuthSchema } from '@/schemas';
 import { ScreenNames } from '@/navigators/routes';
+import { show } from '@/store/toast';
+import { ToastType } from 'types/components';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;
@@ -19,41 +21,39 @@ const defaultValues = {
 
 export default function useRegister({ navigation }: Props) {
   const dispatch = useDispatch();
+  const { t } = useTranslation(['toast']);
   const { handleSubmit, reset, ...formProps } = useForm({
     defaultValues,
     validationSchema: AuthSchema.register,
   });
 
+  // TODO: Add logic for register
   const onSuccessSubmit = (values: Record<string, string>) => {
-    try {
-      if (values) {
-        reset();
-        navigation.navigate(ScreenNames.auth, {
-          screen: ScreenNames.login,
-          params: { name: values.name },
-        });
-        dispatch(
-          showSuccess({
-            header: 'Register success',
-            success: 'You can login now',
-          }),
-        );
-      }
-    } catch {
-      dispatch(showError({}));
+    if (values) {
+      reset();
+      navigation.navigate(ScreenNames.auth, {
+        screen: ScreenNames.login,
+        params: { name: values.name },
+      });
+      dispatch(
+        show({
+          header: t('toast:register.success.header'),
+          message: t('toast:register.success.message'),
+          type: ToastType.Success,
+        }),
+      );
     }
   };
 
-  // TODO: do we need this?
   const onErrorSubmit = () =>
     dispatch(
-      showError({
-        error: 'Fields is not filled properly',
-        header: 'Register Error',
+      show({
+        header: t('toast:register.error.header'),
+        message: t('toast:register.error.message'),
+        type: ToastType.Error,
       }),
     );
 
-  // TODO: Add logic for register
   const onSubmit = useCallback(
     () => handleSubmit(onSuccessSubmit, onErrorSubmit)(),
     [],

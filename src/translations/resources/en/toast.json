@@ -1,6 +1,32 @@
 {
-  "error": {
+  "genericError": {
     "header": "Something went wrong",
-    "message": "We're sorry, please try again later."
+    "message": "We're sorry, please try again later"
+  },
+  "login": {
+    "error": {
+      "header": "Login failed",
+      "message": "Please check your details"
+    }
+  },
+  "passwordRecovery": {
+    "success": {
+      "header": "Password reset successful",
+      "message": "Please check your email for instructions"
+    },
+    "error": {
+      "header": "Password reset failed",
+      "message": "Please check your details"
+    }
+  },
+  "register": {
+    "success": {
+      "header": "Registration successful",
+      "message": "Your account has been created"
+    },
+    "error": {
+      "header": "Registration failed",
+      "message": "Please check your details"
+    }
   }
 }

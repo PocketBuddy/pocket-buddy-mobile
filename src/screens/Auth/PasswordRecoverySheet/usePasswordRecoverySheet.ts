@@ -1,8 +1,10 @@
-import { showError, showSuccess } from '@/store/toast';
 import { useCallback, useEffect } from 'react';
 import { AuthSchema } from '@/schemas';
+import { show } from '@/store/toast';
+import { ToastType } from 'types/components';
 import { useDispatch } from 'react-redux';
 import { useForm } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   isSheetOpen: boolean;
@@ -20,6 +22,7 @@ export default function usePasswordRecoverySheet({
   handleClose,
 }: Props) {
   const dispatch = useDispatch();
+  const { t } = useTranslation(['toast']);
   const { handleSubmit, reset, ...formProps } = useForm({
     defaultValues,
     validationSchema: AuthSchema.passwordRecovery,
@@ -32,22 +35,19 @@ export default function usePasswordRecoverySheet({
   // TODO: Add logic for password recovery
   const onSubmit = useCallback(
     () =>
-      handleSubmit(values => {
-        try {
-          if (values) {
-            handleClose();
-            setTimeout(() => {
-              reset();
-              dispatch(
-                showSuccess({
-                  header: 'Password recovery email sent',
-                  success: 'Check your email and follow the instructions',
-                }),
-              );
-            }, TIME_TO_CLOSE);
-          }
-        } catch {
-          dispatch(showError({}));
+      handleSubmit((values: Record<string, string>) => {
+        if (values) {
+          handleClose();
+          setTimeout(() => {
+            reset();
+            dispatch(
+              show({
+                header: t('toast:passwordRecovery.success.header'),
+                message: t('toast:passwordRecovery.success.message'),
+                type: ToastType.Success,
+              }),
+            );
+          }, TIME_TO_CLOSE);
         }
       })(),
     [],
