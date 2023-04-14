@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Text,
   TextInput,
@@ -33,51 +33,58 @@ export default function Input({
 }: InputProps) {
   const { Common, Images } = useTheme();
   const [passwordHidden, setPasswordHidden] = useState(secured);
+  const inputRef = useRef<TextInput>(null);
   const togglePasswordHidden = () => setPasswordHidden(!passwordHidden);
+  const focus = () => inputRef.current?.focus();
 
   return (
     <View>
-      <View style={[Common.input.primaryContainer]}>
-        <Text style={[Common.input.primaryLabel]}>{label}</Text>
-        <View>
-          {bottomSheet ? (
-            <BottomSheetTextInput
-              style={[Common.input.primaryInput]}
-              onChangeText={onChangeText}
-              value={value}
-              placeholderTextColor={Common.input.primaryPlaceholder.color}
-              secureTextEntry={passwordHidden}
-              {...props}
-            />
-          ) : (
-            <TextInput
-              style={[Common.input.primaryInput]}
-              onChangeText={onChangeText}
-              value={value}
-              placeholderTextColor={Common.input.primaryPlaceholder.color}
-              secureTextEntry={passwordHidden}
-              {...props}
-            />
-          )}
-          {secured && (
-            <TouchableWithoutFeedback
-              onPress={togglePasswordHidden}
-              hitSlop={CLICKABLE_ICON_AREA}
-            >
-              <View style={[Common.input.primaryIcon]}>
-                <Icon
-                  icon={
-                    passwordHidden
-                      ? Images.icons.eyeOpen
-                      : Images.icons.eyeClosed
-                  }
-                  type={IconType.Primary}
-                />
-              </View>
-            </TouchableWithoutFeedback>
-          )}
+      <TouchableWithoutFeedback onPress={focus}>
+        <View style={[Common.input.primaryContainer]}>
+          <Text style={[Common.input.primaryLabel]}>{label}</Text>
+          <View>
+            {bottomSheet ? (
+              <BottomSheetTextInput
+                style={[Common.input.primaryInput]}
+                onChangeText={onChangeText}
+                value={value}
+                placeholderTextColor={Common.input.primaryPlaceholder.color}
+                secureTextEntry={passwordHidden}
+                // @ts-ignore
+                ref={inputRef}
+                {...props}
+              />
+            ) : (
+              <TextInput
+                style={[Common.input.primaryInput]}
+                onChangeText={onChangeText}
+                value={value}
+                placeholderTextColor={Common.input.primaryPlaceholder.color}
+                secureTextEntry={passwordHidden}
+                ref={inputRef}
+                {...props}
+              />
+            )}
+            {secured && (
+              <TouchableWithoutFeedback
+                onPress={togglePasswordHidden}
+                hitSlop={CLICKABLE_ICON_AREA}
+              >
+                <View style={[Common.input.primaryIcon]}>
+                  <Icon
+                    icon={
+                      passwordHidden
+                        ? Images.icons.eyeOpen
+                        : Images.icons.eyeClosed
+                    }
+                    type={IconType.Primary}
+                  />
+                </View>
+              </TouchableWithoutFeedback>
+            )}
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
       {renderMessage && (
         <View style={[Common.input.messageWrapper]}>{renderMessage()}</View>
       )}
