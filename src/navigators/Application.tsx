@@ -32,7 +32,10 @@ const ApplicationNavigator = () => {
       <BottomSheetModalProvider>
         <SafeAreaView style={[Layout.fill, { backgroundColor: colors.card }]}>
           <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
-            <StatusBar barStyle={'dark-content'} />
+            <StatusBar
+              barStyle={'dark-content'}
+              backgroundColor={NavigationTheme.colors.background}
+            />
             <Stack.Navigator
               initialRouteName={StackNames.start}
               screenOptions={{ headerShown: false }}
