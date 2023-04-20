@@ -38,7 +38,7 @@
     "react": "18.2.0",
     "react-hook-form": "^7.43.9",
     "react-i18next": "^12.2.0",
-    "react-native": "0.71.6",
+    "react-native": "0.71.7",
     "react-native-gesture-handler": "^2.9.0",
     "react-native-localize": "^2.2.6",
     "react-native-mmkv": "^2.6.2",
