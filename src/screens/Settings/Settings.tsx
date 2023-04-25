@@ -1,37 +1,42 @@
+import Logout, { LogoutProps } from './Logout/Logout';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
-import React, { useEffect } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { StackNames } from '@/navigators/routes';
-import { useLogoutMutation } from '@/services/modules/auth/logout';
+import React, { useCallback } from 'react';
+import { FlatList } from 'react-native';
+import i18n from '@/translations';
+import { ListSeparator } from '@/components';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;
 };
 
+type Section = {
+  title: string;
+  component: (props: LogoutProps) => JSX.Element;
+};
+
+const SECTIONS: Section[] = [
+  {
+    title: i18n.t('settings:logout'),
+    component: (props: LogoutProps) => <Logout {...props} />,
+  },
+];
+
 export default function Settings({ navigation }: Props) {
-  const [logoutMutation, { isSuccess }] = useLogoutMutation();
+  const renderSeparator = useCallback(() => <ListSeparator />, []);
+  const renderItem = useCallback(
+    ({ item }: { item: Section }) =>
+      item.component({ title: item.title, navigation }),
+    [],
+  );
 
-  useEffect(() => {
-    if (isSuccess) {
-      navigation.reset({
-        index: 0,
-        routes: [{ name: StackNames.start }],
-      });
-    }
-  }, [isSuccess]);
-
-  // TODO: create Settings screen
   return (
-    <View style={{ flex: 1 }}>
-      <TouchableOpacity
-        onPress={async () => {
-          await logoutMutation({});
-        }}
-      >
-        <View>
-          <Text>Logout</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
+    <FlatList
+      data={SECTIONS}
+      renderItem={renderItem}
+      ItemSeparatorComponent={renderSeparator}
+      scrollEnabled={false}
+      initialNumToRender={SECTIONS.length}
+      keyExtractor={item => item.title}
+    />
   );
 }
