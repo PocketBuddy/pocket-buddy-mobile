@@ -10,15 +10,17 @@ import {
   REHYDRATE,
   Storage,
 } from 'redux-persist';
-import { errorLogger } from './errorLogger';
 import { MMKV } from 'react-native-mmkv';
 import { setupListeners } from '@reduxjs/toolkit/query';
+import { toastLogger } from './toastLogger';
 
 import { api } from '../services/api';
+import auth from './auth';
 import theme from './theme';
 import toast from './toast';
 
 const reducers = combineReducers({
+  auth,
   theme,
   toast,
   [api.reducerPath]: api.reducer,
@@ -60,7 +62,7 @@ const store = configureStore({
       },
     })
       .concat(api.middleware)
-      .concat(errorLogger);
+      .concat(toastLogger);
 
     if (__DEV__ && !process.env.JEST_WORKER_ID) {
       const createDebugger = require('redux-flipper').default;

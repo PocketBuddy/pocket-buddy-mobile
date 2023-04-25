@@ -23,7 +23,10 @@ const slice = createSlice({
   name: 'toast',
   initialState,
   reducers: {
-    show: (state, { payload: { header, message, type } }: ToastPayload) => {
+    showToast: (
+      state,
+      { payload: { header, message, type } }: ToastPayload,
+    ) => {
       if (header && message && type) {
         state.header = header;
         state.message = message;
@@ -31,10 +34,10 @@ const slice = createSlice({
         state.isOpen = true;
       }
     },
-    hide: () => initialState,
+    hideToast: () => initialState,
   },
 });
 
-export const { show, hide } = slice.actions;
+export const { showToast, hideToast } = slice.actions;
 
 export default slice.reducer;

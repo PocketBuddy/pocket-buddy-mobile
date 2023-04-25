@@ -1,4 +1,4 @@
-import { MainScreens, StackNames } from './routes';
+import { MainScreens, ScreenNames, StackNames } from './routes';
 import {
   NavigationContainer,
   useNavigationContainerRef,
@@ -22,7 +22,6 @@ const Stack = createStackNavigator<ApplicationStackParamList>();
 const ApplicationNavigator = () => {
   const { Layout, NavigationTheme } = useTheme();
   const { colors } = NavigationTheme;
-
   const navigationRef = useNavigationContainerRef();
 
   useFlipper(navigationRef);
@@ -37,13 +36,11 @@ const ApplicationNavigator = () => {
               backgroundColor={NavigationTheme.colors.background}
             />
             <Stack.Navigator
-              initialRouteName={StackNames.start}
+              initialRouteName={ScreenNames.startup}
               screenOptions={{ headerShown: false }}
             >
               <Stack.Screen
-                name={
-                  MainScreens.startup.name as keyof ApplicationStackParamList
-                }
+                name={ScreenNames.startup}
                 component={MainScreens.startup.component}
               />
               <Stack.Screen

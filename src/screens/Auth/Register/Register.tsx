@@ -1,9 +1,9 @@
 import { Button, ControlledInput, Form } from '@/components';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
-import { usePlatform, useTheme } from '@/hooks';
 import { ButtonType } from 'types/components';
 import React from 'react';
 import useRegister from './useRegister';
+import { useTheme } from '@/hooks';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -13,7 +13,6 @@ type Props = {
 export default function Register({ navigation }: Props) {
   const { t } = useTranslation(['auth']);
   const { Images } = useTheme();
-  const { isIOS } = usePlatform();
   const { form, registerProvider } = useRegister({ navigation });
 
   return (
@@ -58,15 +57,20 @@ export default function Register({ navigation }: Props) {
       )}
       renderButtons={() => (
         <>
-          <Button label={t('auth:buttons.register')} onPress={form.onSubmit} />
-          {isIOS ? (
+          <Button
+            label={t('auth:buttons.register')}
+            onPress={form.onSubmit}
+            isLoading={form.isLoading}
+          />
+          {registerProvider.apple && (
             <Button
               label={t('auth:buttons.signUpWith', { provider: 'Apple' })}
               onPress={registerProvider.apple}
               icon={Images.icons.apple}
               type={ButtonType.Secondary}
             />
-          ) : (
+          )}
+          {registerProvider.google && (
             <Button
               label={t('auth:buttons.signUpWith', { provider: 'Google' })}
               onPress={registerProvider.google}

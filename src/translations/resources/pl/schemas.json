@@ -9,7 +9,7 @@
     },
     "password": {
       "required": "Hasło nie może być puste",
-      "minLength": "Hasło musi mieć co najmniej {{minLength}} znaków"
+      "valid": "Hasło musi mieć przynajmniej 8 znaków, w tym literę, cyfrę i znak specjalny"
     },
     "confirmPassword": {
       "required": "Hasła muszą być takie same",

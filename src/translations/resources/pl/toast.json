@@ -3,6 +3,10 @@
     "header": "Coś poszło nie tak",
     "message": "Przepraszamy, spróbuj ponownie później."
   },
+  "unauthenticated": {
+    "header": "Nie jesteś zalogowany",
+    "message": "Zaloguj się, aby kontynuować"
+  },
   "login": {
     "error": {
       "header": "Błąd logowania",

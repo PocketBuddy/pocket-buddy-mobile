@@ -1,10 +1,17 @@
 import { persistor, store } from './store';
 import ApplicationNavigator from './navigators/Application';
+import { LogBox } from 'react-native';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { Provider } from 'react-redux';
 import React from 'react';
 import 'react-native-gesture-handler';
 import './translations';
+
+// TODO: investigate why this warning occurs
+LogBox.ignoreLogs([
+  // See: https://github.com/react-navigation/react-navigation/issues/7839
+  'Sending `onAnimatedValueUpdate` with no listeners registered.',
+]);
 
 const App = () => (
   <Provider store={store}>

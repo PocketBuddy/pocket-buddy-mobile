@@ -7,10 +7,10 @@ import {
   useRoute,
 } from '@react-navigation/native';
 import { TouchableOpacity, View } from 'react-native';
-import { usePlatform, useTheme } from '@/hooks';
 import PasswordRecoverySheet from '../PasswordRecoverySheet/PasswordRecoverySheet';
 import React from 'react';
 import useLogin from './useLogin';
+import { useTheme } from '@/hooks';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -20,12 +20,11 @@ type Props = {
 export default function Login({ navigation }: Props) {
   const { t } = useTranslation(['auth']);
   const { Images, Gutters, Layout } = useTheme();
-  const { isIOS } = usePlatform();
   const route = useRoute<RouteProp<Record<string, any>>>();
   const { goToRegister, passwordRecoverySheet, form, loginProvider } = useLogin(
     {
       navigation,
-      name: route.params?.name,
+      email: route.params?.email,
     },
   );
 
@@ -35,12 +34,12 @@ export default function Login({ navigation }: Props) {
         renderInputs={() => (
           <>
             <ControlledInput
-              name="name"
+              name="email"
               control={form.control}
-              label={t('auth:inputs.name.label')}
-              placeholder={t('auth:inputs.name.placeholder')}
-              errorMessage={form.errors.name?.message}
-              textContentType="name"
+              label={t('auth:inputs.email.label')}
+              placeholder={t('auth:inputs.email.placeholder')}
+              errorMessage={form.errors.email?.message}
+              textContentType="emailAddress"
             />
             <ControlledInput
               name="password"
@@ -66,7 +65,11 @@ export default function Login({ navigation }: Props) {
         )}
         renderButtons={() => (
           <>
-            <Button label={t('auth:buttons.login')} onPress={form.onSubmit} />
+            <Button
+              label={t('auth:buttons.login')}
+              onPress={form.onSubmit}
+              isLoading={form.isLoading}
+            />
             <View style={[Gutters.tinyPadding, Gutters.smallRowGap]}>
               <TouchableOpacity onPress={goToRegister}>
                 <View style={[Layout.rowVCenter, Gutters.tinyColumnGap]}>
@@ -86,7 +89,7 @@ export default function Login({ navigation }: Props) {
                 align={ParagraphAlign.Center}
               />
             </View>
-            {isIOS ? (
+            {loginProvider.apple && (
               <Button
                 label={t('auth:buttons.signInWith', {
                   provider: 'Apple',
@@ -95,7 +98,8 @@ export default function Login({ navigation }: Props) {
                 icon={Images.icons.apple}
                 type={ButtonType.Secondary}
               />
-            ) : (
+            )}
+            {loginProvider.google && (
               <Button
                 label={t('auth:buttons.signInWith', {
                   provider: 'Google',

@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import Toast, { BaseToastProps } from 'react-native-toast-message';
 import { useDispatch, useSelector } from 'react-redux';
-import { hide } from '@/store/toast';
-import { RootState } from '@/store';
+import { hideToast } from '@/store/toast';
+import { toastDataSelector } from '@/store/toast/selectors';
 import { ToastMessage } from '@/components';
 import { ToastType } from 'types/components';
 import { usePlatform } from '@/hooks';
@@ -19,15 +19,12 @@ const toastConfig = {
   ),
 };
 
-export default function ToastError() {
+export default function ToastHandler() {
   const dispatch = useDispatch();
   const { isAndroid } = usePlatform();
-  const isOpen = useSelector((state: RootState) => state.toast.isOpen);
-  const header = useSelector((state: RootState) => state.toast.header);
-  const message = useSelector((state: RootState) => state.toast.message);
-  const type = useSelector((state: RootState) => state.toast.type);
+  const { isOpen, header, message, type } = useSelector(toastDataSelector);
 
-  const handleClose = useCallback(() => dispatch(hide()), []);
+  const handleClose = useCallback(() => dispatch(hideToast()), []);
 
   const topOffset = useMemo(() => (isAndroid ? 0 : undefined), [isAndroid]);
 

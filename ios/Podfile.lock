@@ -797,6 +797,8 @@ PODS:
     - React-Codegen
     - React-RCTFabric
     - ReactCommon/turbomodule/core
+  - RNKeychain (8.1.1):
+    - React-Core
   - RNLocalize (2.2.6):
     - React-Core
   - RNReanimated (3.0.2):
@@ -937,6 +939,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -1050,6 +1053,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-masked-view/masked-view"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
   RNReanimated:
@@ -1120,6 +1125,7 @@ SPEC CHECKSUMS:
   ReactCommon: dbfbe2f7f3c5ce4ce44f43f2fd0d5950d1eb67c5
   RNCMaskedView: bc0170f389056201c82a55e242e5d90070e18e5a
   RNGestureHandler: 9d2ebd17a9fef618d9720e3d95ff5e6607acf8d4
+  RNKeychain: ff836453cba46938e0e9e4c22e43d43fa2c90333
   RNLocalize: d4b8af4e442d4bcca54e68fc687a2129b4d71a81
   RNReanimated: b38271c7b72560b7f9c3d0bf531faa8feb4da93a
   RNScreens: 4666ca0a74ee229b2332c5d22d2a8b81ba9202be
