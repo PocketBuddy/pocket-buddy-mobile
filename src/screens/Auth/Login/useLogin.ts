@@ -1,25 +1,26 @@
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { ScreenNames, StackNames } from '@/navigators/routes';
-import { useBottomSheet, useForm } from '@/hooks';
+import { useBottomSheet, useForm, usePlatform } from '@/hooks';
 import { useCallback, useEffect } from 'react';
 import { AuthSchema } from '@/schemas';
 import { Keyboard } from 'react-native';
-import { show } from '@/store/toast';
+import { showToast } from '@/store/toast';
 import { ToastType } from 'types/components';
 import { useDispatch } from 'react-redux';
+import { useLoginMutation } from '@/services/modules/auth/login';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
   navigation: NavigationProp<ParamListBase>;
-  name?: string;
+  email?: string;
 };
 
 const defaultValues = {
-  name: '',
+  email: '',
   password: '',
 };
 
-export default function useLogin({ navigation, name }: Props) {
+export default function useLogin({ navigation, email }: Props) {
   const dispatch = useDispatch();
   const { t } = useTranslation(['toast']);
   const { handleSubmit, reset, setValue, ...formProps } = useForm({
@@ -29,30 +30,42 @@ export default function useLogin({ navigation, name }: Props) {
   const passwordRecoverySheet = useBottomSheet({
     openSideEffects: () => Keyboard.dismiss(),
   });
+  const [loginMutation, { isLoading, isSuccess }] = useLoginMutation();
+  const { isIOS, isAndroid } = usePlatform();
 
   useEffect(() => {
     // handling case when user name is passed after registration
-    if (name) {
-      setValue('name', name);
+    if (email) {
+      setValue('email', email);
     }
-  }, [name]);
+  }, [email]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      reset();
+      navigation.reset({
+        index: 0,
+        routes: [{ name: StackNames.main }],
+      });
+    }
+  }, [isSuccess]);
 
   const goToRegister = useCallback(
     () => navigation.navigate(ScreenNames.register),
     [],
   );
 
-  // TODO: Add logic for login
-  const onSuccessSubmit = (values: Record<string, string>) => {
-    if (values) {
-      reset();
-      navigation.navigate(StackNames.main);
-    }
+  const onSuccessSubmit = async (values: Record<string, string>) => {
+    await loginMutation({
+      email: values.email,
+      password: values.password,
+      device_type: isIOS ? 'iphone' : isAndroid ? 'android' : 'other',
+    });
   };
 
   const onErrorSubmit = () =>
     dispatch(
-      show({
+      showToast({
         header: t('toast:login.error.header'),
         message: t('toast:login.error.message'),
         type: ToastType.Error,
@@ -74,11 +87,12 @@ export default function useLogin({ navigation, name }: Props) {
     passwordRecoverySheet,
     form: {
       onSubmit,
+      isLoading,
       ...formProps,
     },
     loginProvider: {
-      apple: loginWithApple,
-      google: loginWithGoogle,
+      apple: isIOS && loginWithApple,
+      google: isAndroid && loginWithGoogle,
     },
   };
 }

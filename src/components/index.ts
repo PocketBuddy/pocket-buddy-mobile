@@ -5,12 +5,14 @@ export { default as Spinner } from './atoms/Spinner/Spinner';
 export { default as HideKeyboard } from './atoms/HideKeyboard/HideKeyboard';
 export { default as Paragraph } from './atoms/Paragraph/Paragraph';
 export { default as ToastMessage } from './atoms/ToastMessage/ToastMessage';
+export { default as ListSeparator } from './atoms/ListSeparator/ListSeparator';
 
 // Molecules
 export { default as Button } from './molecules/Button/Button';
 export { default as Input } from './molecules/Input/Input';
 export { default as ControlledInput } from './molecules/ControlledInput/ControlledInput';
 export { default as TabBarIcon } from './molecules/TabBarIcon/TabBarIcon';
+export { default as SettingsItem } from './molecules/SettingsItem/SettingsItem';
 
 // Organisms
 export { default as Form } from './organisms/Form/Form';

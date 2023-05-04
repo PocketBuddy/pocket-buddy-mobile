@@ -27,7 +27,7 @@ export default function Tabs({ screens }: Props) {
       tabBar={renderTabBar}
       initialRouteName={screens[0].name}
       sceneContainerStyle={{
-        ...Gutters.smallTPadding,
+        ...Gutters.tinyTPadding,
         backgroundColor: Colors.background,
       }}
     >

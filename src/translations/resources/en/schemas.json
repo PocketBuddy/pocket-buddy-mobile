@@ -9,7 +9,7 @@
     },
     "password": {
       "required": "Password cannot be empty",
-      "minLength": "Password must be at least {{minLength}} characters long"
+      "valid": "Password must be at least 8 characters, includes letter, number and special character"
     },
     "confirmPassword": {
       "required": "Passwords do not match",

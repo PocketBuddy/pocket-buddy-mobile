@@ -1,11 +1,12 @@
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import { useCallback, useEffect } from 'react';
+import { useForm, usePlatform } from '@/hooks';
 import { AuthSchema } from '@/schemas';
 import { ScreenNames } from '@/navigators/routes';
-import { show } from '@/store/toast';
+import { showToast } from '@/store/toast';
 import { ToastType } from 'types/components';
-import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { useForm } from '@/hooks';
+import { useRegisterMutation } from '@/services/modules/auth/register';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -26,28 +27,39 @@ export default function useRegister({ navigation }: Props) {
     defaultValues,
     validationSchema: AuthSchema.register,
   });
+  const [registerMutation, { isSuccess, isLoading }] = useRegisterMutation();
+  const { isIOS, isAndroid } = usePlatform();
 
-  // TODO: Add logic for register
-  const onSuccessSubmit = (values: Record<string, string>) => {
-    if (values) {
-      reset();
+  useEffect(() => {
+    if (isSuccess) {
       navigation.navigate(ScreenNames.auth, {
         screen: ScreenNames.login,
-        params: { name: values.name },
+        params: { email: formProps.control._formValues.email },
       });
       dispatch(
-        show({
+        showToast({
           header: t('toast:register.success.header'),
           message: t('toast:register.success.message'),
           type: ToastType.Success,
         }),
       );
+      reset();
     }
+  }, [isSuccess]);
+
+  const onSuccessSubmit = async (values: Record<string, string>) => {
+    await registerMutation({
+      name: values.name,
+      email: values.email,
+      password: values.password,
+      password_confirmation: values.confirmPassword,
+      device_type: isIOS ? 'iphone' : isAndroid ? 'android' : 'other',
+    });
   };
 
   const onErrorSubmit = () =>
     dispatch(
-      show({
+      showToast({
         header: t('toast:register.error.header'),
         message: t('toast:register.error.message'),
         type: ToastType.Error,
@@ -73,11 +85,12 @@ export default function useRegister({ navigation }: Props) {
   return {
     form: {
       onSubmit,
+      isLoading,
       ...formProps,
     },
     registerProvider: {
-      apple: registerWithApple,
-      google: registerWithGoogle,
+      apple: isIOS && registerWithApple,
+      google: isAndroid && registerWithGoogle,
     },
   };
 }

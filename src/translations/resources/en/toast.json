@@ -3,6 +3,10 @@
     "header": "Something went wrong",
     "message": "We're sorry, please try again later"
   },
+  "unauthenticated": {
+    "header": "You are not logged in",
+    "message": "Please log in to continue"
+  },
   "login": {
     "error": {
       "header": "Login failed",

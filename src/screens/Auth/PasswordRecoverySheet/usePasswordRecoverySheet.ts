@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { AuthSchema } from '@/schemas';
-import { show } from '@/store/toast';
+import { showToast } from '@/store/toast';
 import { ToastType } from 'types/components';
 import { useDispatch } from 'react-redux';
 import { useForm } from '@/hooks';
@@ -41,7 +41,7 @@ export default function usePasswordRecoverySheet({
           setTimeout(() => {
             reset();
             dispatch(
-              show({
+              showToast({
                 header: t('toast:passwordRecovery.success.header'),
                 message: t('toast:passwordRecovery.success.message'),
                 type: ToastType.Success,

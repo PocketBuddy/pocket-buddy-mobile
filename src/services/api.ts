@@ -5,9 +5,17 @@ import {
   fetchBaseQuery,
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query/react';
+import AuthService from './modules/auth/auth';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.API_URL,
+  prepareHeaders: async (headers: Headers) => {
+    const authToken = await AuthService.getToken();
+    authToken && headers.set('Authorization', `Bearer ${authToken}`);
+    headers.set('Accept', 'application/json');
+    headers.set('Content-type', 'application/json');
+    return headers;
+  },
 });
 
 const baseQueryWithInterceptor: BaseQueryFn<
@@ -16,8 +24,6 @@ const baseQueryWithInterceptor: BaseQueryFn<
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
-  if (result.error && result.error.status === 401) {
-  }
   return result;
 };
 
