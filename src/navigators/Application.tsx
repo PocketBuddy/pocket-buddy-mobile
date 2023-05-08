@@ -33,7 +33,7 @@ const ApplicationNavigator = () => {
           <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
             <StatusBar
               barStyle={'dark-content'}
-              backgroundColor={NavigationTheme.colors.background}
+              backgroundColor={colors.background}
             />
             <Stack.Navigator
               initialRouteName={ScreenNames.startup}

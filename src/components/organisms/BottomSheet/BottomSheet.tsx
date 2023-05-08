@@ -5,6 +5,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useTheme } from '@/hooks';
 
 type Props = {
@@ -29,7 +30,7 @@ export default function BottomSheet({
   isOpen,
   handleClose,
 }: Props) {
-  const { Common } = useTheme();
+  const { Common, Gutters, Layout } = useTheme();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => points, [points]);
 
@@ -48,8 +49,8 @@ export default function BottomSheet({
     (props: BottomSheetBackdropProps) => (
       <BottomSheetBackdrop
         {...props}
-        appearsOnIndex={0}
-        disappearsOnIndex={-1}
+        appearsOnIndex={BottomSheetIndex.Opened}
+        disappearsOnIndex={BottomSheetIndex.Closed}
         animatedIndex={{ value: 1 }}
       />
     ),
@@ -73,10 +74,16 @@ export default function BottomSheet({
         backgroundColor: Common.bottomSheet.insideContainer.backgroundColor,
       }}
       style={Common.bottomSheet.insideContainer}
+      enableContentPanningGesture={false}
     >
-      <View>
+      <View style={Layout.fill}>
         {title && <Text style={Common.bottomSheet.title}>{title}</Text>}
-        {renderContent()}
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={Gutters.tinyBPadding}
+        >
+          {renderContent()}
+        </ScrollView>
       </View>
     </BottomSheetModal>
   );

@@ -24,10 +24,8 @@ export default function <C>({
 
   const secondaryContainer = {
     ...primaryContainer,
-    backgroundColor: Colors.secondary,
+    backgroundColor: Colors.transparent,
     color: Colors.primary,
-    borderColor: Colors.primary,
-    borderWidth: 1,
   };
 
   const secondaryLabel = { ...primaryLabel, ...Fonts.textSecondary };

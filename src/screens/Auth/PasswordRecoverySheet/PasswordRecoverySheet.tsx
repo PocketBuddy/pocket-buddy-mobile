@@ -31,7 +31,6 @@ export default function PasswordRecoverySheet({ isOpen, handleClose }: Props) {
       isOpen={isOpen}
       handleClose={handleClose}
       title={t('auth:passwordRecovery.title')}
-      points={['45%']}
       renderContent={() => (
         <Form
           enableAutomaticScroll={false}
