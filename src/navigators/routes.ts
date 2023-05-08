@@ -6,6 +6,8 @@ import {
   History,
   Home,
   Login,
+  ManageCategories,
+  ManagePriorities,
   Notifications,
   Register,
   Settings,
@@ -17,7 +19,7 @@ import {
 export enum StackNames {
   start = 'Start',
   main = 'Main',
-  independent = 'Independent',
+  mainSettings = 'MainSettings',
 }
 
 export enum ScreenNames {
@@ -34,6 +36,8 @@ export enum ScreenNames {
   goals = 'Goals',
   notifications = 'Notifications',
   settings = 'Settings',
+  manageCategories = 'ManageCategories',
+  managePriorities = 'ManagePriorities',
 }
 
 export const MainScreens = Object.freeze({
@@ -64,6 +68,14 @@ export const MainScreens = Object.freeze({
   settings: {
     name: ScreenNames.settings,
     component: Settings,
+  },
+  manageCategories: {
+    name: ScreenNames.manageCategories,
+    component: ManageCategories,
+  },
+  managePriorities: {
+    name: ScreenNames.managePriorities,
+    component: ManagePriorities,
   },
 });
 

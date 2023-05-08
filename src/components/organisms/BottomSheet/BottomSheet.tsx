@@ -14,6 +14,7 @@ type Props = {
   points?: string[];
   isOpen: boolean;
   handleClose: () => void;
+  contentType?: 'scroll' | 'view';
 };
 
 enum BottomSheetIndex {
@@ -29,6 +30,7 @@ export default function BottomSheet({
   points = DEFAULT_POINTS,
   isOpen,
   handleClose,
+  contentType = 'scroll',
 }: Props) {
   const { Common, Gutters, Layout } = useTheme();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
@@ -78,12 +80,16 @@ export default function BottomSheet({
     >
       <View style={Layout.fill}>
         {title && <Text style={Common.bottomSheet.title}>{title}</Text>}
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={Gutters.tinyBPadding}
-        >
-          {renderContent()}
-        </ScrollView>
+        {contentType === 'scroll' ? (
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={Gutters.tinyBPadding}
+          >
+            {renderContent()}
+          </ScrollView>
+        ) : (
+          <View style={Gutters.tinyBPadding}>{renderContent()}</View>
+        )}
       </View>
     </BottomSheetModal>
   );

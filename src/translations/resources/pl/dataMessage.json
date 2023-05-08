@@ -1,0 +1,10 @@
+{
+  "error": {
+    "header": "Coś poszło nie tak",
+    "message": "Przepraszamy, spróbuj ponownie później"
+  },
+  "noData": {
+    "header": "Trochę tu pusto",
+    "message": "Dodaj nowe elementy klikając w przycisk poniżej"
+  }
+}
