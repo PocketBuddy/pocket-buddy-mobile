@@ -1,34 +1,40 @@
+import { FloatingButton, ManageListItem, ManagementList } from '@/components';
+import ManagePrioritiesSheet from './ManagePrioritiesSheet';
+import { PriorityModel } from 'types/models';
 import React from 'react';
-import { Spinner } from '@/components';
+import useManagePriorities from './hooks/useManagePriorities';
+import { useTheme } from '@/hooks';
 
 export default function ManagePriorities() {
-  // const [userPriorities, { isLoading }] = useGetPrioritiesQuery({});
-  // const priorities = useSelector(prioritiesSelector);
+  const { Images } = useTheme();
+  const { manageList, manageSheet } = useManagePriorities();
 
-  // const renderSeparator = useCallback(() => <ListSeparator />, []);
-
-  // useEffect(() => {
-  //   !priorities.length && userPriorities({}).refetch();
-  // }, [priorities, userPriorities]);
-
-  // if (isLoading) {
-  return <Spinner />;
-  // }
-
-  // return (
-  //   <View>
-  //     <FlatList
-  //       data={priorities}
-  //       keyExtractor={item => item.id.toString()}
-  //       ItemSeparatorComponent={renderSeparator}
-  //       renderItem={({ item }) => (
-  //         <ManageListItem
-  //           title={item.name}
-  //           handleEdit={() => null}
-  //           handleDelete={() => null}
-  //         />
-  //       )}
-  //     />
-  //   </View>
-  // );
+  return (
+    <>
+      <ManagementList
+        data={manageList.priorities}
+        isLoading={manageList.isLoading}
+        isError={manageList.isError}
+        renderFloatingButton={() => (
+          <FloatingButton
+            onPress={manageList.handleAdd}
+            icon={Images.icons.plus}
+          />
+        )}
+        renderItem={({ item }: { item: PriorityModel }) => (
+          <ManageListItem
+            title={item.name}
+            handleEdit={() => manageList.handleEdit(item)}
+            handleDelete={() => manageList.handleDelete(item)}
+          />
+        )}
+      />
+      <ManagePrioritiesSheet
+        isOpen={manageSheet.isOpen}
+        handleClose={manageSheet.close}
+        sheetType={manageSheet.sheetType}
+        priority={manageSheet.selectedPriority}
+      />
+    </>
+  );
 }

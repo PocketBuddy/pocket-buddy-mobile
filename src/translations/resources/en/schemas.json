@@ -21,5 +21,15 @@
       "required": "Name cannot be empty",
       "valid": "Name must be up to 20 characters"
     }
+  },
+  "managePriorities": {
+    "name": {
+      "required": "Name cannot be empty",
+      "valid": "Name must be up to 20 characters"
+    },
+    "priority": {
+      "required": "Priority cannot be empty",
+      "valid": "Priority must be a number"
+    }
   }
 }

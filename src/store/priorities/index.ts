@@ -2,7 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { PriorityModel } from 'types/models';
 
 type PrioritiesState = {
+  isLoading: boolean;
   list: PriorityModel[] | [];
+};
+
+type PrioritiesLoadingPayload = {
+  payload: boolean;
 };
 
 type PrioritiesPayload = {
@@ -22,16 +27,22 @@ type RemovePriorityPayload = {
 };
 
 const initialState: PrioritiesState = {
+  isLoading: false,
   list: [],
 };
 
 const prioritySorter = (a: PriorityModel, b: PriorityModel) =>
-  a.priority - b.priority;
+  a.name.localeCompare(b.name);
 
 const slice = createSlice({
   name: 'priorities',
   initialState,
   reducers: {
+    setPrioritiesLoading: (state, { payload }: PrioritiesLoadingPayload) => {
+      if (payload !== undefined) {
+        state.isLoading = payload;
+      }
+    },
     setPriorities: (state, { payload }: PrioritiesPayload) => {
       if (payload !== undefined) {
         state.list = payload;
@@ -71,6 +82,7 @@ const slice = createSlice({
 });
 
 export const {
+  setPrioritiesLoading,
   setPriorities,
   addPriority,
   editPriority,

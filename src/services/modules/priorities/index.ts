@@ -3,6 +3,7 @@ import {
   editPriority,
   removePriority,
   setPriorities,
+  setPrioritiesLoading,
 } from '@/store/priorities';
 import { BaseResponse, ResponseStatus } from 'types/services';
 import { api } from '@/services/api';
@@ -27,11 +28,15 @@ const prioritiesApi = api.injectEndpoints({
         // TODO: change url to /user-expense-category when backend will be ready
         url: '/user/priorities',
       }),
+      onQueryStarted: (_, { dispatch }) => {
+        dispatch(setPrioritiesLoading(true));
+      },
       onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
         const response = (await cacheDataLoaded).data;
         if (response.status === ResponseStatus.Success) {
           dispatch(setPriorities(response.data));
         }
+        dispatch(setPrioritiesLoading(false));
       },
     }),
     createPriority: build.mutation<CreateResponse, Omit<Request, 'id'>>({
@@ -69,7 +74,7 @@ const prioritiesApi = api.injectEndpoints({
         }
       },
     }),
-    deletePriority: build.mutation<Response, Omit<Request, 'name'>>({
+    deletePriority: build.mutation<Response, { id: Request['id'] }>({
       query: data => ({
         url: `/user-expense-priority/${data.id}`,
         method: 'DELETE',
@@ -85,7 +90,7 @@ const prioritiesApi = api.injectEndpoints({
 });
 
 export const {
-  useGetPrioritiesQuery,
+  useLazyGetPrioritiesQuery,
   useCreatePriorityMutation,
   useEditPriorityMutation,
   useDeletePriorityMutation,
