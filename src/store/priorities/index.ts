@@ -31,6 +31,7 @@ const initialState: PrioritiesState = {
   list: [],
 };
 
+// TODO: change to sort by priority when backend is ready
 const prioritySorter = (a: PriorityModel, b: PriorityModel) =>
   a.name.localeCompare(b.name);
 

@@ -89,6 +89,19 @@ const slice = createSlice({
             ...state.list[toReplaceIndex],
             name: payload.name,
           };
+          return;
+        }
+        for (const category of state.list) {
+          const toReplaceNestedIndex = category.all_subcategories.findIndex(
+            subCategory => subCategory.id === payload.id,
+          );
+          if (toReplaceNestedIndex !== -1) {
+            category.all_subcategories[toReplaceNestedIndex] = {
+              ...category.all_subcategories[toReplaceNestedIndex],
+              name: payload.name,
+            };
+            return;
+          }
         }
       }
     },
@@ -99,6 +112,16 @@ const slice = createSlice({
         );
         if (toRemoveIndex !== -1) {
           state.list.splice(toRemoveIndex, 1);
+          return;
+        }
+        for (const category of state.list) {
+          const toRemoveNestedIndex = category.all_subcategories.findIndex(
+            subCategory => subCategory.id === payload,
+          );
+          if (toRemoveNestedIndex !== -1) {
+            category.all_subcategories.splice(toRemoveNestedIndex, 1);
+            return;
+          }
         }
       }
     },

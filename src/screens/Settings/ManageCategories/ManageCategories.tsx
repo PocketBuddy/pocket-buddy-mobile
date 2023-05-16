@@ -48,9 +48,8 @@ export default function ManageCategories() {
                     <ManageListItem
                       title={subItem.name}
                       isSubItem
-                      handleAdd={() => manageList.handleAddSub(item)}
-                      handleEdit={() => manageList.handleEdit(item)}
-                      handleDelete={() => manageList.handleDelete(item)}
+                      handleEdit={() => manageList.handleEdit(subItem)}
+                      handleDelete={() => manageList.handleDelete(subItem)}
                     />
                   </View>
                 )}
