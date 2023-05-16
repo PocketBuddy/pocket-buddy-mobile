@@ -1,7 +1,7 @@
 {
   "genericError": {
     "header": "Coś poszło nie tak",
-    "message": "Przepraszamy, spróbuj ponownie później."
+    "message": "Przepraszamy, spróbuj ponownie później"
   },
   "unauthenticated": {
     "header": "Nie jesteś zalogowany",

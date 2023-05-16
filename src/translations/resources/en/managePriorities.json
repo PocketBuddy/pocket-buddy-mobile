@@ -1,0 +1,23 @@
+{
+  "buttonSuccess": {
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "submit": "Submit"
+  },
+  "buttonClose": "Cancel",
+  "titles": {
+    "createNew": "Create a new priority",
+    "edit": "Edit priority {{name}}",
+    "delete": "Are you sure you want to delete {{name}}?"
+  },
+  "inputName": {
+    "label": "Priority name",
+    "placeholder": "Enter priority name"
+  },
+  "inputPriority": {
+    "label": "Priority importance",
+    "placeholder": "Enter priority importance"
+  }
+}

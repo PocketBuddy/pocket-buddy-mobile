@@ -16,13 +16,19 @@ import { toastLogger } from './toastLogger';
 
 import { api } from '../services/api';
 import auth from './auth';
+import categories from './categories';
+import priorities from './priorities';
 import theme from './theme';
 import toast from './toast';
+import user from './user';
 
 const reducers = combineReducers({
   auth,
+  categories,
+  priorities,
   theme,
   toast,
+  user,
   [api.reducerPath]: api.reducer,
 });
 

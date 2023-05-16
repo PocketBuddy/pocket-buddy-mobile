@@ -18,15 +18,17 @@ export type MainParamsList = {
   Notifications: undefined;
 };
 
-export type IndependentParamsList = {
+export type MainSettingsParamsList = {
   Settings: undefined;
+  ManageCategories: undefined;
+  ManagePriorities: undefined;
 };
 
 export type ApplicationStackParamList = {
   Startup: undefined;
   Start: NavigatorScreenParams<StartParamsList>;
   Main: NavigatorScreenParams<MainParamsList>;
-  Independent: NavigatorScreenParams<IndependentParamsList>;
+  MainSettings: NavigatorScreenParams<MainSettingsParamsList>;
 };
 
 export type ApplicationScreenProps =

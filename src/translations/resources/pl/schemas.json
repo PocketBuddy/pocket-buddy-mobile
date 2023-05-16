@@ -15,5 +15,21 @@
       "required": "Hasła muszą być takie same",
       "match": "Hasła muszą być takie same"
     }
+  },
+  "manageCategories": {
+    "name": {
+      "required": "Nazwa nie może być pusta",
+      "valid": "Nazwa nie może być dłuższa niż 20 znaków"
+    }
+  },
+  "managePriorities": {
+    "name": {
+      "required": "Nazwa nie może być pusta",
+      "valid": "Nazwa nie może być dłuższa niż 20 znaków"
+    },
+    "priority": {
+      "required": "Waga nie może być pusta",
+      "valid": "Waga musi być liczbą całkowitą"
+    }
   }
 }

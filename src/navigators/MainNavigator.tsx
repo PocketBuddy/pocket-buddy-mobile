@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 
 // @refresh reset
 export default function MainNavigator() {
-  const { Images, Gutters } = useTheme();
+  const { Images, Gutters, Colors, MetricsSizes } = useTheme();
   const navigation = useNavigation();
 
   const renderTabBarIcon = useCallback(
@@ -32,7 +32,7 @@ export default function MainNavigator() {
     () => (
       <TouchableOpacity
         style={[Gutters.tinyLMargin]}
-        onPress={() => navigation.navigate(StackNames.independent as never)}
+        onPress={() => navigation.navigate(StackNames.mainSettings as never)}
       >
         <TabBarIcon
           icon={Images.icons.settings}
@@ -51,6 +51,15 @@ export default function MainNavigator() {
         headerLeft: renderHeaderIcon,
         tabBarShowLabel: false,
         headerTitle: '',
+        headerStyle: {
+          shadowColor: 'transparent',
+          elevation: 0,
+          backgroundColor: Colors.background,
+        },
+        tabBarStyle: {
+          backgroundColor: Colors.background,
+          height: MetricsSizes.large,
+        },
       }}
     >
       <Tab.Screen

@@ -11,6 +11,7 @@ type Request = {
 
 type Response = Omit<BaseResponse, 'data'> & { data: { token: string } | null };
 
+// TODO: refactor all files to single authApi
 const loginApi = api.injectEndpoints({
   endpoints: build => ({
     login: build.mutation<Response, Request>({

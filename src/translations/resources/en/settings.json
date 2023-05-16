@@ -1,3 +1,5 @@
 {
+  "manageCategories": "Manage transactions categories",
+  "managePriorities": "Manage transactions priorities",
   "logout": "Logout"
 }

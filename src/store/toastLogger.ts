@@ -6,8 +6,8 @@ import { showToast } from './toast';
 import { ToastType } from 'types/components';
 
 export const toastLogger: Middleware = store => next => action => {
-  const status = action.payload?.data?.status;
-  const message = action.payload?.data?.message;
+  const status = action.payload?.data?.status || action.payload?.status;
+  const message = action.payload?.data?.message || action.payload?.message;
 
   if (message === Constants.UNAUTHENTICATED_MESSAGE) {
     store.dispatch(
@@ -25,7 +25,7 @@ export const toastLogger: Middleware = store => next => action => {
         header: status,
         message: message,
         type:
-          status === ResponseStatus.Success
+          status === ResponseStatus.Success || status === ToastType.Success
             ? ToastType.Success
             : ToastType.Error,
       }),

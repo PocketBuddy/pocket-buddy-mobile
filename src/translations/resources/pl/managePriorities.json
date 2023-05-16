@@ -1,0 +1,23 @@
+{
+  "buttonSuccess": {
+    "create": "Dodaj",
+    "edit": "Edytuj",
+    "delete": "Usuń",
+    "save": "Zapisz",
+    "submit": "Wyślij"
+  },
+  "buttonClose": "Anuluj",
+  "titles": {
+    "createNew": "Dodaj nowy priorytet",
+    "edit": "Edytuj priorytet {{name}}",
+    "delete": "Czy na pewno chcesz usunąć priorytet {{name}}?"
+  },
+  "inputName": {
+    "label": "Nazwa priorytetu",
+    "placeholder": "Podaj nazwę priorytetu"
+  },
+  "inputPriority": {
+    "label": "Waga priorytetu",
+    "placeholder": "Podaj wagę priorytetu"
+  }
+}

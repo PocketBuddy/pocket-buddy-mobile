@@ -11,6 +11,9 @@ import {
   faMagnifyingGlass,
   faMoneyBillTransfer,
   faPlus,
+  faSquarePen,
+  faSquarePlus,
+  faSquareXmark,
   faTrophy,
 } from '@fortawesome/free-solid-svg-icons';
 import { ThemeVariables } from 'types/theme';
@@ -33,6 +36,9 @@ export default function ({}: ThemeVariables) {
       search: faMagnifyingGlass,
       reset: faCircleXmark,
       warning: faCircleExclamation,
+      add: faSquarePlus,
+      edit: faSquarePen,
+      delete: faSquareXmark,
     },
   };
 }

@@ -1,0 +1,20 @@
+{
+  "buttonSuccess": {
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "submit": "Submit"
+  },
+  "buttonClose": "Cancel",
+  "titles": {
+    "createNew": "Create a new category",
+    "createNewSub": "Create a new subcategory for {{name}}",
+    "edit": "Edit category {{name}}",
+    "delete": "Are you sure you want to delete {{name}}?"
+  },
+  "input": {
+    "label": "Category name",
+    "placeholder": "Enter category name"
+  }
+}

@@ -8,9 +8,9 @@ import { ApplicationStackParamList } from 'types/navigation';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { createStackNavigator } from '@react-navigation/stack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import IndependentNavigator from './IndependentNavigator';
 import MainNavigator from './MainNavigator';
 import React from 'react';
+import SettingsNavigator from './SettingsNavigator';
 import StartNavigator from './StartNavigator';
 import { ToastHandler } from '@/components';
 import { useFlipper } from '@react-navigation/devtools';
@@ -20,7 +20,7 @@ const Stack = createStackNavigator<ApplicationStackParamList>();
 
 // @refresh reset
 const ApplicationNavigator = () => {
-  const { Layout, NavigationTheme } = useTheme();
+  const { Layout, NavigationTheme, Colors } = useTheme();
   const { colors } = NavigationTheme;
   const navigationRef = useNavigationContainerRef();
 
@@ -29,7 +29,9 @@ const ApplicationNavigator = () => {
   return (
     <GestureHandlerRootView style={[Layout.fill]}>
       <BottomSheetModalProvider>
-        <SafeAreaView style={[Layout.fill, { backgroundColor: colors.card }]}>
+        <SafeAreaView
+          style={[Layout.fill, { backgroundColor: Colors.background }]}
+        >
           <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
             <StatusBar
               barStyle={'dark-content'}
@@ -49,8 +51,8 @@ const ApplicationNavigator = () => {
               />
               <Stack.Screen name={StackNames.main} component={MainNavigator} />
               <Stack.Screen
-                name={StackNames.independent}
-                component={IndependentNavigator}
+                name={StackNames.mainSettings}
+                component={SettingsNavigator}
               />
             </Stack.Navigator>
           </NavigationContainer>
