@@ -1,7 +1,14 @@
 import { CategoryModel } from 'types/models';
 import { createSlice } from '@reduxjs/toolkit';
 
-type CategoriesState = { list: CategoryModel[] | [] };
+type CategoriesState = {
+  isLoading: boolean;
+  list: CategoryModel[] | [];
+};
+
+type CategoriesLoadingPayload = {
+  payload: boolean;
+};
 
 type CategoriesPayload = {
   payload: CategoryModel[] | [];
@@ -30,6 +37,7 @@ type RemoveCategoryPayload = {
 };
 
 const initialState: CategoriesState = {
+  isLoading: false,
   list: [],
 };
 
@@ -40,6 +48,11 @@ const slice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
+    setCategoriesLoading: (state, { payload }: CategoriesLoadingPayload) => {
+      if (payload !== undefined) {
+        state.isLoading = payload;
+      }
+    },
     setCategories: (state, { payload }: CategoriesPayload) => {
       if (payload !== undefined) {
         state.list = payload;
@@ -94,6 +107,7 @@ const slice = createSlice({
 });
 
 export const {
+  setCategoriesLoading,
   setCategories,
   addCategory,
   addSubCategory,

@@ -4,6 +4,7 @@ import {
   editCategory,
   removeCategory,
   setCategories,
+  setCategoriesLoading,
 } from '@/store/categories';
 import { BaseResponse, ResponseStatus } from 'types/services';
 import { api } from '@/services/api';
@@ -27,11 +28,15 @@ const categoriesApi = api.injectEndpoints({
         // TODO: change url to /user-expense-category when backend will be ready
         url: '/user/categories',
       }),
+      onQueryStarted: (_, { dispatch }) => {
+        dispatch(setCategoriesLoading(true));
+      },
       onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
         const response = (await cacheDataLoaded).data;
         if (response.status === ResponseStatus.Success) {
           dispatch(setCategories(response.data));
         }
+        dispatch(setCategoriesLoading(false));
       },
     }),
     createCategory: build.mutation<CreateResponse, Omit<Request, 'id'>>({
