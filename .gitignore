@@ -55,6 +55,9 @@ yarn-error.log
 # Bundle artifact
 *.jsbundle
 
+# Builds
+android/app/release
+
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
