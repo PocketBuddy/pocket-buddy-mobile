@@ -38,8 +38,8 @@ export function useAddCategoryForm({ handleClose }: Omit<Props, 'id'>) {
 
   const onSubmit = useCallback(
     () =>
-      handleSubmit(async (values: Record<string, string>) => {
-        await createCategory({
+      handleSubmit((values: Record<string, string>) => {
+        createCategory({
           name: values.name,
         });
       })(),
@@ -74,15 +74,12 @@ export function useAddSubCategoryForm({ id, handleClose }: Props) {
     }, TIME_TO_CLOSE);
   }, [isSuccess, isError]);
 
-  const onSuccessSubmit = useCallback(
-    async (values: Record<string, string>) => {
-      createSubCategory({
-        id: +values.id,
-        name: values.name,
-      });
-    },
-    [],
-  );
+  const onSuccessSubmit = useCallback((values: Record<string, string>) => {
+    createSubCategory({
+      id: +values.id,
+      name: values.name,
+    });
+  }, []);
 
   const onSubmit = useCallback(() => handleSubmit(onSuccessSubmit)(), []);
 
@@ -122,8 +119,8 @@ export function useEditCategoryForm({
 
   const onSubmit = useCallback(
     () =>
-      handleSubmit(async (values: Record<string, string>) => {
-        await editCategory({
+      handleSubmit((values: Record<string, string>) => {
+        editCategory({
           id: +values.id,
           name: values.name,
         });

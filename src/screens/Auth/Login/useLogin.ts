@@ -2,12 +2,15 @@ import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { ScreenNames, StackNames } from '@/navigators/routes';
 import { useBottomSheet, useForm, usePlatform } from '@/hooks';
 import { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AuthSchema } from '@/schemas';
+import { isLoggedSelector } from '@/store/auth/selectors';
 import { Keyboard } from 'react-native';
 import { showToast } from '@/store/toast';
 import { ToastType } from 'types/components';
-import { useDispatch } from 'react-redux';
+import { useLazyGetUserQuery } from '@/services/modules/user';
 import { useLoginMutation } from '@/services/modules/auth/login';
+import { userLoadingSelector } from '@/store/user/selectors';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -30,7 +33,10 @@ export default function useLogin({ navigation, email }: Props) {
   const passwordRecoverySheet = useBottomSheet({
     openSideEffects: () => Keyboard.dismiss(),
   });
-  const [loginMutation, { isLoading, isSuccess }] = useLoginMutation();
+  const [loginMutation, { isLoading }] = useLoginMutation();
+  const [getUser, { isSuccess: getUserSuccess }] = useLazyGetUserQuery();
+  const isLogged = useSelector(isLoggedSelector);
+  const isUserLoggedIn = useSelector(userLoadingSelector);
   const { isIOS, isAndroid } = usePlatform();
 
   useEffect(() => {
@@ -41,22 +47,27 @@ export default function useLogin({ navigation, email }: Props) {
   }, [email]);
 
   useEffect(() => {
-    if (isSuccess) {
+    // getting user data after login
+    isLogged && getUser({})?.refetch();
+  }, [isLogged]);
+
+  useEffect(() => {
+    if (getUserSuccess) {
       reset();
       navigation.reset({
         index: 0,
         routes: [{ name: StackNames.main }],
       });
     }
-  }, [isSuccess]);
+  }, [getUserSuccess]);
 
   const goToRegister = useCallback(
     () => navigation.navigate(ScreenNames.register),
     [],
   );
 
-  const onSuccessSubmit = async (values: Record<string, string>) => {
-    await loginMutation({
+  const onSuccessSubmit = (values: Record<string, string>) => {
+    loginMutation({
       email: values.email,
       password: values.password,
       device_type: isIOS ? 'iphone' : isAndroid ? 'android' : 'other',
@@ -87,7 +98,7 @@ export default function useLogin({ navigation, email }: Props) {
     passwordRecoverySheet,
     form: {
       onSubmit,
-      isLoading,
+      isLoading: isLoading || isUserLoggedIn,
       ...formProps,
     },
     loginProvider: {

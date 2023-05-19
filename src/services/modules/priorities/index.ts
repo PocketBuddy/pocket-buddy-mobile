@@ -28,8 +28,9 @@ const prioritiesApi = api.injectEndpoints({
         // TODO: change url to /user-expense-category when backend will be ready
         url: '/user/priorities',
       }),
-      onQueryStarted: (_, { dispatch }) => {
+      onQueryStarted: (_, { dispatch, queryFulfilled }) => {
         dispatch(setPrioritiesLoading(true));
+        queryFulfilled.catch(() => dispatch(setPrioritiesLoading(false)));
       },
       onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
         const response = (await cacheDataLoaded).data;

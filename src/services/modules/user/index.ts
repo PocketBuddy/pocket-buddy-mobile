@@ -1,6 +1,6 @@
 import { BaseResponse, ResponseStatus } from 'types/services';
+import { setUser, setUserLoading } from '@/store/user';
 import { api } from '@/services/api';
-import { setUser } from '@/store/user';
 import { UserModel } from 'types/models';
 
 type Request = {};
@@ -13,14 +13,19 @@ const userApi = api.injectEndpoints({
       query: () => ({
         url: '/user/me',
       }),
+      onQueryStarted: (_, { dispatch, queryFulfilled }) => {
+        dispatch(setUserLoading(true));
+        queryFulfilled.catch(() => dispatch(setUserLoading(false)));
+      },
       onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
         const response = (await cacheDataLoaded).data;
         if (response.status === ResponseStatus.Success) {
           dispatch(setUser(response.data));
         }
+        dispatch(setUserLoading(false));
       },
     }),
   }),
 });
 
-export const { useGetUserQuery } = userApi;
+export const { useLazyGetUserQuery } = userApi;

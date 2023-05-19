@@ -28,8 +28,9 @@ const categoriesApi = api.injectEndpoints({
         // TODO: change url to /user-expense-category when backend will be ready
         url: '/user/categories',
       }),
-      onQueryStarted: (_, { dispatch }) => {
+      onQueryStarted: (_, { dispatch, queryFulfilled }) => {
         dispatch(setCategoriesLoading(true));
+        queryFulfilled.catch(() => dispatch(setCategoriesLoading(false)));
       },
       onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
         const response = (await cacheDataLoaded).data;

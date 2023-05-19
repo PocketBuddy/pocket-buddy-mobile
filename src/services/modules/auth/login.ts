@@ -1,6 +1,6 @@
+import { BaseResponse, ResponseStatus } from 'types/services';
 import { api } from '@/services/api';
 import AuthService from './auth';
-import { BaseResponse } from 'types/services';
 import { loggedIn } from '@/store/auth';
 
 type Request = {
@@ -11,7 +11,6 @@ type Request = {
 
 type Response = Omit<BaseResponse, 'data'> & { data: { token: string } | null };
 
-// TODO: refactor all files to single authApi
 const loginApi = api.injectEndpoints({
   endpoints: build => ({
     login: build.mutation<Response, Request>({
@@ -20,15 +19,13 @@ const loginApi = api.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      onCacheEntryAdded: async (
-        _,
-        { dispatch, getCacheEntry, cacheDataLoaded },
-      ) => {
-        await cacheDataLoaded;
-        const authToken = getCacheEntry().data?.data?.token;
-        if (authToken) {
-          await AuthService.setToken(authToken);
-          dispatch(loggedIn());
+      onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
+        const response = (await cacheDataLoaded).data;
+        if (response.status === ResponseStatus.Success) {
+          if (response.data) {
+            await AuthService.setToken(response.data.token);
+            dispatch(loggedIn());
+          }
         }
       },
     }),

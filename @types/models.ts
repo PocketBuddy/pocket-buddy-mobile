@@ -3,6 +3,9 @@ export type UserModel = {
   name: string;
   email: string;
   role: string;
+  created_at: string;
+  budgets: [];
+  main_budget: null;
 };
 
 export type CategoryModel = {

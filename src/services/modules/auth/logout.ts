@@ -1,7 +1,11 @@
 import { api } from '@/services/api';
 import AuthService from './auth';
 import { BaseResponseWithAuth } from 'types/services';
+import { Constants } from '@/utils';
 import { loggedOut } from '@/store/auth';
+import { removeCategories } from '@/store/categories';
+import { removePriorities } from '@/store/priorities';
+import { removeUser } from '@/store/user';
 
 type Request = {};
 
@@ -15,9 +19,16 @@ export const logoutApi = api.injectEndpoints({
         method: 'POST',
       }),
       onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
-        await cacheDataLoaded;
-        await AuthService.removeToken();
-        dispatch(loggedOut());
+        const response = (await cacheDataLoaded).data;
+        if (response.message !== Constants.UNAUTHENTICATED_MESSAGE) {
+          await Promise.all([
+            dispatch(loggedOut()),
+            dispatch(removeUser()),
+            dispatch(removeCategories()),
+            dispatch(removePriorities()),
+            AuthService.removeToken(),
+          ]);
+        }
       },
     }),
   }),

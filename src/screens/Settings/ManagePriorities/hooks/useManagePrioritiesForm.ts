@@ -40,8 +40,8 @@ export function useAddPriorityForm({ handleClose }: Omit<Props, 'priority'>) {
 
   const onSubmit = useCallback(
     () =>
-      handleSubmit(async (values: Record<string, string>) => {
-        await createPriority({
+      handleSubmit((values: Record<string, string>) => {
+        createPriority({
           name: values.name,
           priority: +values.priority,
         });
@@ -83,8 +83,8 @@ export function useEditPriorityForm({ priority, handleClose }: Props) {
 
   const onSubmit = useCallback(
     () =>
-      handleSubmit(async (values: Record<string, string>) => {
-        await editPriority({
+      handleSubmit((values: Record<string, string>) => {
+        editPriority({
           id: +values.id,
           name: values.name,
           priority: +values.priority,

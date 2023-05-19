@@ -47,8 +47,8 @@ export default function useRegister({ navigation }: Props) {
     }
   }, [isSuccess]);
 
-  const onSuccessSubmit = async (values: Record<string, string>) => {
-    await registerMutation({
+  const onSuccessSubmit = (values: Record<string, string>) => {
+    registerMutation({
       name: values.name,
       email: values.email,
       password: values.password,
