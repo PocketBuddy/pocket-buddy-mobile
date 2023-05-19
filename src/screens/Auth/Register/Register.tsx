@@ -34,6 +34,7 @@ export default function Register({ navigation }: Props) {
             placeholder={t('auth:inputs.email.placeholder')}
             errorMessage={form.errors.email?.message}
             textContentType="emailAddress"
+            keyboardType="email-address"
           />
           <ControlledInput
             name="password"
@@ -51,6 +52,7 @@ export default function Register({ navigation }: Props) {
             placeholder={t('auth:inputs.confirmPassword.placeholder')}
             errorMessage={form.errors.confirmPassword?.message}
             textContentType="newPassword"
+            onSubmitEditing={form.onSubmit}
             secured
           />
         </>

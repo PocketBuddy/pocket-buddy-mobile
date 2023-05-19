@@ -40,6 +40,7 @@ export default function Login({ navigation }: Props) {
               placeholder={t('auth:inputs.email.placeholder')}
               errorMessage={form.errors.email?.message}
               textContentType="emailAddress"
+              keyboardType="email-address"
             />
             <ControlledInput
               name="password"
@@ -48,6 +49,7 @@ export default function Login({ navigation }: Props) {
               placeholder={t('auth:inputs.password.placeholder')}
               errorMessage={form.errors.password?.message}
               textContentType="password"
+              onSubmitEditing={form.onSubmit}
               secured
             />
             <View style={[Layout.rowReverse, Layout.fullWidth]}>

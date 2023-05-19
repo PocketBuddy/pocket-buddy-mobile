@@ -109,6 +109,7 @@ export default function ManageCategoriesSheet({
                   label={t('manageCategories:input.label')}
                   placeholder={t('manageCategories:input.placeholder')}
                   errorMessage={addCategoryForm.errors.name?.message}
+                  onSubmitEditing={addCategoryForm.onSubmit}
                   bottomSheet
                 />
               )}
@@ -119,6 +120,7 @@ export default function ManageCategoriesSheet({
                   label={t('manageCategories:input.label')}
                   placeholder={t('manageCategories:input.label')}
                   errorMessage={addSubCategoryForm.errors.name?.message}
+                  onSubmitEditing={addSubCategoryForm.onSubmit}
                   bottomSheet
                 />
               )}
@@ -130,6 +132,7 @@ export default function ManageCategoriesSheet({
                   placeholder={t('manageCategories:input.label')}
                   errorMessage={editCategoryForm.errors.name?.message}
                   defaultValue={editCategoryForm.control._formValues.name}
+                  onSubmitEditing={editCategoryForm.onSubmit}
                   bottomSheet
                 />
               )}

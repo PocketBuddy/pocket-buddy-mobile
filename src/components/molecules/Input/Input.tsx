@@ -38,7 +38,7 @@ export default function Input({
   const focus = () => inputRef.current?.focus();
 
   return (
-    <View>
+    <>
       <TouchableWithoutFeedback onPress={focus}>
         <View style={[Common.input.primaryContainer]}>
           <Text style={[Common.input.primaryLabel]}>{label}</Text>
@@ -88,6 +88,6 @@ export default function Input({
       {renderMessage && (
         <View style={[Common.input.messageWrapper]}>{renderMessage()}</View>
       )}
-    </View>
+    </>
   );
 }

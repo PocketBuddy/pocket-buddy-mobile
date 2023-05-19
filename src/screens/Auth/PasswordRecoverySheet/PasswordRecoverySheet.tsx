@@ -45,6 +45,8 @@ export default function PasswordRecoverySheet({ isOpen, handleClose }: Props) {
                 placeholder={t('auth:inputs.email.placeholder')}
                 errorMessage={form.errors.email?.message}
                 textContentType="emailAddress"
+                keyboardType="email-address"
+                onSubmitEditing={form.onSubmit}
                 bottomSheet
               />
               <Paragraph text={t('auth:passwordRecovery.message')} />
