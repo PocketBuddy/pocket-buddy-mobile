@@ -46,7 +46,7 @@ export default function ({ FontSize, Colors }: ThemeVariables) {
     titleRegular: {
       ...baseTitle,
       fontWeight: 'bold',
-      fontSize: FontSize.regular * 2,
+      fontSize: FontSize.regular * 1.75,
     },
     titleLarge: {
       ...baseTitle,

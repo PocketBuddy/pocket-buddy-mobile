@@ -7,6 +7,7 @@ export { default as Paragraph } from './atoms/Paragraph/Paragraph';
 export { default as ToastMessage } from './atoms/ToastMessage/ToastMessage';
 export { default as ListSeparator } from './atoms/ListSeparator/ListSeparator';
 export { default as ManageListItem } from './atoms/ManageListItem/ManageListItem';
+export { default as Title } from './atoms/Title/Title';
 
 // Molecules
 export { default as Button } from './molecules/Button/Button';

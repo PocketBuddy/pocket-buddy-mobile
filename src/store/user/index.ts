@@ -3,7 +3,7 @@ import { UserModel } from 'types/models';
 
 type UserState = {
   isLoading: boolean;
-  user: UserModel | {};
+  user: UserModel;
 };
 
 type UserLoadingPayload = {
@@ -16,7 +16,15 @@ type UserDetailsPayload = {
 
 const initialState: UserState = {
   isLoading: false,
-  user: {},
+  user: {
+    id: -1,
+    name: '',
+    email: '',
+    role: '',
+    created_at: '',
+    budgets: [],
+    main_budget: null,
+  },
 };
 
 const slice = createSlice({
