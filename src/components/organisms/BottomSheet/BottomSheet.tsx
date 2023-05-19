@@ -47,6 +47,10 @@ export default function BottomSheet({
     index === BottomSheetIndex.Closed && handleClose();
   }, []);
 
+  const handleDismiss = useCallback(() => {
+    handleClose();
+  }, []);
+
   const renderBackdrop = useCallback(
     (props: BottomSheetBackdropProps) => (
       <BottomSheetBackdrop
@@ -70,6 +74,7 @@ export default function BottomSheet({
       keyboardBehavior="interactive"
       keyboardBlurBehavior="restore"
       onChange={handleSheetChanges}
+      onDismiss={handleDismiss}
       backdropComponent={renderBackdrop}
       containerStyle={Common.bottomSheet.outsideContainer}
       backgroundStyle={{
