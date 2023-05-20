@@ -2,15 +2,12 @@ import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { ScreenNames, StackNames } from '@/navigators/routes';
 import { useBottomSheet, useForm, usePlatform } from '@/hooks';
 import { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { AuthSchema } from '@/schemas';
-import { isLoggedSelector } from '@/store/auth/selectors';
 import { Keyboard } from 'react-native';
 import { showToast } from '@/store/toast';
 import { ToastType } from 'types/components';
-import { useLazyGetUserQuery } from '@/services/modules/user';
+import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '@/services/modules/auth/login';
-import { userLoadingSelector } from '@/store/user/selectors';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -33,10 +30,7 @@ export default function useLogin({ navigation, email }: Props) {
   const passwordRecoverySheet = useBottomSheet({
     openSideEffects: () => Keyboard.dismiss(),
   });
-  const [loginMutation, { isLoading }] = useLoginMutation();
-  const [getUser, { isSuccess: getUserSuccess }] = useLazyGetUserQuery();
-  const isLogged = useSelector(isLoggedSelector);
-  const isUserLoggedIn = useSelector(userLoadingSelector);
+  const [loginMutation, { isLoading, isSuccess }] = useLoginMutation();
   const { isIOS, isAndroid } = usePlatform();
 
   useEffect(() => {
@@ -47,19 +41,14 @@ export default function useLogin({ navigation, email }: Props) {
   }, [email]);
 
   useEffect(() => {
-    // getting user data after login
-    isLogged && getUser({})?.refetch();
-  }, [isLogged]);
-
-  useEffect(() => {
-    if (getUserSuccess) {
+    if (isSuccess) {
       reset();
       navigation.reset({
         index: 0,
         routes: [{ name: StackNames.main }],
       });
     }
-  }, [getUserSuccess]);
+  }, [isSuccess]);
 
   const goToRegister = useCallback(
     () => navigation.navigate(ScreenNames.register),
@@ -98,7 +87,7 @@ export default function useLogin({ navigation, email }: Props) {
     passwordRecoverySheet,
     form: {
       onSubmit,
-      isLoading: isLoading || isUserLoggedIn,
+      isLoading: isLoading,
       ...formProps,
     },
     loginProvider: {

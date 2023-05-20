@@ -7,6 +7,10 @@
     "header": "Nie jesteś zalogowany",
     "message": "Zaloguj się, aby kontynuować"
   },
+  "connectionError": {
+    "header": "Brak połączenia z internetem",
+    "message": "Oops! Wygląda na to, że nie masz połączenia z internetem. Niektóre funkcje mogą nie działać poprawnie"
+  },
   "login": {
     "error": {
       "header": "Błąd logowania",

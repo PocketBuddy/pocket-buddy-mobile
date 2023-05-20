@@ -7,6 +7,10 @@
     "header": "You are not logged in",
     "message": "Please log in to continue"
   },
+  "connectionError": {
+    "header": "No internet connection",
+    "message": "Oops! It seems you are not connected to the internet, functionality may be limited"
+  },
   "login": {
     "error": {
       "header": "Login failed",

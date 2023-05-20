@@ -2,11 +2,12 @@ import {
   allCategoriesSelector,
   categoriesLoadingSelector,
 } from '@/store/categories/selectors';
+import { useBottomSheet, useNetworkError } from '@/hooks';
 import { useCallback, useEffect, useState } from 'react';
 import { CategoriesSheetType } from '../ManageCategoriesSheet';
 import { CategoryModel } from 'types/models';
-import { useBottomSheet } from '@/hooks';
 import { useLazyGetCategoriesQuery } from '@/services/modules/categories';
+
 import { useSelector } from 'react-redux';
 
 export default function useManageCategories() {
@@ -16,10 +17,11 @@ export default function useManageCategories() {
   const { open, close, isOpen } = useBottomSheet({});
   const [sheetType, setSheetType] = useState<CategoriesSheetType>();
   const [selectedCategory, setSelectedCategory] = useState<CategoryModel>();
+  const { isNetworkError } = useNetworkError();
 
   useEffect(() => {
-    !categories.length && getCategories({}).refetch();
-  }, [categories, getCategories]);
+    !isNetworkError && getCategories({}).refetch();
+  }, [isNetworkError]);
 
   const handleAdd = useCallback(() => {
     setSheetType(CategoriesSheetType.add);
@@ -47,7 +49,7 @@ export default function useManageCategories() {
   return {
     manageList: {
       categories,
-      isLoading: categoriesLoading,
+      isLoading: categoriesLoading && !categories.length,
       isError,
       handleAdd,
       handleAddSub,

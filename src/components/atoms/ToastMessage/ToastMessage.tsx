@@ -23,6 +23,8 @@ export default function ToastErrorMessage({ type, ...props }: Props) {
           style={[{ borderLeftColor: Colors.success }, Gutters.smallTMargin]}
           text1Style={[Fonts.titleSmall, Fonts.textSuccess]}
           text2Style={[Fonts.textSmall]}
+          text1NumberOfLines={1}
+          text2NumberOfLines={2}
         />
       );
     case ToastType.Info:
@@ -32,6 +34,8 @@ export default function ToastErrorMessage({ type, ...props }: Props) {
           style={[{ borderLeftColor: Colors.primary }, Gutters.smallTMargin]}
           text1Style={[Fonts.titleSmall]}
           text2Style={[Fonts.textSmall]}
+          text1NumberOfLines={1}
+          text2NumberOfLines={2}
         />
       );
     case ToastType.Error:
@@ -41,6 +45,8 @@ export default function ToastErrorMessage({ type, ...props }: Props) {
           style={[{ borderLeftColor: Colors.error }, Gutters.smallTMargin]}
           text1Style={[Fonts.titleSmall, Fonts.textError]}
           text2Style={[Fonts.textSmall]}
+          text1NumberOfLines={1}
+          text2NumberOfLines={2}
         />
       );
     default:

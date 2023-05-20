@@ -48,6 +48,8 @@ export default function ManagementList({
         nestedScrollEnabled
         contentContainerStyle={[Gutters.largeBPadding]}
         renderItem={renderItem}
+        maxToRenderPerBatch={20}
+        initialNumToRender={20}
       />
       {renderFloatingButton && renderFloatingButton()}
     </View>

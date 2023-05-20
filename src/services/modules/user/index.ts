@@ -13,12 +13,9 @@ const userApi = api.injectEndpoints({
       query: () => ({
         url: '/user/me',
       }),
-      onQueryStarted: (_, { dispatch, queryFulfilled }) => {
+      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         dispatch(setUserLoading(true));
-        queryFulfilled.catch(() => dispatch(setUserLoading(false)));
-      },
-      onCacheEntryAdded: async (_, { dispatch, cacheDataLoaded }) => {
-        const response = (await cacheDataLoaded).data;
+        const response = (await queryFulfilled).data;
         if (response.status === ResponseStatus.Success) {
           dispatch(setUser(response.data));
         }

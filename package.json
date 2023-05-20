@@ -26,6 +26,7 @@
     "@gorhom/bottom-sheet": "^4.4.5",
     "@hookform/resolvers": "^3.0.1",
     "@mtourj/react-native-keyboard-aware-scroll-view": "^1.0.9",
+    "@react-native-community/netinfo": "^9.3.10",
     "@react-native-masked-view/masked-view": "^0.2.8",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/material-top-tabs": "^6.6.2",

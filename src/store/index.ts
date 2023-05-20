@@ -54,7 +54,7 @@ export type RootState = ReturnType<typeof reducers>;
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['theme', 'auth'],
+  whitelist: ['theme', 'auth', 'user', 'categories', 'priorities'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

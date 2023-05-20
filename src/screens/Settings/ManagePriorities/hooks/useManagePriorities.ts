@@ -2,10 +2,10 @@ import {
   allPrioritiesSelector,
   prioritiesLoadingSelector,
 } from '@/store/priorities/selectors';
+import { useBottomSheet, useNetworkError } from '@/hooks';
 import { useCallback, useEffect, useState } from 'react';
 import { PrioritiesSheetType } from '../ManagePrioritiesSheet';
 import { PriorityModel } from 'types/models';
-import { useBottomSheet } from '@/hooks';
 import { useLazyGetPrioritiesQuery } from '@/services/modules/priorities';
 import { useSelector } from 'react-redux';
 
@@ -16,10 +16,11 @@ export default function useManagePriorities() {
   const { open, close, isOpen } = useBottomSheet({});
   const [sheetType, setSheetType] = useState<PrioritiesSheetType>();
   const [selectedPriority, setSelectedPriority] = useState<PriorityModel>();
+  const { isNetworkError } = useNetworkError();
 
   useEffect(() => {
-    !priorities.length && getPriorities({}).refetch();
-  }, [priorities, getPriorities]);
+    !isNetworkError && getPriorities({}).refetch();
+  }, [isNetworkError]);
 
   const handleAdd = useCallback(() => {
     setSheetType(PrioritiesSheetType.add);
@@ -41,7 +42,7 @@ export default function useManagePriorities() {
   return {
     manageList: {
       priorities,
-      isLoading: prioritiesLoading,
+      isLoading: prioritiesLoading && !priorities.length,
       isError,
       handleAdd,
       handleEdit,
