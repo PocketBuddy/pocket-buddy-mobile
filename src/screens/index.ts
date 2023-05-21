@@ -19,3 +19,5 @@ export { default as Notifications } from './Notifications/Notifications';
 export { default as Settings } from './Settings/Settings';
 export { default as ManageCategories } from './Settings/ManageCategories/ManageCategories';
 export { default as ManagePriorities } from './Settings/ManagePriorities/ManagePriorities';
+
+export { default as AddTransaction } from './Modals/AddTransaction/AddTransaction';

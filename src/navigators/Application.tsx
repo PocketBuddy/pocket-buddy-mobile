@@ -9,6 +9,7 @@ import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { createStackNavigator } from '@react-navigation/stack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import MainNavigator from './MainNavigator';
+import ModalNavigator from './ModalNavigator';
 import React from 'react';
 import SettingsNavigator from './SettingsNavigator';
 import StartNavigator from './StartNavigator';
@@ -29,9 +30,8 @@ const ApplicationNavigator = () => {
   return (
     <GestureHandlerRootView style={[Layout.fill]}>
       <BottomSheetModalProvider>
-        <SafeAreaView
-          style={[Layout.fill, { backgroundColor: Colors.background }]}
-        >
+        <SafeAreaView style={{ backgroundColor: Colors.background }} />
+        <SafeAreaView style={[Layout.fill, { backgroundColor: Colors.white }]}>
           <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
             <StatusBar
               barStyle={'dark-content'}
@@ -53,6 +53,10 @@ const ApplicationNavigator = () => {
               <Stack.Screen
                 name={StackNames.mainSettings}
                 component={SettingsNavigator}
+              />
+              <Stack.Screen
+                name={StackNames.modals}
+                component={ModalNavigator}
               />
             </Stack.Navigator>
           </NavigationContainer>
