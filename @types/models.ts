@@ -11,7 +11,7 @@ export type UserModel = {
 export type CategoryModel = {
   id: number;
   name: string;
-  all_subcategories: CategoryModel[] | [];
+  subcategories: CategoryModel[] | [];
 };
 
 export type PriorityModel = {

@@ -25,8 +25,7 @@ const categoriesApi = api.injectEndpoints({
   endpoints: build => ({
     getCategories: build.query<GetResponse, {}>({
       query: () => ({
-        // TODO: change url to /user-expense-category when backend will be ready
-        url: '/user/categories',
+        url: '/user-expense-category',
       }),
       onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         dispatch(setCategoriesLoading(true));

@@ -31,9 +31,8 @@ const initialState: PrioritiesState = {
   list: [],
 };
 
-// TODO: change to sort by priority when backend is ready
 const prioritySorter = (a: PriorityModel, b: PriorityModel) =>
-  a.name.localeCompare(b.name);
+  a.priority - b.priority;
 
 const slice = createSlice({
   name: 'priorities',
@@ -65,6 +64,7 @@ const slice = createSlice({
             name: payload.name,
             priority: payload.priority,
           };
+          state.list.sort(prioritySorter);
         }
       }
     },

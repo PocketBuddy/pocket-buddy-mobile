@@ -30,7 +30,10 @@ const ApplicationNavigator = () => {
   return (
     <GestureHandlerRootView style={[Layout.fill]}>
       <BottomSheetModalProvider>
-        <SafeAreaView style={{ backgroundColor: Colors.background }} />
+        <SafeAreaView
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{ height: 50, backgroundColor: Colors.background }}
+        />
         <SafeAreaView style={[Layout.fill, { backgroundColor: Colors.white }]}>
           <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
             <StatusBar

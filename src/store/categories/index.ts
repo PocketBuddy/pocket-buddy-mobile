@@ -24,12 +24,12 @@ type AddCategoryPayload = {
 type AddSubCategoryPayload = {
   payload: {
     parentId: number;
-    subCategory: Omit<CategoryModel, 'all_subcategories'>;
+    subCategory: Omit<CategoryModel, 'subcategories'>;
   };
 };
 
 type EditCategoryPayload = {
-  payload: Omit<CategoryModel, 'all_subcategories'>;
+  payload: Omit<CategoryModel, 'subcategories'>;
 };
 
 type RemoveCategoryPayload = {
@@ -60,10 +60,9 @@ const slice = createSlice({
     },
     addCategory: (state, { payload }: AddCategoryPayload) => {
       if (payload !== undefined) {
-        state.list = [
-          ...state.list,
-          { ...payload, all_subcategories: [] },
-        ].sort(categorySorter);
+        state.list = [...state.list, { ...payload, subcategories: [] }].sort(
+          categorySorter,
+        );
       }
     },
     addSubCategory: (state, { payload }: AddSubCategoryPayload) => {
@@ -72,9 +71,9 @@ const slice = createSlice({
           category => category.id === payload.parentId,
         );
         if (toReplaceIndex !== -1) {
-          state.list[toReplaceIndex].all_subcategories = [
-            ...state.list[toReplaceIndex].all_subcategories,
-            { ...payload.subCategory, all_subcategories: [] },
+          state.list[toReplaceIndex].subcategories = [
+            ...state.list[toReplaceIndex].subcategories,
+            { ...payload.subCategory, subcategories: [] },
           ].sort(categorySorter);
         }
       }
@@ -89,17 +88,19 @@ const slice = createSlice({
             ...state.list[toReplaceIndex],
             name: payload.name,
           };
+          state.list.sort(categorySorter);
           return;
         }
         for (const category of state.list) {
-          const toReplaceNestedIndex = category.all_subcategories.findIndex(
+          const toReplaceNestedIndex = category.subcategories.findIndex(
             subCategory => subCategory.id === payload.id,
           );
           if (toReplaceNestedIndex !== -1) {
-            category.all_subcategories[toReplaceNestedIndex] = {
-              ...category.all_subcategories[toReplaceNestedIndex],
+            category.subcategories[toReplaceNestedIndex] = {
+              ...category.subcategories[toReplaceNestedIndex],
               name: payload.name,
             };
+            category.subcategories.sort(categorySorter);
             return;
           }
         }
@@ -115,11 +116,11 @@ const slice = createSlice({
           return;
         }
         for (const category of state.list) {
-          const toRemoveNestedIndex = category.all_subcategories.findIndex(
+          const toRemoveNestedIndex = category.subcategories.findIndex(
             subCategory => subCategory.id === payload,
           );
           if (toRemoveNestedIndex !== -1) {
-            category.all_subcategories.splice(toRemoveNestedIndex, 1);
+            category.subcategories.splice(toRemoveNestedIndex, 1);
             return;
           }
         }
