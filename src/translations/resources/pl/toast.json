@@ -3,6 +3,11 @@
     "header": "Coś poszło nie tak",
     "message": "Przepraszamy, spróbuj ponownie później"
   },
+  "exceptionHandler": {
+    "header": "Nieoczekiwany błąd",
+    "message": "Przepraszamy, musimy zrestartować aplikację",
+    "button": "Zrestartuj aplikację"
+  },
   "unauthenticated": {
     "header": "Nie jesteś zalogowany",
     "message": "Zaloguj się, aby kontynuować"

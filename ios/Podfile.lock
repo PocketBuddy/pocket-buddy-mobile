@@ -674,6 +674,8 @@ PODS:
     - React-Core
     - React-RCTFabric
     - ReactCommon/turbomodule/core
+  - react-native-restart (0.0.27):
+    - React-Core
   - react-native-safe-area-context (4.5.0):
     - RCT-Folly
     - RCTRequired
@@ -789,6 +791,8 @@ PODS:
     - React-jsi (= 0.71.7)
     - React-logger (= 0.71.7)
     - React-perflogger (= 0.71.7)
+  - ReactNativeExceptionHandler (2.10.10):
+    - React-Core
   - RNCMaskedView (0.2.8):
     - React-Core
   - RNGestureHandler (2.9.0):
@@ -924,6 +928,7 @@ DEPENDENCIES:
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
+  - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -940,6 +945,7 @@ DEPENDENCIES:
   - React-rncore (from `../node_modules/react-native/ReactCommon`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - ReactNativeExceptionHandler (from `../node_modules/react-native-exception-handler`)
   - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
@@ -1022,6 +1028,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-pager-view:
     :path: "../node_modules/react-native-pager-view"
+  react-native-restart:
+    :path: "../node_modules/react-native-restart"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
@@ -1054,6 +1062,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  ReactNativeExceptionHandler:
+    :path: "../node_modules/react-native-exception-handler"
   RNCMaskedView:
     :path: "../node_modules/@react-native-masked-view/masked-view"
   RNGestureHandler:
@@ -1113,6 +1123,7 @@ SPEC CHECKSUMS:
   react-native-mmkv: ebf4ca42eb4e3e6d37800bb5c94bce4956b6e1e6
   react-native-netinfo: ccbe1085dffd16592791d550189772e13bf479e2
   react-native-pager-view: 03aa0e1580050c4a47ff8ac07f43d094057be562
+  react-native-restart: 7595693413fe3ca15893702f2c8306c62a708162
   react-native-safe-area-context: e7e7c502560f89a6a1866af293d1e091f3c7929d
   React-perflogger: 2d505bbe298e3b7bacdd9e542b15535be07220f6
   React-RCTActionSheet: 0e96e4560bd733c9b37efbf68f5b1a47615892fb
@@ -1129,6 +1140,7 @@ SPEC CHECKSUMS:
   React-rncore: f60e5973fbf1682cc57380ea9b0fe81280e5033b
   React-runtimeexecutor: c5c89f8f543842dd864b63ded1b0bbb9c9445328
   ReactCommon: dbfbe2f7f3c5ce4ce44f43f2fd0d5950d1eb67c5
+  ReactNativeExceptionHandler: b11ff67c78802b2f62eed0e10e75cb1ef7947c60
   RNCMaskedView: bc0170f389056201c82a55e242e5d90070e18e5a
   RNGestureHandler: 9d2ebd17a9fef618d9720e3d95ff5e6607acf8d4
   RNKeychain: ff836453cba46938e0e9e4c22e43d43fa2c90333

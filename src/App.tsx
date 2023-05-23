@@ -1,5 +1,6 @@
 import { persistor, store } from './store';
 import ApplicationNavigator from './navigators/Application';
+import { exceptionsHandler } from './utils';
 import { LogBox } from 'react-native';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { Provider } from 'react-redux';
@@ -12,6 +13,8 @@ LogBox.ignoreLogs([
   // See: https://github.com/react-navigation/react-navigation/issues/7839
   'Sending `onAnimatedValueUpdate` with no listeners registered.',
 ]);
+
+exceptionsHandler();
 
 const App = () => (
   <Provider store={store}>
