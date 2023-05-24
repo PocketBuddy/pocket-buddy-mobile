@@ -3,6 +3,7 @@ import i18next from 'i18next';
 import RNRestart from 'react-native-restart';
 import { setJSExceptionHandler } from 'react-native-exception-handler';
 
+// TODO: if fatal error redirect to error screen with restart button
 export default function () {
   setJSExceptionHandler((error, isFatal) => {
     if (isFatal) {
@@ -25,5 +26,5 @@ export default function () {
     if (__DEV__) {
       console.log(error);
     }
-  }, true);
+  });
 }

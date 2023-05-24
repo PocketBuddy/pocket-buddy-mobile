@@ -37,6 +37,11 @@ export default function Settings({ navigation }: Props) {
         />
         <ListSeparator />
         <SettingsItem
+          title={t('settings:language', { name: items.language.name })}
+          handlePress={items.language.handleChange}
+        />
+        <ListSeparator />
+        <SettingsItem
           title={t('settings:logout')}
           handlePress={items.handleLogout}
         />

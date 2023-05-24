@@ -1,5 +1,6 @@
 {
   "manageCategories": "Zarządzaj kategoriami transakcji",
   "managePriorities": "Zarządzaj priorytetami transakcji",
+  "language": "Zmień język na {{name}}",
   "logout": "Wyloguj się"
 }

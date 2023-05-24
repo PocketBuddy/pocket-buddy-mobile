@@ -60,3 +60,13 @@ export enum ToastType {
   Info = 'info',
   Error = 'error',
 }
+
+export enum LanguagesNames {
+  Polish = 'Polish',
+  English = 'Angielski',
+}
+
+export enum LanguagesCodes {
+  Polish = 'pl',
+  English = 'en',
+}

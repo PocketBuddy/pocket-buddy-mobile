@@ -17,6 +17,7 @@ import { toastLogger } from './toastLogger';
 import { api } from '../services/api';
 import auth from './auth';
 import categories from './categories';
+import preferences from './preferences';
 import priorities from './priorities';
 import theme from './theme';
 import toast from './toast';
@@ -25,6 +26,7 @@ import user from './user';
 const reducers = combineReducers({
   auth,
   categories,
+  preferences,
   priorities,
   theme,
   toast,
@@ -54,7 +56,14 @@ export type RootState = ReturnType<typeof reducers>;
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['theme', 'auth', 'user', 'categories', 'priorities'],
+  whitelist: [
+    'theme',
+    'auth',
+    'user',
+    'categories',
+    'priorities',
+    'preferences',
+  ],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
