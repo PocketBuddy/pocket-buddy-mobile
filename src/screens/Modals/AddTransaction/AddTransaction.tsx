@@ -1,5 +1,6 @@
 import { Button, ControlledInput, Form } from '@/components';
 import { ButtonType } from 'types/components';
+import { getTranslate } from '@/utils';
 import InputAmount from './InputAmount/InputAmount';
 import React from 'react';
 import SelectCategory from './SelectCategory/SelectCategory';
@@ -33,7 +34,7 @@ export default function AddTransaction() {
               <InputAmount
                 control={form.control}
                 name="amount"
-                errorMessage={form.errors.amount?.message}
+                errorMessage={getTranslate(form.errors.amount?.message)}
               />
             </View>
             <View style={[Gutters.tinyGap]}>
@@ -43,7 +44,7 @@ export default function AddTransaction() {
                   control={form.control}
                   label={t('addTransaction:name.label')}
                   placeholder={t('addTransaction:name.placeholder')}
-                  errorMessage={form.errors.name?.message}
+                  errorMessage={getTranslate(form.errors.name?.message)}
                 />
               </View>
               <SelectCategory

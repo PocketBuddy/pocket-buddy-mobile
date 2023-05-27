@@ -5,6 +5,7 @@ import {
   KeyboardPersisted,
 } from 'types/components';
 import React, { useMemo } from 'react';
+import { getTranslate } from '@/utils';
 import { PriorityModel } from 'types/models';
 import useManagePrioritiesSheet from './hooks/useManagePrioritiesSheet';
 import { useTranslation } from 'react-i18next';
@@ -95,7 +96,9 @@ export default function ManagePrioritiesSheet({
                     control={addPriorityForm.control}
                     label={t('managePriorities:inputName.label')}
                     placeholder={t('managePriorities:inputName.placeholder')}
-                    errorMessage={addPriorityForm.errors.name?.message}
+                    errorMessage={getTranslate(
+                      addPriorityForm.errors.name?.message,
+                    )}
                     bottomSheet
                   />
                   <ControlledInput
@@ -105,7 +108,9 @@ export default function ManagePrioritiesSheet({
                     placeholder={t(
                       'managePriorities:inputPriority.placeholder',
                     )}
-                    errorMessage={addPriorityForm.errors.priority?.message}
+                    errorMessage={getTranslate(
+                      addPriorityForm.errors.priority?.message,
+                    )}
                     keyboardType="numeric"
                     bottomSheet
                   />
@@ -118,7 +123,9 @@ export default function ManagePrioritiesSheet({
                     control={editPriorityForm.control}
                     label={t('managePriorities:inputName.label')}
                     placeholder={t('managePriorities:inputName.label')}
-                    errorMessage={editPriorityForm.errors.name?.message}
+                    errorMessage={getTranslate(
+                      editPriorityForm.errors.name?.message,
+                    )}
                     defaultValue={editPriorityForm.control._formValues.name}
                     bottomSheet
                   />
@@ -129,7 +136,9 @@ export default function ManagePrioritiesSheet({
                     placeholder={t(
                       'managePriorities:inputPriority.placeholder',
                     )}
-                    errorMessage={editPriorityForm.errors.priority?.message}
+                    errorMessage={getTranslate(
+                      editPriorityForm.errors.priority?.message,
+                    )}
                     defaultValue={editPriorityForm.control._formValues.priority.toString()}
                     keyboardType="numeric"
                     bottomSheet

@@ -40,12 +40,6 @@
     "amount": {
       "required": "Kwota nie może być pusta",
       "valid": "Kwota może mieć maksymalnie 2 miejsca po przecinku"
-    },
-    "spentDate": {
-      "required": "Data nie może być pusta"
-    },
-    "repeatedAt": {
-      "required": "Data powtórzenia nie może być puste"
     }
   }
 }

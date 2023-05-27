@@ -10,6 +10,7 @@ import {
   KeyboardDismissMode,
   KeyboardPersisted,
 } from 'types/components';
+import { getTranslate } from '@/utils';
 import React from 'react';
 import usePasswordRecoverySheet from './usePasswordRecoverySheet';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +44,7 @@ export default function PasswordRecoverySheet({ isOpen, handleClose }: Props) {
                 control={form.control}
                 label={t('auth:inputs.email.label')}
                 placeholder={t('auth:inputs.email.placeholder')}
-                errorMessage={form.errors.email?.message}
+                errorMessage={getTranslate(form.errors.email?.message)}
                 textContentType="emailAddress"
                 keyboardType="email-address"
                 onSubmitEditing={form.onSubmit}

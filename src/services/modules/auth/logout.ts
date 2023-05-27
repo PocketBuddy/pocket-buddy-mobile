@@ -1,9 +1,7 @@
-import * as RNLocalize from 'react-native-localize';
 import { api } from '@/services/api';
 import AuthService from './auth';
 import { BaseResponseWithAuth } from 'types/services';
 import { Constants } from '@/utils';
-import i18next from 'i18next';
 import { loggedOut } from '@/store/auth';
 import { removeCategories } from '@/store/categories';
 import { removePreferences } from '@/store/preferences';
@@ -30,7 +28,6 @@ export const logoutApi = api.injectEndpoints({
             dispatch(removeCategories()),
             dispatch(removePriorities()),
             dispatch(removePreferences()),
-            i18next.changeLanguage(RNLocalize.getLocales()[0].languageCode),
             AuthService.removeToken(),
           ]);
         }

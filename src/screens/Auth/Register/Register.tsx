@@ -1,6 +1,7 @@
 import { Button, ControlledInput, Form } from '@/components';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { ButtonType } from 'types/components';
+import { getTranslate } from '@/utils';
 import React from 'react';
 import useRegister from './useRegister';
 import { useTheme } from '@/hooks';
@@ -24,7 +25,7 @@ export default function Register({ navigation }: Props) {
             control={form.control}
             label={t('auth:inputs.name.label')}
             placeholder={t('auth:inputs.name.placeholder')}
-            errorMessage={form.errors.name?.message}
+            errorMessage={getTranslate(form.errors.name?.message)}
             textContentType="name"
           />
           <ControlledInput
@@ -32,7 +33,7 @@ export default function Register({ navigation }: Props) {
             control={form.control}
             label={t('auth:inputs.email.label')}
             placeholder={t('auth:inputs.email.placeholder')}
-            errorMessage={form.errors.email?.message}
+            errorMessage={getTranslate(form.errors.email?.message)}
             textContentType="emailAddress"
             keyboardType="email-address"
           />
@@ -41,7 +42,7 @@ export default function Register({ navigation }: Props) {
             control={form.control}
             label={t('auth:inputs.password.label')}
             placeholder={t('auth:inputs.password.placeholder')}
-            errorMessage={form.errors.password?.message}
+            errorMessage={getTranslate(form.errors.password?.message)}
             textContentType="newPassword"
             secured
           />
@@ -50,7 +51,7 @@ export default function Register({ navigation }: Props) {
             control={form.control}
             label={t('auth:inputs.confirmPassword.label')}
             placeholder={t('auth:inputs.confirmPassword.placeholder')}
-            errorMessage={form.errors.confirmPassword?.message}
+            errorMessage={getTranslate(form.errors.confirmPassword?.message)}
             textContentType="newPassword"
             onSubmitEditing={form.onSubmit}
             secured
