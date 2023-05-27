@@ -33,7 +33,6 @@ export default function ModalNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
-        presentation: 'modal',
         headerLeft: renderHeaderIcon,
         headerTitle: '',
         headerStyle: { backgroundColor: Colors.background },

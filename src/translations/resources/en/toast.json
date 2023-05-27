@@ -41,5 +41,11 @@
       "header": "Registration failed",
       "message": "Please check your details"
     }
+  },
+  "transaction": {
+    "error": {
+      "header": "Create transaction failed",
+      "message": "Please check your details"
+    }
   }
 }

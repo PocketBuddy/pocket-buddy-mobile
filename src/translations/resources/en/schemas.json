@@ -31,5 +31,21 @@
       "required": "Priority cannot be empty",
       "valid": "Priority must be a number"
     }
+  },
+  "transactions": {
+    "name": {
+      "required": "Name cannot be empty",
+      "valid": "Name must be up to 20 characters"
+    },
+    "amount": {
+      "required": "Amount cannot be empty",
+      "valid": "Amount must have up to 2 decimal places"
+    },
+    "spentDate": {
+      "required": "Date cannot be empty"
+    },
+    "repeatedAt": {
+      "required": "Repeated at cannot be empty"
+    }
   }
 }

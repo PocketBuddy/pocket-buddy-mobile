@@ -1,0 +1,11 @@
+{
+  "category": {
+    "title": "Select category",
+    "button": "Add"
+  },
+  "subcategory": {
+    "title": "Select subcategory",
+    "button": "Add"
+  },
+  "error": "No category selected"
+}

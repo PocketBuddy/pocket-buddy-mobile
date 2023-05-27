@@ -1,6 +1,6 @@
+import { Text, TouchableOpacity } from 'react-native';
 import { ParagraphAlign } from 'types/components';
 import React from 'react';
-import { Text } from 'react-native';
 import { useTheme } from '@/hooks';
 
 type Props = {
@@ -16,10 +16,29 @@ export default function Paragraph({
   isError = false,
   bolded = false,
   align = ParagraphAlign.Left,
+  onPress,
 }: Props) {
   const { Common } = useTheme();
   const alignRight = align === ParagraphAlign.Right;
   const alignCenter = align === ParagraphAlign.Center;
+
+  if (onPress) {
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <Text
+          style={[
+            Common.paragraph.primary,
+            isError && Common.paragraph.error,
+            bolded && Common.paragraph.bolded,
+            alignRight && Common.paragraph.right,
+            alignCenter && Common.paragraph.center,
+          ]}
+        >
+          {text}
+        </Text>
+      </TouchableOpacity>
+    );
+  }
 
   return (
     <Text
