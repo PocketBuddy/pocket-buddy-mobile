@@ -1,9 +1,11 @@
+import { useCallback, useEffect } from 'react';
 import { showToast } from '@/store/toast';
 import { ToastType } from 'types/components';
 import { TransactionsSchema } from '@/schemas';
-import { useCallback } from 'react';
+import { useCreateTransactionMutation } from '@/services/modules/transactions';
 import { useDispatch } from 'react-redux';
 import { useForm } from '@/hooks';
+import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
 const defaultValues = {
@@ -19,10 +21,19 @@ const defaultValues = {
 export default function useAddTransactionForm() {
   const dispatch = useDispatch();
   const { t } = useTranslation(['toast']);
+  const navigation = useNavigation();
   const { handleSubmit, setValue, ...form } = useForm({
     defaultValues: defaultValues,
     validationSchema: TransactionsSchema.transaction,
   });
+  const [createTransaction, { isSuccess, isLoading }] =
+    useCreateTransactionMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigation.goBack();
+    }
+  }, [isSuccess]);
 
   const setCategoryId = (id: number | null) => {
     setValue('categoryId', id);
@@ -37,12 +48,20 @@ export default function useAddTransactionForm() {
   };
 
   const onSuccessSubmit = (values: Record<string, string>) => {
-    const mappedValues = {
-      ...values,
+    createTransaction({
       amount: parseFloat(values.amount.replace(',', '.')),
-    };
-    console.log(mappedValues);
+      expense_category_id: +values.categoryId,
+      expense_priority_id: +values.priorityId,
+      name: values.name,
+      spent_date: new Date(values.spentDate).toISOString().split('T')[0],
+    });
   };
+
+  useEffect(() => {
+    return () => {
+      form.reset(defaultValues);
+    };
+  }, []);
 
   const onErrorSubmit = () =>
     dispatch(
@@ -60,6 +79,7 @@ export default function useAddTransactionForm() {
 
   return {
     form,
+    isLoading,
     setCategoryId,
     setPriorityId,
     setSpentDate,

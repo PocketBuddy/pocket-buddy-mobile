@@ -16,8 +16,14 @@ export default function AddTransaction() {
   const { t } = useTranslation(['addTransaction']);
   const { Colors, Gutters, Layout } = useTheme();
   const navigation = useNavigation();
-  const { form, onSubmit, setCategoryId, setPriorityId, setSpentDate } =
-    useAddTransactionForm();
+  const {
+    form,
+    isLoading,
+    onSubmit,
+    setCategoryId,
+    setPriorityId,
+    setSpentDate,
+  } = useAddTransactionForm();
 
   return (
     <View
@@ -90,7 +96,7 @@ export default function AddTransaction() {
             <Button
               label={t('addTransaction:buttons.create')}
               onPress={onSubmit}
-              isLoading={false}
+              isLoading={isLoading}
             />
             <Button
               label={t('addTransaction:buttons.cancel')}

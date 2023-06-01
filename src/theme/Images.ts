@@ -2,6 +2,7 @@ import { faApple, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import {
   faBell,
   faChevronDown,
+  faChevronUp,
   faCircleExclamation,
   faCircleXmark,
   faEye,
@@ -25,6 +26,7 @@ export default function ({}: ThemeVariables) {
       apple: faApple,
       google: faGoogle,
       arrowDown: faChevronDown,
+      arrowUp: faChevronUp,
       settings: faGear,
       eyeOpen: faEye,
       eyeClosed: faEyeSlash,

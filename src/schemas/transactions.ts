@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 // only positive numbers with 2 decimal places
-const AMOUNT_REGEX = /^[0-9]+([.,][0-9]{1,2})?$/;
+const AMOUNT_REGEX = /^(?!0(?:[,.]0{0,2})?$)[0-9]+([.,][0-9]{1,2})?$/;
 
 const transaction = yup.object({
   name: yup

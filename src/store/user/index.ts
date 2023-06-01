@@ -23,7 +23,15 @@ const initialState: UserState = {
     role: '',
     created_at: '',
     budgets: [],
-    main_budget: null,
+    main_budget: {
+      id: -1,
+      name: '',
+      currency: {
+        id: -1,
+        name: '',
+        code: '',
+      },
+    },
   },
 };
 

@@ -13,6 +13,7 @@ import { useBottomSheet, useTheme } from '@/hooks';
 import { allPrioritiesSelector } from '@/store/priorities/selectors';
 import { ErrorMessageInput } from 'types/components';
 import { PriorityModel } from 'types/models';
+import { useGetPrioritiesQuery } from '@/services/modules/priorities';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -25,6 +26,7 @@ type Props = {
 export default function SelectPriority({ setPriorityId, errorMessage }: Props) {
   const { t } = useTranslation(['selectPriority']);
   const { Gutters } = useTheme();
+  const { isLoading, isError, refetch } = useGetPrioritiesQuery({});
   const priorities = useSelector(allPrioritiesSelector);
   const [selectedPriority, setSelectedPriority] = useState<
     PriorityModel | undefined
@@ -34,6 +36,10 @@ export default function SelectPriority({ setPriorityId, errorMessage }: Props) {
   const [noPriorityError, setNoPriorityError] = useState<boolean>(
     !!errorMessage || false,
   );
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   useEffect(() => {
     setNoPriorityError(!!errorMessage);
@@ -87,6 +93,8 @@ export default function SelectPriority({ setPriorityId, errorMessage }: Props) {
         data={priorities}
         renderItem={renderItem}
         indexToScroll={selectedIndex}
+        isLoading={isLoading}
+        isError={isError}
       />
       {noPriorityError && (
         <Paragraph text={t('selectPriority:error')} isError />

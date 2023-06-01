@@ -102,6 +102,7 @@ const categoriesApi = api.injectEndpoints({
 
 export const {
   useLazyGetCategoriesQuery,
+  useGetCategoriesQuery,
   useCreateCategoryMutation,
   useCreateSubCategoryMutation,
   useEditCategoryMutation,

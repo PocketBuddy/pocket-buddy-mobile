@@ -30,7 +30,7 @@ export default function ManagePrioritiesSheet({
   priority,
 }: Props) {
   const { t } = useTranslation(['managePriorities']);
-  const { addPriorityForm, editPriorityForm, deletePriorityForm } =
+  const { addPriorityForm, editPriorityForm, deletePriorityForm, isLoading } =
     useManagePrioritiesSheet({
       handleClose,
       isSheetOpen: isOpen,
@@ -149,7 +149,11 @@ export default function ManagePrioritiesSheet({
           )}
           renderButtons={() => (
             <>
-              <Button label={successLabel} onPress={onSubmit} />
+              <Button
+                label={successLabel}
+                onPress={onSubmit}
+                isLoading={isLoading}
+              />
               <Button
                 label={t('managePriorities:buttonClose')}
                 onPress={handleClose}

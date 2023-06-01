@@ -36,6 +36,7 @@ export default function ManageCategoriesSheet({
     addSubCategoryForm,
     editCategoryForm,
     deleteCategoryForm,
+    isLoading,
   } = useManageCategoriesSheet({
     handleClose,
     isSheetOpen: isOpen,
@@ -147,7 +148,11 @@ export default function ManageCategoriesSheet({
           )}
           renderButtons={() => (
             <>
-              <Button label={successLabel} onPress={onSubmit} />
+              <Button
+                label={successLabel}
+                onPress={onSubmit}
+                isLoading={isLoading}
+              />
               <Button
                 label={t('manageCategories:buttonClose')}
                 onPress={handleClose}

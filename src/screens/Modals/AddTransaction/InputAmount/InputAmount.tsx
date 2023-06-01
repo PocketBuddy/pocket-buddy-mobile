@@ -8,6 +8,8 @@ import { ErrorMessageInput, ParagraphAlign } from 'types/components';
 import { Paragraph, Title } from '@/components';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { TextInput, TouchableWithoutFeedback, View } from 'react-native';
+import { decimalSeparatorSelector } from '@/store/preferences/selectors';
+import { useSelector } from 'react-redux';
 import { useTheme } from '@/hooks';
 
 type Props = {
@@ -20,9 +22,12 @@ type RenderInputProps = {
   field: ControllerRenderProps<FieldValues, string>;
 };
 
+const MAX_LENGTH = 9;
+
 export default function InputAmount({ control, name, errorMessage }: Props) {
   const { Fonts, Layout, Gutters } = useTheme();
   const ref = useRef<TextInput>(null);
+  const decimalSeparator = useSelector(decimalSeparatorSelector);
 
   const handleFocus = useCallback(() => {
     if (ref.current) {
@@ -38,7 +43,12 @@ export default function InputAmount({ control, name, errorMessage }: Props) {
     ({ field: { onBlur, onChange, value } }: RenderInputProps) => (
       <TouchableWithoutFeedback onPress={handleFocus}>
         <View style={[Layout.center]}>
-          <View style={[Layout.row, Gutters.tinyGap]}>
+          <View
+            style={[
+              value.length < MAX_LENGTH ? Layout.row : Layout.colCenter,
+              Gutters.tinyColumnGap,
+            ]}
+          >
             <TextInput
               value={value}
               onChangeText={onChange}
@@ -47,8 +57,7 @@ export default function InputAmount({ control, name, errorMessage }: Props) {
               style={[Fonts.titleLarge, errorMessage ? Fonts.textError : null]}
               textAlign="left"
               ref={ref}
-              // TODO: get dot or comma based on user preferences
-              placeholder="0,00"
+              placeholder={`0${decimalSeparator}00`}
               placeholderTextColor={Fonts.textPrimaryPlaceholder.color}
             />
             {/* TODO: get currency based on budget */}

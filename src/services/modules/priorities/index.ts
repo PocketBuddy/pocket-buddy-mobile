@@ -88,6 +88,7 @@ const prioritiesApi = api.injectEndpoints({
 
 export const {
   useLazyGetPrioritiesQuery,
+  useGetPrioritiesQuery,
   useCreatePriorityMutation,
   useEditPriorityMutation,
   useDeletePriorityMutation,

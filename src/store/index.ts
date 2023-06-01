@@ -21,6 +21,7 @@ import preferences from './preferences';
 import priorities from './priorities';
 import theme from './theme';
 import toast from './toast';
+import transactions from './transactions';
 import user from './user';
 
 const reducers = combineReducers({
@@ -30,6 +31,7 @@ const reducers = combineReducers({
   priorities,
   theme,
   toast,
+  transactions,
   user,
   [api.reducerPath]: api.reducer,
 });

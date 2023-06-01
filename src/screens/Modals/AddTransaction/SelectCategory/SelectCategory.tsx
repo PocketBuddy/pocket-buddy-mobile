@@ -17,6 +17,7 @@ import { useBottomSheet, useTheme } from '@/hooks';
 import { CategoryModel } from 'types/models';
 import { ErrorMessageInput } from 'types/components';
 import { RootState } from '@/store';
+import { useGetCategoriesQuery } from '@/services/modules/categories';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -30,6 +31,7 @@ type Props = {
 export default function SelectCategory({ setCategoryId, errorMessage }: Props) {
   const { t } = useTranslation(['selectCategory']);
   const { Gutters } = useTheme();
+  const { isLoading, isError, refetch } = useGetCategoriesQuery({});
   const [selectedCategory, setSelectedCategory] = useState<
     CategoryModel | undefined
   >();
@@ -47,6 +49,10 @@ export default function SelectCategory({ setCategoryId, errorMessage }: Props) {
   const [noCategoryError, setNoCategoryError] = useState<boolean>(
     !!errorMessage || false,
   );
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   useEffect(() => {
     setNoCategoryError(!!errorMessage);
@@ -142,6 +148,8 @@ export default function SelectCategory({ setCategoryId, errorMessage }: Props) {
         data={categories}
         renderItem={renderCategory}
         indexToScroll={selectedCategoryIndex}
+        isLoading={isLoading}
+        isError={isError}
       />
       {selectedCategory && (
         <>

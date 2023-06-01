@@ -19,6 +19,7 @@ export { default as SettingsItem } from './molecules/SettingsItem/SettingsItem';
 export { default as FloatingButton } from './molecules/FloatingButton/FloatingButton';
 export { default as DataMessage } from './molecules/DataMessage/DataMessage';
 export { default as TitleInteractive } from './molecules/TitleInteractive/TitleInteractive';
+export { default as Amount } from './molecules/Amount/Amount';
 
 // Organisms
 export { default as Form } from './organisms/Form/Form';
