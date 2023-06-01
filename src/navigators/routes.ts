@@ -1,6 +1,5 @@
 import {
   Achievements,
-  AddTransaction,
   Auth,
   Challenges,
   Goals,
@@ -9,6 +8,7 @@ import {
   Login,
   ManageCategories,
   ManagePriorities,
+  ManageTransaction,
   Notifications,
   Register,
   Settings,
@@ -40,7 +40,7 @@ export enum ScreenNames {
   settings = 'Settings',
   manageCategories = 'ManageCategories',
   managePriorities = 'ManagePriorities',
-  addTransaction = 'AddTransaction',
+  mangeTransaction = 'MangeTransaction',
 }
 
 export const MainScreens = Object.freeze({
@@ -80,9 +80,9 @@ export const MainScreens = Object.freeze({
     name: ScreenNames.managePriorities,
     component: ManagePriorities,
   },
-  addTransaction: {
-    name: ScreenNames.addTransaction,
-    component: AddTransaction,
+  manageTransaction: {
+    name: ScreenNames.mangeTransaction,
+    component: ManageTransaction,
   },
 });
 

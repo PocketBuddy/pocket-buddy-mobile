@@ -108,8 +108,8 @@ export default function MainNavigator() {
         }}
       />
       <Tab.Screen
-        name={`${MainScreens.addTransaction.name}Placeholder`}
-        component={MainScreens.addTransaction.component}
+        name={`${MainScreens.manageTransaction.name}Placeholder`}
+        component={MainScreens.manageTransaction.component}
         options={{
           tabBarIcon: ({ size }) =>
             renderPlus({ size, icon: Images.icons.plus }),
@@ -118,7 +118,7 @@ export default function MainNavigator() {
           tabPress: e => {
             e.preventDefault();
             navigate(StackNames.modals, {
-              screen: MainScreens.addTransaction.name,
+              screen: MainScreens.manageTransaction.name,
             });
           },
         })}

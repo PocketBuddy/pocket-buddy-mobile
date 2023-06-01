@@ -39,7 +39,7 @@ export default function ModalNavigator() {
         headerShadowVisible: false,
       }}
     >
-      <Stack.Screen {...MainScreens.addTransaction} />
+      <Stack.Screen {...MainScreens.manageTransaction} />
     </Stack.Navigator>
   );
 }

@@ -12,8 +12,8 @@ import { useTheme } from '@/hooks';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
-export default function AddTransaction() {
-  const { t } = useTranslation(['addTransaction']);
+export default function MangeTransaction() {
+  const { t } = useTranslation(['mangeTransaction']);
   const { Colors, Gutters, Layout } = useTheme();
   const navigation = useNavigation();
   const {
@@ -48,8 +48,8 @@ export default function AddTransaction() {
                 <ControlledInput
                   name="name"
                   control={form.control}
-                  label={t('addTransaction:name.label')}
-                  placeholder={t('addTransaction:name.placeholder')}
+                  label={t('name.label')}
+                  placeholder={t('name.placeholder')}
                   errorMessage={getTranslate(form.errors.name?.message)}
                 />
               </View>
@@ -62,7 +62,7 @@ export default function AddTransaction() {
                 errorMessage={form.errors.priorityId?.message}
               />
               <SelectDate
-                title={t('addTransaction:spentDate.title')}
+                title={t('spentDate.title')}
                 setDate={setSpentDate}
                 passedDate={form.control._defaultValues.spentDate}
               />
@@ -94,12 +94,12 @@ export default function AddTransaction() {
         renderButtons={() => (
           <>
             <Button
-              label={t('addTransaction:buttons.create')}
+              label={t('buttons.create')}
               onPress={onSubmit}
               isLoading={isLoading}
             />
             <Button
-              label={t('addTransaction:buttons.cancel')}
+              label={t('buttons.cancel')}
               onPress={() => navigation.goBack()}
               type={ButtonType.Secondary}
             />
