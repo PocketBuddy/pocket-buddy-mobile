@@ -65,6 +65,7 @@ const persistConfig = {
     'categories',
     'priorities',
     'preferences',
+    'transactions',
   ],
 };
 

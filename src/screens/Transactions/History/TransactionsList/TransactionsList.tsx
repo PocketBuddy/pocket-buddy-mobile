@@ -1,5 +1,7 @@
 import { Amount, ManagementList, Paragraph, Title } from '@/components';
 import React, { useCallback } from 'react';
+import { ScreenNames, StackNames } from '@/navigators/routes';
+import { TouchableOpacity, View } from 'react-native';
 import {
   TransactionListItemModel,
   TransactionListModel,
@@ -8,9 +10,9 @@ import {
 import { formatDate } from '@/utils';
 import { languageSelector } from '@/store/preferences/selectors';
 import { FlatList as NestedFlatList } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { useTheme } from '@/hooks';
-import { View } from 'react-native';
 
 type Props = {
   data: TransactionListModel;
@@ -27,21 +29,34 @@ export default function TransactionsList({
 }: Props) {
   const { Layout, Gutters } = useTheme();
   const language = useSelector(languageSelector);
+  const navigation = useNavigation();
 
   const renderItem = useCallback(
     ({ item: expense }: { item: TransactionModel }) => (
-      <View
-        key={expense.id}
-        style={[
-          Layout.row,
-          Layout.scrollSpaceBetween,
-          Layout.alignItemsCenter,
-          Gutters.tinyBPadding,
-        ]}
+      <TouchableOpacity
+        onPress={() =>
+          // @ts-ignore
+          navigation.navigate(StackNames.modals, {
+            screen: ScreenNames.mangeTransaction,
+            params: {
+              transactionId: expense.id,
+            },
+          })
+        }
       >
-        <Paragraph text={expense.name} />
-        <Amount value={expense.amount} />
-      </View>
+        <View
+          key={expense.id}
+          style={[
+            Layout.row,
+            Layout.scrollSpaceBetween,
+            Layout.alignItemsCenter,
+            Gutters.tinyBPadding,
+          ]}
+        >
+          <Paragraph text={expense.name} />
+          <Amount value={expense.amount} />
+        </View>
+      </TouchableOpacity>
     ),
     [],
   );

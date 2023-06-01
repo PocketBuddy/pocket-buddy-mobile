@@ -15,14 +15,12 @@ const INIT_DATE_SUBTRACTION = 'year';
 
 export default function History() {
   const [page, setPage] = useState(INIT_PAGE);
-  // const [limit, setLimit] = useState(INIT_LIMIT);
   const { isNetworkError } = useNetworkError();
   const [getTransactions, { data, isError }] = useLazyGetTransactionsQuery();
   const transactions = useSelector(allTransactionsSelector);
   const transactionsLoading = useSelector(transactionsLoadingSelector);
   const isFocused = useIsFocused();
 
-  // TODO: refactor pagination
   useEffect(() => {
     !isNetworkError &&
       isFocused &&
@@ -34,17 +32,17 @@ export default function History() {
       }).refetch();
   }, [page, isNetworkError, isFocused]);
 
-  // it could be helpful when pagination will be refactored
-  // useEffect(() => {
-  //   return () => {
-  //     setPage(INIT_PAGE);
-  //     setLimit(INIT_LIMIT);
-  //   };
-  // }, [isFocused]);
+  useEffect(() => {
+    return () => {
+      setPage(INIT_PAGE);
+    };
+  }, [isFocused]);
 
   return (
     <TransactionsList
-      data={transactions}
+      // this is really stupid but it works for now
+      // TODO: it should be number of transactions items equal to the limit * page instead of 5 * page
+      data={transactions.slice(0, 5 * page)}
       isLoading={transactionsLoading}
       isError={isError}
       fetchMore={() => {

@@ -25,7 +25,7 @@ export type MainSettingsParamsList = {
 };
 
 export type ModalsParamsList = {
-  AddTransaction: undefined;
+  ManageTransaction: { transactionId?: string };
 };
 
 export type ApplicationStackParamList = {

@@ -14,7 +14,7 @@ export default function ModalNavigator() {
   const { Images, Gutters, Layout, Colors } = useTheme();
   const navigation = useNavigation();
 
-  const renderHeaderIcon = useCallback(
+  const renderLeftHeaderIcon = useCallback(
     () => (
       <TouchableOpacity
         style={[Gutters.tinyLMargin, Layout.rotate90]}
@@ -33,12 +33,13 @@ export default function ModalNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerLeft: renderHeaderIcon,
+        headerLeft: renderLeftHeaderIcon,
         headerTitle: '',
         headerStyle: { backgroundColor: Colors.background },
         headerShadowVisible: false,
       }}
     >
+      {/* @ts-ignore */}
       <Stack.Screen {...MainScreens.manageTransaction} />
     </Stack.Navigator>
   );

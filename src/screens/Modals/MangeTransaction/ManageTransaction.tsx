@@ -1,29 +1,64 @@
-import { Button, ControlledInput, Form } from '@/components';
+import { Button, ControlledInput, Form, TabBarIcon } from '@/components';
+import { Constants, getTranslate } from '@/utils';
+import React, { useCallback } from 'react';
+import { TouchableOpacity, View } from 'react-native';
 import { ButtonType } from 'types/components';
-import { getTranslate } from '@/utils';
 import InputAmount from './InputAmount/InputAmount';
-import React from 'react';
 import SelectCategory from './SelectCategory/SelectCategory';
 import SelectDate from './SelectDate/SelectDate';
 import SelectPriority from './SelectPriority/SelectPriority';
-import useAddTransactionForm from './useAddTransactionForm';
+import useManageTransactionForm from './useManageTransactionForm';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@/hooks';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
 
-export default function MangeTransaction() {
+type Props = {
+  route: {
+    params: {
+      transactionId: number;
+    };
+  };
+};
+
+export default function MangeTransaction({ route }: Props) {
   const { t } = useTranslation(['mangeTransaction']);
-  const { Colors, Gutters, Layout } = useTheme();
+  const { Colors, Gutters, Layout, Images } = useTheme();
   const navigation = useNavigation();
+  const transactionId = route.params?.transactionId || null;
   const {
     form,
     isLoading,
+    defaultValues,
     onSubmit,
+    onDelete,
     setCategoryId,
     setPriorityId,
     setSpentDate,
-  } = useAddTransactionForm();
+  } = useManageTransactionForm({ transactionId });
+
+  const renderRightHeaderIcon = useCallback(
+    () => (
+      <TouchableOpacity
+        style={[Gutters.tinyRMargin, Layout.rotate90]}
+        onPress={onDelete}
+      >
+        <TabBarIcon
+          icon={Images.icons.xMark}
+          focused
+          size={Constants.HEADER_ICON_SIZE}
+        />
+      </TouchableOpacity>
+    ),
+    [onDelete],
+  );
+
+  React.useEffect(() => {
+    if (transactionId) {
+      navigation.setOptions({
+        headerRight: renderRightHeaderIcon,
+      });
+    }
+  }, [transactionId]);
 
   return (
     <View
@@ -41,6 +76,7 @@ export default function MangeTransaction() {
                 control={form.control}
                 name="amount"
                 errorMessage={getTranslate(form.errors.amount?.message)}
+                autoFocus={!transactionId}
               />
             </View>
             <View style={[Gutters.tinyGap]}>
@@ -56,15 +92,17 @@ export default function MangeTransaction() {
               <SelectCategory
                 setCategoryId={setCategoryId}
                 errorMessage={form.errors.categoryId?.message}
+                passedCategoryId={defaultValues.expenseCategoryId || undefined}
               />
               <SelectPriority
                 setPriorityId={setPriorityId}
                 errorMessage={form.errors.priorityId?.message}
+                passedPriorityId={defaultValues.expensePriorityId || undefined}
               />
               <SelectDate
                 title={t('spentDate.title')}
                 setDate={setSpentDate}
-                passedDate={form.control._defaultValues.spentDate}
+                passedDate={new Date(defaultValues.spentDate)}
               />
               {/* TODO: add perpetual transaction when backend will be ready */}
               {/* <View style={[Gutters.tinyGap]}>
@@ -94,7 +132,7 @@ export default function MangeTransaction() {
         renderButtons={() => (
           <>
             <Button
-              label={t('buttons.create')}
+              label={transactionId ? t('buttons.edit') : t('buttons.create')}
               onPress={onSubmit}
               isLoading={isLoading}
             />

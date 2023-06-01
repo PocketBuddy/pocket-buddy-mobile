@@ -30,6 +30,12 @@ export default function SelectDate({
     setDate(selectedDate);
   }, [selectedDate]);
 
+  useEffect(() => {
+    if (passedDate) {
+      setSelectedDate(passedDate);
+    }
+  }, [passedDate]);
+
   return (
     <>
       <TitleInteractive

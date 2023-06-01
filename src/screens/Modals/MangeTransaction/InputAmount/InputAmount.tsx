@@ -16,6 +16,7 @@ type Props = {
   control: ControllerProps['control'];
   name: ControllerProps['name'];
   errorMessage?: ErrorMessageInput;
+  autoFocus?: boolean;
 };
 
 type RenderInputProps = {
@@ -24,13 +25,18 @@ type RenderInputProps = {
 
 const MAX_LENGTH = 9;
 
-export default function InputAmount({ control, name, errorMessage }: Props) {
+export default function InputAmount({
+  control,
+  name,
+  errorMessage,
+  autoFocus = true,
+}: Props) {
   const { Fonts, Layout, Gutters } = useTheme();
   const ref = useRef<TextInput>(null);
   const decimalSeparator = useSelector(decimalSeparatorSelector);
 
   const handleFocus = useCallback(() => {
-    if (ref.current) {
+    if (ref.current && autoFocus) {
       ref.current.focus();
     }
   }, [ref]);

@@ -8,6 +8,7 @@
   },
   "buttons": {
     "create": "Dodaj",
+    "edit": "Zapisz",
     "cancel": "Anuluj"
   }
 }

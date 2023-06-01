@@ -1,4 +1,9 @@
 import {
+  allPrioritiesSelector,
+  prioritiesLoadingSelector,
+  priorityByIdSelector,
+} from '@/store/priorities/selectors';
+import {
   Chip,
   HorizontalList,
   Paragraph,
@@ -10,9 +15,9 @@ import ManagePrioritiesSheet, {
 } from '@/screens/Settings/ManagePriorities/ManagePrioritiesSheet';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useBottomSheet, useTheme } from '@/hooks';
-import { allPrioritiesSelector } from '@/store/priorities/selectors';
 import { ErrorMessageInput } from 'types/components';
 import { PriorityModel } from 'types/models';
+import { RootState } from '@/store';
 import { useGetPrioritiesQuery } from '@/services/modules/priorities';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -21,24 +26,53 @@ import { View } from 'react-native';
 type Props = {
   setPriorityId: (id: number | null) => void;
   errorMessage?: ErrorMessageInput;
+  passedPriorityId?: number;
 };
 
-export default function SelectPriority({ setPriorityId, errorMessage }: Props) {
+export default function SelectPriority({
+  setPriorityId,
+  errorMessage,
+  passedPriorityId,
+}: Props) {
   const { t } = useTranslation(['selectPriority']);
   const { Gutters } = useTheme();
-  const { isLoading, isError, refetch } = useGetPrioritiesQuery({});
+  const { isError, refetch } = useGetPrioritiesQuery({});
+
+  const prioritiesLoading = useSelector(prioritiesLoadingSelector);
   const priorities = useSelector(allPrioritiesSelector);
+
   const [selectedPriority, setSelectedPriority] = useState<
     PriorityModel | undefined
   >(undefined);
   const [selectedIndex, setSelectedIndex] = useState(0);
+
   const { open, close, isOpen } = useBottomSheet({});
   const [noPriorityError, setNoPriorityError] = useState<boolean>(
     !!errorMessage || false,
   );
 
+  const defaultPriority = useSelector((state: RootState) =>
+    priorityByIdSelector(state)(passedPriorityId),
+  );
+
   useEffect(() => {
+    let timeout: any = null;
     refetch();
+
+    if (defaultPriority) {
+      setSelectedPriority(defaultPriority);
+      setPriorityId(defaultPriority.id);
+
+      timeout = setTimeout(() => {
+        setSelectedIndex(
+          priorities.findIndex(p => p.id === defaultPriority.id) || 0,
+        );
+      });
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
 
   useEffect(() => {
@@ -93,7 +127,7 @@ export default function SelectPriority({ setPriorityId, errorMessage }: Props) {
         data={priorities}
         renderItem={renderItem}
         indexToScroll={selectedIndex}
-        isLoading={isLoading}
+        isLoading={prioritiesLoading && !priorities.length}
         isError={isError}
       />
       {noPriorityError && (

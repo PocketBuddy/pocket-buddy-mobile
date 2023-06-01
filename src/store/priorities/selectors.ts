@@ -5,3 +5,7 @@ export const allPrioritiesSelector = (state: RootState) =>
 
 export const prioritiesLoadingSelector = (state: RootState) =>
   state.priorities.isLoading;
+
+export const priorityByIdSelector =
+  (state: RootState) => (id?: number | null) =>
+    state.priorities.list.find(priority => priority.id === id) || null;

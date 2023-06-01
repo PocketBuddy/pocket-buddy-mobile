@@ -16,6 +16,7 @@ import {
   faSquarePlus,
   faSquareXmark,
   faTrophy,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { ThemeVariables } from 'types/theme';
 
@@ -41,6 +42,7 @@ export default function ({}: ThemeVariables) {
       add: faSquarePlus,
       edit: faSquarePen,
       delete: faSquareXmark,
+      xMark: faXmark,
     },
   };
 }

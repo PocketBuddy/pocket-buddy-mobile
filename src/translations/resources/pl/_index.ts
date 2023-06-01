@@ -3,7 +3,7 @@ import dataMessage from './dataMessage.json';
 import home from './home.json';
 import manageCategories from './manageCategories.json';
 import managePriorities from './managePriorities.json';
-import mangeTransaction from './mangeTransaction.json';
+import mangeTransaction from './manageTransaction.json';
 import schemas from './schemas.json';
 import screens from './screens.json';
 import selectCategory from './selectCategory.json';

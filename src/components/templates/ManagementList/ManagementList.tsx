@@ -96,6 +96,7 @@ export default function ManagementList({
         ListFooterComponent={isLoading ? <DataMessage type="loading" /> : null}
       />
       {renderFloatingButton && renderFloatingButton()}
+      {/* TODO: make something pretty */}
       {renderScrollTop()}
     </View>
   );

@@ -109,6 +109,7 @@ export default function MainNavigator() {
       />
       <Tab.Screen
         name={`${MainScreens.manageTransaction.name}Placeholder`}
+        // @ts-ignore
         component={MainScreens.manageTransaction.component}
         options={{
           tabBarIcon: ({ size }) =>

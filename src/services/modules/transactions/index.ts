@@ -140,8 +140,8 @@ const transactionsApi = api.injectEndpoints({
       },
     }),
     deleteTransaction: build.mutation<DeleteResponse, DeleteRequest>({
-      query: id => ({
-        url: `/user-expense/${id}`,
+      query: data => ({
+        url: `/user-expense/${data.id}`,
         method: 'DELETE',
       }),
       onCacheEntryAdded: async (request, { dispatch, cacheDataLoaded }) => {
@@ -162,6 +162,6 @@ const transactionsApi = api.injectEndpoints({
 export const {
   useLazyGetTransactionsQuery,
   useCreateTransactionMutation,
-  useEditTransactionMutation,
   useDeleteTransactionMutation,
+  useEditTransactionMutation,
 } = transactionsApi;

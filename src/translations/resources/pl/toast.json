@@ -41,5 +41,11 @@
       "header": "Błąd rejestracji",
       "message": "Sprawdź swoje dane"
     }
+  },
+  "transaction": {
+    "error": {
+      "header": "Utworzenie nie powiodło się",
+      "message": "Sprawdź swoje dane"
+    }
   }
 }

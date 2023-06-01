@@ -1,6 +1,9 @@
 import {
   allCategoriesSelector,
+  categoriesLoadingSelector,
+  categoryByIdSelector,
   subcategoriesByIdSelector,
+  subcategoryByIdSelector,
 } from '@/store/categories/selectors';
 import {
   Chip,
@@ -25,25 +28,42 @@ import { View } from 'react-native';
 type Props = {
   setCategoryId: (id: number | null) => void;
   errorMessage?: ErrorMessageInput;
+  passedCategoryId?: number;
 };
 
 // TODO: move logic to hook
-export default function SelectCategory({ setCategoryId, errorMessage }: Props) {
+export default function SelectCategory({
+  setCategoryId,
+  errorMessage,
+  passedCategoryId,
+}: Props) {
   const { t } = useTranslation(['selectCategory']);
   const { Gutters } = useTheme();
-  const { isLoading, isError, refetch } = useGetCategoriesQuery({});
+  const { isError, refetch } = useGetCategoriesQuery({});
+
   const [selectedCategory, setSelectedCategory] = useState<
     CategoryModel | undefined
   >();
   const [selectedSubcategory, setSelectedSubcategory] = useState<
     CategoryModel | undefined
   >();
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
+  const [selectedSubcategoryIndex, setSelectedSubcategoryIndex] = useState(0);
+
   const categories = useSelector(allCategoriesSelector);
+  const categoriesLoading = useSelector(categoriesLoadingSelector);
+
   const subcategories = useSelector((state: RootState) =>
     subcategoriesByIdSelector(state)(selectedCategory?.id),
   );
-  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
-  const [selectedSubcategoryIndex, setSelectedSubcategoryIndex] = useState(0);
+
+  const defaultCategory = useSelector((state: RootState) =>
+    categoryByIdSelector(state)(passedCategoryId),
+  );
+  const defaultSubcategory = useSelector((state: RootState) =>
+    subcategoryByIdSelector(state)(passedCategoryId),
+  );
+
   const [sheetType, setSheetType] = useState<CategoriesSheetType>();
   const { open, close, isOpen } = useBottomSheet({});
   const [noCategoryError, setNoCategoryError] = useState<boolean>(
@@ -51,7 +71,42 @@ export default function SelectCategory({ setCategoryId, errorMessage }: Props) {
   );
 
   useEffect(() => {
+    let timeout: any = null;
     refetch();
+
+    if (defaultCategory) {
+      setSelectedCategory(defaultCategory);
+      setCategoryId(defaultCategory.id);
+
+      timeout = setTimeout(() => {
+        setSelectedCategoryIndex(
+          categories.findIndex(c => c.id === defaultCategory.id),
+        );
+      });
+      return;
+    }
+    if (defaultSubcategory.category) {
+      setSelectedCategory(defaultSubcategory.category);
+      setSelectedSubcategory(defaultSubcategory.subcategory);
+      setCategoryId(defaultSubcategory.subcategory?.id || null);
+
+      timeout = setTimeout(() => {
+        setSelectedCategoryIndex(
+          categories.findIndex(
+            c => c.id === defaultSubcategory?.category?.id,
+          ) || 0,
+        );
+        setSelectedSubcategoryIndex(
+          selectedCategory?.subcategories.findIndex(
+            c => c.id === defaultSubcategory?.subcategory?.id,
+          ) || 0,
+        );
+      });
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
 
   useEffect(() => {
@@ -97,9 +152,11 @@ export default function SelectCategory({ setCategoryId, errorMessage }: Props) {
   }, []);
 
   useEffect(() => {
-    setSelectedSubcategory(undefined);
-    if (selectedCategory) {
-      setNoCategoryError(false);
+    if (!defaultSubcategory.subcategory) {
+      setSelectedSubcategory(undefined);
+      if (selectedCategory) {
+        setNoCategoryError(false);
+      }
     }
   }, [selectedCategory]);
 
@@ -148,7 +205,7 @@ export default function SelectCategory({ setCategoryId, errorMessage }: Props) {
         data={categories}
         renderItem={renderCategory}
         indexToScroll={selectedCategoryIndex}
-        isLoading={isLoading}
+        isLoading={categoriesLoading && !categories.length}
         isError={isError}
       />
       {selectedCategory && (

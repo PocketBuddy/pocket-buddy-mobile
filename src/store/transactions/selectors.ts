@@ -15,10 +15,10 @@ export const transactionsByDateSelector =
 export const transactionsLoadingSelector = (state: RootState) =>
   state.transactions.isLoading;
 
-export const transactionById = (state: RootState) => (id: number) =>
+export const transactionById = (state: RootState) => (id: number | null) =>
   state.transactions.list
     .flatMap(transaction => transaction.expenses)
-    .find(transaction => transaction.id === id);
+    .find(transaction => transaction.id === id) || null;
 
 export const countTransactionsSelector = (state: RootState) =>
   state.transactions.list.flatMap(transaction => transaction.expenses).length;

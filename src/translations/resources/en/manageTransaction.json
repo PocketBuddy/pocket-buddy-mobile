@@ -8,6 +8,7 @@
   },
   "buttons": {
     "create": "Create",
+    "edit": "Save",
     "cancel": "Cancel"
   }
 }
