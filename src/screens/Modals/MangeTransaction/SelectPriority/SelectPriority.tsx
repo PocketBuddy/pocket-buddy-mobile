@@ -18,7 +18,7 @@ import { useBottomSheet, useTheme } from '@/hooks';
 import { ErrorMessageInput } from 'types/components';
 import { PriorityModel } from 'types/models';
 import { RootState } from '@/store';
-import { useGetPrioritiesQuery } from '@/services/modules/priorities';
+import { useLazyGetPrioritiesQuery } from '@/services/modules/priorities';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -27,16 +27,18 @@ type Props = {
   setPriorityId: (id: number | null) => void;
   errorMessage?: ErrorMessageInput;
   passedPriorityId?: number;
+  isNetworkError?: boolean;
 };
 
 export default function SelectPriority({
   setPriorityId,
   errorMessage,
   passedPriorityId,
+  isNetworkError = false,
 }: Props) {
   const { t } = useTranslation(['selectPriority']);
   const { Gutters } = useTheme();
-  const { isError, refetch } = useGetPrioritiesQuery({});
+  const [getPriorities, { isError }] = useLazyGetPrioritiesQuery({});
 
   const prioritiesLoading = useSelector(prioritiesLoadingSelector);
   const priorities = useSelector(allPrioritiesSelector);
@@ -56,8 +58,11 @@ export default function SelectPriority({
   );
 
   useEffect(() => {
+    !isNetworkError && getPriorities({});
+  }, [isNetworkError]);
+
+  useEffect(() => {
     let timeout: any = null;
-    refetch();
 
     if (defaultPriority) {
       setSelectedPriority(defaultPriority);

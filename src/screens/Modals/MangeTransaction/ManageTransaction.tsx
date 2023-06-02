@@ -2,6 +2,7 @@ import { Button, ControlledInput, Form, TabBarIcon } from '@/components';
 import { Constants, getTranslate } from '@/utils';
 import React, { useCallback } from 'react';
 import { TouchableOpacity, View } from 'react-native';
+import { useNetworkError, useTheme } from '@/hooks';
 import { ButtonType } from 'types/components';
 import InputAmount from './InputAmount/InputAmount';
 import SelectCategory from './SelectCategory/SelectCategory';
@@ -9,7 +10,6 @@ import SelectDate from './SelectDate/SelectDate';
 import SelectPriority from './SelectPriority/SelectPriority';
 import useManageTransactionForm from './useManageTransactionForm';
 import { useNavigation } from '@react-navigation/native';
-import { useTheme } from '@/hooks';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -25,6 +25,7 @@ export default function MangeTransaction({ route }: Props) {
   const { Colors, Gutters, Layout, Images } = useTheme();
   const navigation = useNavigation();
   const transactionId = route.params?.transactionId || null;
+  const { isNetworkError } = useNetworkError();
   const {
     form,
     isLoading,
@@ -93,11 +94,13 @@ export default function MangeTransaction({ route }: Props) {
                 setCategoryId={setCategoryId}
                 errorMessage={form.errors.categoryId?.message}
                 passedCategoryId={defaultValues.expenseCategoryId || undefined}
+                isNetworkError={isNetworkError}
               />
               <SelectPriority
                 setPriorityId={setPriorityId}
                 errorMessage={form.errors.priorityId?.message}
                 passedPriorityId={defaultValues.expensePriorityId || undefined}
+                isNetworkError={isNetworkError}
               />
               <SelectDate
                 title={t('spentDate.title')}

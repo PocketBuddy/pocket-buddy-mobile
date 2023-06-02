@@ -34,7 +34,7 @@ export default function HorizontalList({
     }
   }, [indexToScroll]);
 
-  if (isLoading) {
+  if (isLoading && !data.length) {
     return <Spinner />;
   }
 

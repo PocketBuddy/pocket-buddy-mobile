@@ -2,6 +2,7 @@ import { isRejectedWithValue, type Middleware } from '@reduxjs/toolkit';
 import { Constants } from '@/utils';
 import i18n from '@/translations';
 import { ResponseStatus } from 'types/services';
+import { setTransactionsLoading } from './transactions';
 import { showToast } from './toast';
 import { ToastType } from 'types/components';
 
@@ -17,6 +18,7 @@ export const toastLogger: Middleware = store => next => action => {
         type: ToastType.Error,
       }),
     );
+    store.dispatch(setTransactionsLoading(false));
     return next(action);
   }
   if (status && message) {

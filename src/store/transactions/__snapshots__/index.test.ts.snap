@@ -269,21 +269,6 @@ exports[`transactions store setTransactions should add and increase amount_sum w
       "amount_sum": 125,
       "expenses": [
         {
-          "amount": 100,
-          "expense_category": {
-            "id": 1,
-            "name": "test",
-          },
-          "expense_priority": {
-            "id": 1,
-            "name": "test",
-            "priority": 1,
-          },
-          "id": 1,
-          "name": "test",
-          "spent_date": "2021-01-01",
-        },
-        {
           "amount": 25,
           "expense_category": {
             "id": 1,
@@ -295,6 +280,21 @@ exports[`transactions store setTransactions should add and increase amount_sum w
             "priority": 1,
           },
           "id": 2,
+          "name": "test",
+          "spent_date": "2021-01-01",
+        },
+        {
+          "amount": 100,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 1,
           "name": "test",
           "spent_date": "2021-01-01",
         },

@@ -20,7 +20,7 @@ import { useBottomSheet, useTheme } from '@/hooks';
 import { CategoryModel } from 'types/models';
 import { ErrorMessageInput } from 'types/components';
 import { RootState } from '@/store';
-import { useGetCategoriesQuery } from '@/services/modules/categories';
+import { useLazyGetCategoriesQuery } from '@/services/modules/categories';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -29,6 +29,7 @@ type Props = {
   setCategoryId: (id: number | null) => void;
   errorMessage?: ErrorMessageInput;
   passedCategoryId?: number;
+  isNetworkError?: boolean;
 };
 
 // TODO: move logic to hook
@@ -36,10 +37,11 @@ export default function SelectCategory({
   setCategoryId,
   errorMessage,
   passedCategoryId,
+  isNetworkError = false,
 }: Props) {
   const { t } = useTranslation(['selectCategory']);
   const { Gutters } = useTheme();
-  const { isError, refetch } = useGetCategoriesQuery({});
+  const [getCategories, { isError }] = useLazyGetCategoriesQuery({});
 
   const [selectedCategory, setSelectedCategory] = useState<
     CategoryModel | undefined
@@ -71,8 +73,11 @@ export default function SelectCategory({
   );
 
   useEffect(() => {
+    !isNetworkError && getCategories({});
+  }, [isNetworkError]);
+
+  useEffect(() => {
     let timeout: any = null;
-    refetch();
 
     if (defaultCategory) {
       setSelectedCategory(defaultCategory);

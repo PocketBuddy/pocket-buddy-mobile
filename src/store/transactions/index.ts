@@ -73,40 +73,32 @@ export const transactionsSlice = createSlice({
             savedTransaction =>
               savedTransaction.spent_date === transaction.spent_date,
           );
-          if (transactionsGroupIndex !== -1) {
-            let expenseUpdatedIndex = -1;
 
-            const expenseIndex = state.list[
-              transactionsGroupIndex
-            ].expenses.findIndex(savedExpense => {
-              for (const [index, expense] of transaction.expenses.entries()) {
-                if (expense.id === savedExpense.id) {
-                  expenseUpdatedIndex = index;
-                  break;
-                }
+          // TODO: what if transaction is cached but not in list from server?
+          // for now it will be added to list, but it should be removed from cache
+          // also when we edit transaction in admin panel and change date
+          // it will be added to list on two dates
+          if (transactionsGroupIndex !== -1) {
+            // merge array of objects without duplicates
+            const allTransactions = [
+              ...transaction.expenses,
+              ...state.list[transactionsGroupIndex].expenses,
+            ].reduce((acc: TransactionModel[], obj: TransactionModel) => {
+              const existingObj = acc.find(item => item.id === obj.id);
+              if (!existingObj) {
+                acc.push(obj);
               }
-              return expenseUpdatedIndex !== -1;
-            });
-            if (expenseIndex !== -1) {
-              state.list[transactionsGroupIndex].expenses[expenseIndex] = {
-                ...state.list[transactionsGroupIndex].expenses[expenseIndex],
-                ...transaction.expenses[expenseUpdatedIndex],
-              };
-              state.list[transactionsGroupIndex].amount_sum = state.list[
-                transactionsGroupIndex
-              ].expenses.reduce((acc, expense) => acc + expense.amount, 0);
-            } else {
-              state.list[transactionsGroupIndex] = {
-                ...state.list[transactionsGroupIndex],
-                amount_sum:
-                  state.list[transactionsGroupIndex].amount_sum +
-                  transaction.amount_sum,
-                expenses: [
-                  ...state.list[transactionsGroupIndex].expenses,
-                  ...transaction.expenses,
-                ],
-              };
-            }
+              return acc;
+            }, []);
+
+            state.list[transactionsGroupIndex] = {
+              ...state.list[transactionsGroupIndex],
+              expenses: allTransactions,
+            };
+
+            state.list[transactionsGroupIndex].amount_sum = state.list[
+              transactionsGroupIndex
+            ].expenses.reduce((acc, expense) => acc + expense.amount, 0);
           } else {
             state.list = [...state.list, transaction];
           }

@@ -42,7 +42,7 @@ export default function History() {
     <TransactionsList
       // this is really stupid but it works for now
       // TODO: it should be number of transactions items equal to the limit * page instead of 5 * page
-      data={transactions.slice(0, 5 * page)}
+      data={transactions.slice(0, 7 * page)}
       isLoading={transactionsLoading}
       isError={isError}
       fetchMore={() => {
