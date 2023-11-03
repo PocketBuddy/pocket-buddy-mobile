@@ -25,7 +25,8 @@ export function useAddCategoryForm({ handleClose }: Omit<Props, 'id'>) {
     defaultValues,
     validationSchema: CategoriesSchema.addCategory,
   });
-  const [createCategory, { isSuccess, isError }] = useCreateCategoryMutation();
+  const [createCategory, { isSuccess, isError, isLoading }] =
+    useCreateCategoryMutation();
 
   useEffect(() => {
     handleClose();
@@ -49,6 +50,7 @@ export function useAddCategoryForm({ handleClose }: Omit<Props, 'id'>) {
   return {
     onSubmit,
     resetAddCategoryForm: reset,
+    isLoading,
     ...formProps,
   };
 }
@@ -58,7 +60,7 @@ export function useAddSubCategoryForm({ id, handleClose }: Props) {
     defaultValues,
     validationSchema: CategoriesSchema.addSubCategory,
   });
-  const [createSubCategory, { isSuccess, isError }] =
+  const [createSubCategory, { isSuccess, isError, isLoading }] =
     useCreateSubCategoryMutation();
 
   useEffect(() => {
@@ -86,6 +88,7 @@ export function useAddSubCategoryForm({ id, handleClose }: Props) {
   return {
     onSubmit,
     resetAddSubCategoryForm: reset,
+    isLoading,
     ...formProps,
   };
 }
@@ -99,7 +102,8 @@ export function useEditCategoryForm({
     defaultValues,
     validationSchema: CategoriesSchema.editCategory,
   });
-  const [editCategory, { isSuccess, isError }] = useEditCategoryMutation();
+  const [editCategory, { isSuccess, isError, isLoading }] =
+    useEditCategoryMutation();
 
   useEffect(() => {
     setValue('id', id);
@@ -130,6 +134,7 @@ export function useEditCategoryForm({
 
   return {
     onSubmit,
+    isLoading,
     ...formProps,
   };
 }
@@ -139,7 +144,8 @@ export function useDeleteCategoryForm({ id, handleClose }: Props) {
     defaultValues,
     validationSchema: CategoriesSchema.deleteCategory,
   });
-  const [deleteCategory, { isSuccess, isError }] = useDeleteCategoryMutation();
+  const [deleteCategory, { isSuccess, isError, isLoading }] =
+    useDeleteCategoryMutation();
 
   useEffect(() => {
     setValue('id', id);
@@ -161,6 +167,7 @@ export function useDeleteCategoryForm({ id, handleClose }: Props) {
 
   return {
     onSubmit,
+    isLoading,
     ...formProps,
   };
 }

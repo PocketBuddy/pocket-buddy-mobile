@@ -25,8 +25,7 @@ const prioritiesApi = api.injectEndpoints({
   endpoints: build => ({
     getPriorities: build.query<GetResponse, {}>({
       query: () => ({
-        // TODO: change url to /user-expense-category when backend will be ready
-        url: '/user/priorities',
+        url: '/user-expense-priority',
       }),
       onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         dispatch(setPrioritiesLoading(true));
@@ -89,6 +88,7 @@ const prioritiesApi = api.injectEndpoints({
 
 export const {
   useLazyGetPrioritiesQuery,
+  useGetPrioritiesQuery,
   useCreatePriorityMutation,
   useEditPriorityMutation,
   useDeletePriorityMutation,

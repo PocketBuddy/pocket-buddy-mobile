@@ -26,7 +26,8 @@ export function useAddPriorityForm({ handleClose }: Omit<Props, 'priority'>) {
     defaultValues,
     validationSchema: PrioritiesSchema.addPriority,
   });
-  const [createPriority, { isSuccess, isError }] = useCreatePriorityMutation();
+  const [createPriority, { isSuccess, isError, isLoading }] =
+    useCreatePriorityMutation();
 
   useEffect(() => {
     handleClose();
@@ -52,6 +53,7 @@ export function useAddPriorityForm({ handleClose }: Omit<Props, 'priority'>) {
   return {
     onSubmit,
     resetAddPriorityForm: reset,
+    isLoading,
     ...formProps,
   };
 }
@@ -61,7 +63,8 @@ export function useEditPriorityForm({ priority, handleClose }: Props) {
     defaultValues,
     validationSchema: PrioritiesSchema.editPriority,
   });
-  const [editPriority, { isSuccess, isError }] = useEditPriorityMutation();
+  const [editPriority, { isSuccess, isError, isLoading }] =
+    useEditPriorityMutation();
 
   useEffect(() => {
     setValue('id', priority?.id || '');
@@ -95,6 +98,7 @@ export function useEditPriorityForm({ priority, handleClose }: Props) {
 
   return {
     onSubmit,
+    isLoading,
     ...formProps,
   };
 }
@@ -107,7 +111,8 @@ export function useDeletePriorityForm({
     defaultValues,
     validationSchema: PrioritiesSchema.deletePriority,
   });
-  const [deletePriority, { isSuccess, isError }] = useDeletePriorityMutation();
+  const [deletePriority, { isSuccess, isError, isLoading }] =
+    useDeletePriorityMutation();
 
   useEffect(() => {
     setValue('id', id);
@@ -129,6 +134,7 @@ export function useDeletePriorityForm({
 
   return {
     onSubmit,
+    isLoading,
     ...formProps,
   };
 }

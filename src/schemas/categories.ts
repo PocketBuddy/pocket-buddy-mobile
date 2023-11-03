@@ -1,11 +1,10 @@
 import * as yup from 'yup';
-import i18n from '@/translations';
 
 const addCategory = yup.object({
   name: yup
     .string()
-    .max(20, i18n.t('schemas:manageCategories.name.valid'))
-    .required(i18n.t('schemas:manageCategories.name.required')),
+    .max(20, 'schemas:manageCategories.name.valid')
+    .required('schemas:manageCategories.name.required'),
 });
 
 const addSubCategory = addCategory.shape({

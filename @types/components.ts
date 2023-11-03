@@ -1,3 +1,4 @@
+import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
 import { IconDefinition as BrandsIconType } from '@fortawesome/free-brands-svg-icons';
 import { IconDefinition as SolidIconType } from '@fortawesome/free-solid-svg-icons';
 
@@ -60,3 +61,19 @@ export enum ToastType {
   Info = 'info',
   Error = 'error',
 }
+
+export enum LanguagesNames {
+  Polish = 'Polish',
+  English = 'Angielski',
+}
+
+export enum LanguagesCodes {
+  Polish = 'pl',
+  English = 'en',
+}
+
+export type ErrorMessageInput =
+  | string
+  | FieldError
+  | Merge<FieldError, FieldErrorsImpl<any>>
+  | undefined;

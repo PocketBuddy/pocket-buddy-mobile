@@ -2,24 +2,17 @@ import {
   Controller,
   ControllerProps,
   ControllerRenderProps,
-  FieldError,
-  FieldErrorsImpl,
   FieldValues,
-  Merge,
 } from 'react-hook-form';
+import { ErrorMessageInput, ParagraphAlign } from 'types/components';
 import { Input, Paragraph } from '@/components';
 import React, { useCallback } from 'react';
 import { InputProps } from '../Input/Input';
-import { ParagraphAlign } from 'types/components';
 
 type Props = {
   control: ControllerProps['control'];
   name: ControllerProps['name'];
-  errorMessage?:
-    | string
-    | FieldError
-    | Merge<FieldError, FieldErrorsImpl<any>>
-    | undefined;
+  errorMessage?: ErrorMessageInput;
 } & Omit<InputProps, 'onChangeText'>;
 
 type RenderInputProps = {

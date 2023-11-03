@@ -3,8 +3,8 @@ import {
   useDeletePriorityForm,
   useEditPriorityForm,
 } from './useManagePrioritiesForm';
+import { useEffect, useMemo } from 'react';
 import { PriorityModel } from 'types/models';
-import { useEffect } from 'react';
 
 type Props = {
   isSheetOpen: boolean;
@@ -28,6 +28,17 @@ export default function useManagePrioritiesSheet({
     id: priority?.id,
     handleClose,
   });
+  const isLoading = useMemo(
+    () =>
+      addPriorityForm.isLoading ||
+      editPriorityForm.isLoading ||
+      deletePriorityForm.isLoading,
+    [
+      addPriorityForm.isLoading,
+      editPriorityForm.isLoading,
+      deletePriorityForm.isLoading,
+    ],
+  );
 
   useEffect(() => {
     if (!isSheetOpen) {
@@ -39,5 +50,6 @@ export default function useManagePrioritiesSheet({
     addPriorityForm,
     editPriorityForm,
     deletePriorityForm,
+    isLoading,
   };
 }

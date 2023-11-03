@@ -8,6 +8,7 @@ export { default as ToastMessage } from './atoms/ToastMessage/ToastMessage';
 export { default as ListSeparator } from './atoms/ListSeparator/ListSeparator';
 export { default as ManageListItem } from './atoms/ManageListItem/ManageListItem';
 export { default as Title } from './atoms/Title/Title';
+export { default as Chip } from './atoms/Chip/Chip';
 
 // Molecules
 export { default as Button } from './molecules/Button/Button';
@@ -17,6 +18,8 @@ export { default as TabBarIcon } from './molecules/TabBarIcon/TabBarIcon';
 export { default as SettingsItem } from './molecules/SettingsItem/SettingsItem';
 export { default as FloatingButton } from './molecules/FloatingButton/FloatingButton';
 export { default as DataMessage } from './molecules/DataMessage/DataMessage';
+export { default as TitleInteractive } from './molecules/TitleInteractive/TitleInteractive';
+export { default as Amount } from './molecules/Amount/Amount';
 
 // Organisms
 export { default as Form } from './organisms/Form/Form';
@@ -27,6 +30,7 @@ export { default as BottomSheet } from './organisms/BottomSheet/BottomSheet';
 export { default as Tabs } from './templates/Tabs/Tabs';
 export { default as ToastHandler } from './templates/ToastHandler/ToastHandler';
 export { default as ManagementList } from './templates/ManagementList/ManagementList';
+export { default as HorizontalList } from './templates/HorizontalList/HorizontalList';
 
 // Pages
 export { default as ScreenWithTabs } from './pages/ScreenWithTabs/ScreenWithTabs';

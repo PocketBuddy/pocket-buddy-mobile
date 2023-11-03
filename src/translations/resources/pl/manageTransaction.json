@@ -1,0 +1,14 @@
+{
+  "name": {
+    "label": "Nazwa",
+    "placeholder": "Podaj nazwę"
+  },
+  "spentDate": {
+    "title": "Wybierz datę"
+  },
+  "buttons": {
+    "create": "Dodaj",
+    "edit": "Zapisz",
+    "cancel": "Anuluj"
+  }
+}

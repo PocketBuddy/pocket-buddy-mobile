@@ -1,10 +1,10 @@
 import { MainScreens, StackNames } from './routes';
 import React, { useCallback } from 'react';
+import { TouchableOpacity, View } from 'react-native';
 import { Constants } from '@/utils';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { IconTypes } from 'types/components';
 import { TabBarIcon } from '@/components';
-import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@/hooks';
 
@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 
 // @refresh reset
 export default function MainNavigator() {
-  const { Images, Gutters, Colors, MetricsSizes } = useTheme();
+  const { Images, Gutters, Colors, MetricsSizes, Layout } = useTheme();
   const navigation = useNavigation();
 
   const renderTabBarIcon = useCallback(
@@ -25,6 +25,31 @@ export default function MainNavigator() {
       size: number;
       icon: IconTypes;
     }) => <TabBarIcon icon={icon} focused={focused} size={size} />,
+    [],
+  );
+
+  const renderPlus = useCallback(
+    ({ size, icon }: { size: number; icon: IconTypes }) => (
+      <View
+        style={[
+          // eslint-disable-next-line react-native/no-inline-styles
+          {
+            ...Layout.absolute,
+            ...Gutters.tinyPadding,
+            bottom: 30,
+            zIndex: 1,
+            backgroundColor: Colors.white,
+            borderRadius: 50,
+          },
+        ]}
+      >
+        {renderTabBarIcon({
+          focused: true,
+          size: size * 1.4,
+          icon: icon,
+        })}
+      </View>
+    ),
     [],
   );
 
@@ -57,7 +82,9 @@ export default function MainNavigator() {
           backgroundColor: Colors.background,
         },
         tabBarStyle: {
-          backgroundColor: Colors.background,
+          backgroundColor: Colors.white,
+          borderTopWidth: 0,
+          elevation: 0,
           height: MetricsSizes.large,
         },
       }}
@@ -79,6 +106,23 @@ export default function MainNavigator() {
               icon: Images.icons.moneyTransfer,
             }),
         }}
+      />
+      <Tab.Screen
+        name={`${MainScreens.manageTransaction.name}Placeholder`}
+        // @ts-ignore
+        component={MainScreens.manageTransaction.component}
+        options={{
+          tabBarIcon: ({ size }) =>
+            renderPlus({ size, icon: Images.icons.plus }),
+        }}
+        listeners={({ navigation: { navigate } }) => ({
+          tabPress: e => {
+            e.preventDefault();
+            navigate(StackNames.modals, {
+              screen: MainScreens.manageTransaction.name,
+            });
+          },
+        })}
       />
       <Tab.Screen
         {...MainScreens.achievements}

@@ -30,7 +30,7 @@ export default function ManageCategories() {
           />
         )}
         renderItem={({ item }: { item: CategoryModel }) =>
-          item.all_subcategories.length ? (
+          item.subcategories.length ? (
             <>
               <ManageListItem
                 title={item.name}
@@ -40,7 +40,7 @@ export default function ManageCategories() {
               />
               <ListSeparator />
               <NestedFlatList
-                data={item.all_subcategories}
+                data={item.subcategories}
                 ItemSeparatorComponent={renderSeparator}
                 keyExtractor={subItem => subItem.id.toString()}
                 renderItem={({ item: subItem }) => (

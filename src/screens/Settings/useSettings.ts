@@ -1,6 +1,7 @@
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { ScreenNames, StackNames } from '@/navigators/routes';
 import { useCallback, useEffect } from 'react';
+import { useLanguage } from '@/hooks';
 import { useLogoutMutation } from '@/services/modules/auth/logout';
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
 
 export default function useSettings({ navigation }: Props) {
   const [logoutMutation, { isSuccess }] = useLogoutMutation();
+  const { newLabel, handleChange } = useLanguage();
 
   useEffect(() => {
     if (isSuccess) {
@@ -35,5 +37,9 @@ export default function useSettings({ navigation }: Props) {
     handleCategories,
     handlePriorities,
     handleLogout,
+    language: {
+      name: newLabel,
+      handleChange,
+    },
   };
 }

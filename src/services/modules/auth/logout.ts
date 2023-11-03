@@ -4,7 +4,9 @@ import { BaseResponseWithAuth } from 'types/services';
 import { Constants } from '@/utils';
 import { loggedOut } from '@/store/auth';
 import { removeCategories } from '@/store/categories';
+import { removePreferences } from '@/store/preferences';
 import { removePriorities } from '@/store/priorities';
+import { removeTransactions } from '@/store/transactions';
 import { removeUser } from '@/store/user';
 
 type Request = {};
@@ -26,6 +28,8 @@ export const logoutApi = api.injectEndpoints({
             dispatch(removeUser()),
             dispatch(removeCategories()),
             dispatch(removePriorities()),
+            dispatch(removePreferences()),
+            dispatch(removeTransactions()),
             AuthService.removeToken(),
           ]);
         }

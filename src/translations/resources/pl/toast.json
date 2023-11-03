@@ -3,6 +3,11 @@
     "header": "Coś poszło nie tak",
     "message": "Przepraszamy, spróbuj ponownie później"
   },
+  "exceptionHandler": {
+    "header": "Nieoczekiwany błąd",
+    "message": "Przepraszamy, musimy zrestartować aplikację",
+    "button": "Zrestartuj aplikację"
+  },
   "unauthenticated": {
     "header": "Nie jesteś zalogowany",
     "message": "Zaloguj się, aby kontynuować"
@@ -34,6 +39,12 @@
     },
     "error": {
       "header": "Błąd rejestracji",
+      "message": "Sprawdź swoje dane"
+    }
+  },
+  "transaction": {
+    "error": {
+      "header": "Utworzenie nie powiodło się",
       "message": "Sprawdź swoje dane"
     }
   }

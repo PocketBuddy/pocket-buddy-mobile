@@ -10,7 +10,7 @@ type UserLoadingPayload = {
   payload: boolean;
 };
 
-type UserDetailsPayload = {
+type UserPayload = {
   payload: Partial<UserModel>;
 };
 
@@ -23,7 +23,15 @@ const initialState: UserState = {
     role: '',
     created_at: '',
     budgets: [],
-    main_budget: null,
+    main_budget: {
+      id: -1,
+      name: '',
+      currency: {
+        id: -1,
+        name: '',
+        code: '',
+      },
+    },
   },
 };
 
@@ -36,7 +44,7 @@ const slice = createSlice({
         state.isLoading = payload;
       }
     },
-    setUser: (state, { payload }: UserDetailsPayload) => {
+    setUser: (state, { payload }: UserPayload) => {
       if (payload !== undefined) {
         state.user = { ...state.user, ...payload };
       }

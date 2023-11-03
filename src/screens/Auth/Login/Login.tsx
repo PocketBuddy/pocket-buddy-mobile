@@ -7,6 +7,7 @@ import {
   useRoute,
 } from '@react-navigation/native';
 import { TouchableOpacity, View } from 'react-native';
+import { getTranslate } from '@/utils';
 import PasswordRecoverySheet from '../PasswordRecoverySheet/PasswordRecoverySheet';
 import React from 'react';
 import useLogin from './useLogin';
@@ -38,7 +39,7 @@ export default function Login({ navigation }: Props) {
               control={form.control}
               label={t('auth:inputs.email.label')}
               placeholder={t('auth:inputs.email.placeholder')}
-              errorMessage={form.errors.email?.message}
+              errorMessage={getTranslate(form.errors.email?.message)}
               textContentType="emailAddress"
               keyboardType="email-address"
             />
@@ -47,7 +48,7 @@ export default function Login({ navigation }: Props) {
               control={form.control}
               label={t('auth:inputs.password.label')}
               placeholder={t('auth:inputs.password.placeholder')}
-              errorMessage={form.errors.password?.message}
+              errorMessage={getTranslate(form.errors.password?.message)}
               textContentType="password"
               onSubmitEditing={form.onSubmit}
               secured

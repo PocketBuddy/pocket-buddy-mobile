@@ -6,6 +6,7 @@ import {
 } from 'types/components';
 import React, { useMemo } from 'react';
 import { CategoryModel } from 'types/models';
+import { getTranslate } from '@/utils';
 import useManageCategoriesSheet from './hooks/useManageCategoriesSheet';
 import { useTranslation } from 'react-i18next';
 
@@ -35,6 +36,7 @@ export default function ManageCategoriesSheet({
     addSubCategoryForm,
     editCategoryForm,
     deleteCategoryForm,
+    isLoading,
   } = useManageCategoriesSheet({
     handleClose,
     isSheetOpen: isOpen,
@@ -108,7 +110,9 @@ export default function ManageCategoriesSheet({
                   control={addCategoryForm.control}
                   label={t('manageCategories:input.label')}
                   placeholder={t('manageCategories:input.placeholder')}
-                  errorMessage={addCategoryForm.errors.name?.message}
+                  errorMessage={getTranslate(
+                    addCategoryForm.errors.name?.message,
+                  )}
                   onSubmitEditing={addCategoryForm.onSubmit}
                   bottomSheet
                 />
@@ -119,7 +123,9 @@ export default function ManageCategoriesSheet({
                   control={addSubCategoryForm.control}
                   label={t('manageCategories:input.label')}
                   placeholder={t('manageCategories:input.label')}
-                  errorMessage={addSubCategoryForm.errors.name?.message}
+                  errorMessage={getTranslate(
+                    addSubCategoryForm.errors.name?.message,
+                  )}
                   onSubmitEditing={addSubCategoryForm.onSubmit}
                   bottomSheet
                 />
@@ -130,7 +136,9 @@ export default function ManageCategoriesSheet({
                   control={editCategoryForm.control}
                   label={t('manageCategories:input.label')}
                   placeholder={t('manageCategories:input.label')}
-                  errorMessage={editCategoryForm.errors.name?.message}
+                  errorMessage={getTranslate(
+                    editCategoryForm.errors.name?.message,
+                  )}
                   defaultValue={editCategoryForm.control._formValues.name}
                   onSubmitEditing={editCategoryForm.onSubmit}
                   bottomSheet
@@ -140,7 +148,11 @@ export default function ManageCategoriesSheet({
           )}
           renderButtons={() => (
             <>
-              <Button label={successLabel} onPress={onSubmit} />
+              <Button
+                label={successLabel}
+                onPress={onSubmit}
+                isLoading={isLoading}
+              />
               <Button
                 label={t('manageCategories:buttonClose')}
                 onPress={handleClose}

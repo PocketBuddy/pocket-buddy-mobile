@@ -1,0 +1,356 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transactions store addTransaction should add to existed group when list contains transactions with the same date 1`] = `
+{
+  "isLoading": false,
+  "list": [
+    {
+      "amount_sum": 125,
+      "expenses": [
+        {
+          "amount": 100,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 1,
+          "name": "test",
+          "spent_date": "2021-01-01",
+        },
+        {
+          "amount": 25,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 2,
+          "name": "test",
+          "spent_date": "2021-01-01",
+        },
+      ],
+      "spent_date": "2021-01-01",
+    },
+  ],
+}
+`;
+
+exports[`transactions store deleteTransaction should delete transaction and decrease amount_sum when group is not empty 1`] = `
+{
+  "isLoading": false,
+  "list": [
+    {
+      "amount_sum": 25,
+      "expenses": [
+        {
+          "amount": 25,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 3,
+          "name": "test",
+          "spent_date": "2021-01-02",
+        },
+      ],
+      "spent_date": "2021-01-02",
+    },
+    {
+      "amount_sum": 25,
+      "expenses": [
+        {
+          "amount": 25,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 2,
+          "name": "test",
+          "spent_date": "2021-01-01",
+        },
+      ],
+      "spent_date": "2021-01-01",
+    },
+  ],
+}
+`;
+
+exports[`transactions store editTransaction should move to existed group and increase amount_sum when date is changed and amount is increased 1`] = `
+{
+  "isLoading": false,
+  "list": [
+    {
+      "amount_sum": 26,
+      "expenses": [
+        {
+          "amount": 25,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 3,
+          "name": "test",
+          "spent_date": "2021-01-02",
+        },
+        {
+          "amount": 1,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 1,
+          "name": "test",
+          "spent_date": "2021-01-02",
+        },
+      ],
+      "spent_date": "2021-01-02",
+    },
+  ],
+}
+`;
+
+exports[`transactions store editTransaction should move to existed group when date is changed 1`] = `
+{
+  "isLoading": false,
+  "list": [
+    {
+      "amount_sum": 125,
+      "expenses": [
+        {
+          "amount": 25,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 3,
+          "name": "test",
+          "spent_date": "2021-01-02",
+        },
+        {
+          "amount": 100,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 1,
+          "name": "test",
+          "spent_date": "2021-01-02",
+        },
+      ],
+      "spent_date": "2021-01-02",
+    },
+  ],
+}
+`;
+
+exports[`transactions store editTransaction should move to new group which is not existed when date is changed 1`] = `
+{
+  "isLoading": false,
+  "list": [
+    {
+      "amount_sum": 25,
+      "expenses": [
+        {
+          "amount": 25,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 3,
+          "name": "test",
+          "spent_date": "2021-01-03",
+        },
+      ],
+      "spent_date": "2021-01-03",
+    },
+    {
+      "amount_sum": 100,
+      "expenses": [
+        {
+          "amount": 100,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 1,
+          "name": "test",
+          "spent_date": "2021-01-01",
+        },
+      ],
+      "spent_date": "2021-01-01",
+    },
+  ],
+}
+`;
+
+exports[`transactions store editTransaction should simply edit if date and amount is not changed 1`] = `
+{
+  "isLoading": false,
+  "list": [
+    {
+      "amount_sum": 100,
+      "expenses": [
+        {
+          "amount": 100,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 1,
+          "name": "new name",
+          "spent_date": "2021-01-01",
+        },
+      ],
+      "spent_date": "2021-01-01",
+    },
+  ],
+}
+`;
+
+exports[`transactions store setTransactions should add and increase amount_sum when list is not contains the same item and date is the same 1`] = `
+{
+  "isLoading": false,
+  "list": [
+    {
+      "amount_sum": 125,
+      "expenses": [
+        {
+          "amount": 25,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 2,
+          "name": "test",
+          "spent_date": "2021-01-01",
+        },
+        {
+          "amount": 100,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 1,
+          "name": "test",
+          "spent_date": "2021-01-01",
+        },
+      ],
+      "spent_date": "2021-01-01",
+    },
+  ],
+}
+`;
+
+exports[`transactions store setTransactions should add and sort by date when contains items with different date 1`] = `
+{
+  "isLoading": false,
+  "list": [
+    {
+      "amount_sum": 25,
+      "expenses": [
+        {
+          "amount": 25,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 3,
+          "name": "test",
+          "spent_date": "2021-01-02",
+        },
+      ],
+      "spent_date": "2021-01-02",
+    },
+    {
+      "amount_sum": 100,
+      "expenses": [
+        {
+          "amount": 100,
+          "expense_category": {
+            "id": 1,
+            "name": "test",
+          },
+          "expense_priority": {
+            "id": 1,
+            "name": "test",
+            "priority": 1,
+          },
+          "id": 1,
+          "name": "test",
+          "spent_date": "2021-01-01",
+        },
+      ],
+      "spent_date": "2021-01-01",
+    },
+  ],
+}
+`;

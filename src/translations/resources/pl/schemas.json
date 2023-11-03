@@ -31,5 +31,15 @@
       "required": "Waga nie może być pusta",
       "valid": "Waga musi być liczbą całkowitą"
     }
+  },
+  "transactions": {
+    "name": {
+      "required": "Nazwa nie może być pusty",
+      "valid": "Nazwa nie może być dłuższy niż 20 znaków"
+    },
+    "amount": {
+      "required": "Kwota nie może być pusta",
+      "valid": "Kwota może mieć maksymalnie 2 miejsca po przecinku"
+    }
   }
 }

@@ -1,0 +1,11 @@
+{
+  "category": {
+    "title": "Wybierz kategorię",
+    "button": "Dodaj"
+  },
+  "subcategory": {
+    "title": "Wybierz podkategorię",
+    "button": "Dodaj"
+  },
+  "error": "Nie wybrano kategorii"
+}

@@ -2,6 +2,7 @@ import { faApple, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import {
   faBell,
   faChevronDown,
+  faChevronUp,
   faCircleExclamation,
   faCircleXmark,
   faEye,
@@ -15,6 +16,7 @@ import {
   faSquarePlus,
   faSquareXmark,
   faTrophy,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { ThemeVariables } from 'types/theme';
 
@@ -25,6 +27,7 @@ export default function ({}: ThemeVariables) {
       apple: faApple,
       google: faGoogle,
       arrowDown: faChevronDown,
+      arrowUp: faChevronUp,
       settings: faGear,
       eyeOpen: faEye,
       eyeClosed: faEyeSlash,
@@ -39,6 +42,7 @@ export default function ({}: ThemeVariables) {
       add: faSquarePlus,
       edit: faSquarePen,
       delete: faSquareXmark,
+      xMark: faXmark,
     },
   };
 }

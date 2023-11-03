@@ -4,7 +4,7 @@ import {
   useDeleteCategoryForm,
   useEditCategoryForm,
 } from './useManageCategoriesForm';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 type Props = {
   isSheetOpen: boolean;
@@ -30,6 +30,19 @@ export default function useManageCategoriesSheet({
     handleClose,
   });
   const deleteCategoryForm = useDeleteCategoryForm({ id, handleClose });
+  const isLoading = useMemo(
+    () =>
+      addCategoryForm.isLoading ||
+      addSubCategoryForm.isLoading ||
+      editCategoryForm.isLoading ||
+      deleteCategoryForm.isLoading,
+    [
+      addCategoryForm.isLoading,
+      addSubCategoryForm.isLoading,
+      editCategoryForm.isLoading,
+      deleteCategoryForm.isLoading,
+    ],
+  );
 
   useEffect(() => {
     if (!isSheetOpen) {
@@ -43,5 +56,6 @@ export default function useManageCategoriesSheet({
     addSubCategoryForm,
     editCategoryForm,
     deleteCategoryForm,
+    isLoading,
   };
 }

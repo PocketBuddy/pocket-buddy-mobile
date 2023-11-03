@@ -3,6 +3,11 @@
     "header": "Something went wrong",
     "message": "We're sorry, please try again later"
   },
+  "exceptionHandler": {
+    "header": "Unexpected error occurred",
+    "message": "We're sorry, we will need to restart the app",
+    "button": "Restart"
+  },
   "unauthenticated": {
     "header": "You are not logged in",
     "message": "Please log in to continue"
@@ -34,6 +39,12 @@
     },
     "error": {
       "header": "Registration failed",
+      "message": "Please check your details"
+    }
+  },
+  "transaction": {
+    "error": {
+      "header": "Create transaction failed",
       "message": "Please check your details"
     }
   }

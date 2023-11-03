@@ -36,8 +36,11 @@ export default function Tabs({ screens }: Props) {
           key={name}
           name={name}
           component={component}
-          initialParams={{
-            title: t(parentScreenName, { context: name, defaultValue: name }),
+          options={{
+            title: t(parentScreenName, {
+              context: name,
+              defaultValue: name,
+            }),
           }}
           listeners={({ navigation, route }) => ({
             tabPress: e => {

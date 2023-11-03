@@ -24,11 +24,16 @@ export type MainSettingsParamsList = {
   ManagePriorities: undefined;
 };
 
+export type ModalsParamsList = {
+  ManageTransaction: { transactionId?: string };
+};
+
 export type ApplicationStackParamList = {
   Startup: undefined;
   Start: NavigatorScreenParams<StartParamsList>;
   Main: NavigatorScreenParams<MainParamsList>;
   MainSettings: NavigatorScreenParams<MainSettingsParamsList>;
+  Modals: NavigatorScreenParams<ModalsParamsList>;
 };
 
 export type ApplicationScreenProps =

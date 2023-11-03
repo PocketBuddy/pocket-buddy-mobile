@@ -1,0 +1,14 @@
+{
+  "name": {
+    "label": "Name",
+    "placeholder": "Enter name"
+  },
+  "spentDate": {
+    "title": "Select date"
+  },
+  "buttons": {
+    "create": "Create",
+    "edit": "Save",
+    "cancel": "Cancel"
+  }
+}

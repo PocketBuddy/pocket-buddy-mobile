@@ -1,5 +1,4 @@
 import * as yup from 'yup';
-import i18n from '@/translations';
 
 // only positive numbers
 const PRIORITY_REGEX = /^[0-9]+$/;
@@ -7,12 +6,12 @@ const PRIORITY_REGEX = /^[0-9]+$/;
 const addPriority = yup.object({
   name: yup
     .string()
-    .max(20, i18n.t('schemas:manageCategories.name.valid'))
-    .required(i18n.t('schemas:manageCategories.name.required')),
+    .max(20, 'schemas:manageCategories.name.valid')
+    .required('schemas:manageCategories.name.required'),
   priority: yup
     .string()
-    .required(i18n.t('schemas:managePriorities.priority.required'))
-    .matches(PRIORITY_REGEX, i18n.t('schemas:managePriorities.priority.valid')),
+    .required('schemas:managePriorities.priority.required')
+    .matches(PRIORITY_REGEX, 'schemas:managePriorities.priority.valid'),
 });
 
 const editPriority = addPriority.shape({

@@ -8,6 +8,7 @@ import {
   Login,
   ManageCategories,
   ManagePriorities,
+  ManageTransaction,
   Notifications,
   Register,
   Settings,
@@ -20,6 +21,7 @@ export enum StackNames {
   start = 'Start',
   main = 'Main',
   mainSettings = 'MainSettings',
+  modals = 'Modals',
 }
 
 export enum ScreenNames {
@@ -38,6 +40,7 @@ export enum ScreenNames {
   settings = 'Settings',
   manageCategories = 'ManageCategories',
   managePriorities = 'ManagePriorities',
+  mangeTransaction = 'MangeTransaction',
 }
 
 export const MainScreens = Object.freeze({
@@ -76,6 +79,10 @@ export const MainScreens = Object.freeze({
   managePriorities: {
     name: ScreenNames.managePriorities,
     component: ManagePriorities,
+  },
+  manageTransaction: {
+    name: ScreenNames.mangeTransaction,
+    component: ManageTransaction,
   },
 });
 
